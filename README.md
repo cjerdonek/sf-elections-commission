@@ -1,4 +1,16 @@
-sf-elections-commission-web
-===========================
+SF Elections Commission
+=======================
 
-Backup files for the San Francisco Elections Commission's web site
+This repository is a personal and unofficial collection of administrative
+documents for the San Francisco Elections Commission.
+
+It contains:
+
+* Backup files for some pages of the Commission web site (maintained
+  using San Francisco government's [Vision CMS][vision-cms].
+
+* Instructional documents for administrative tasks like holding a meeting
+  and recording meeting audio.
+
+
+[vision-cms]: http://www6.sfgov.org/index.aspx?page=163
