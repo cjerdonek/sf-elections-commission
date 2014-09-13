@@ -1,14 +1,15 @@
 Meeting Audio
 =============
 
-This page contains instructions for recording a meeting, creating an
-audio MP3, and posting the audio as a video on YouTube.
+This page contains instructions for recording a meeting, trimming the
+audio and creating an audio MP3 file, creating a video from the audio
+(for posting on YouTube), and posting the video on YouTube.
 
 
 Using Mac OS X
 --------------
 
-This section contains instructions with using free Mac OS X applications.
+This section contains instructions using free Mac OS X applications.
 
 
 ### Record and download the audio
@@ -62,6 +63,20 @@ this file somewhere with the Commission for backup purposes.
 
 
 ### Create a video file
+
+To create a video from the audio, you will need a placeholder image.
+A screen shot of the top part of the agenda works well for this because
+it contains information about the meeting like the time and place, etc.
+
+For videos, we use YouTube's preferred aspect ratio of 16:9.  An image
+size of 800 pixels wide by 450 tall is an example of something that works.
+You can use Apple's "Preview" program to crop and resize screen shots
+to a 16:9 ratio (be careful not to "stretch" the image, though).
+
+Below is an example of a screen shot of the top part of an agenda with
+dimensions 800 pixels by 450 pixels.
+
+![](images/agenda_screen_shot.png "Agenda screen shot for video")
 
 TODO: finish these instructions.
 
