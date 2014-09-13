@@ -1,7 +1,9 @@
 Meeting Audio
 =============
 
-This page contains instructions for recording and posting meeting audio.
+This page contains instructions for recording a meeting, creating an
+audio MP3, and posting the audio as a video on YouTube.
+
 
 Using Mac OS X
 --------------
@@ -23,7 +25,7 @@ which is a file format created by Apple and works with iTunes, etc.
 A 10-minute meeting resulted in a file less than 6MB.
 
 
-### Trim the audio
+### Trim the audio and create an MP3
 
 To trim extra time from the beginning and end of the audio, open the
 file in iTunes.
@@ -47,6 +49,19 @@ screen shot of this dialog box.
 ![](images/audio-trim.png "Trim audio")
 
 Click OK to close the dialog box and return to the main iTunes window.
+
+Press "CTRL + mouse-click" on the audio file in the iTunes Music Library
+and select "Create MP3 Version."  This should create a new audio file
+in the library.  The length should be shorter to reflect the new start
+and end times you chose.
+
+Press "CTRL + mouse-click" on the audio file in the iTunes Music Library
+and select "Show in Finder."  Copy this MP3 file to a separate location.
+This is your final audio MP3 file.  It would be a good idea to archive
+this file somewhere with the Commission for backup purposes.
+
+
+### Create a video file
 
 TODO: finish these instructions.
 
