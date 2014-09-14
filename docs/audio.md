@@ -1,8 +1,8 @@
 Meeting Audio
 =============
 
-This page contains instructions for recording a meeting, trimming the
-audio and creating an audio MP3 file, creating a video from the audio
+This page contains instructions for recording a meeting, creating a
+trimmed audio MP3 file, creating a video from the audio
 (for posting on YouTube), and posting the video on YouTube.
 
 
@@ -62,7 +62,7 @@ This is your final audio MP3 file.  It would be a good idea to archive
 this file somewhere with the Commission for backup purposes.
 
 
-### Create a video file
+### Create a still image for the video
 
 To create a video from the audio, you will need a placeholder image.
 A screen shot of the top part of the agenda works well for this because
@@ -78,8 +78,33 @@ dimensions 800 pixels by 450 pixels.
 
 ![](images/agenda_screen_shot.png "Agenda screen shot for video")
 
+
+### Create the video
+
+The instructions that follow use iMovie '09.  These instructions
+are adapted from YouTube's own help page [here][youtube-help].
+
+Drag the MP3 audio file into the project area.  Also drag the image file
+into the audio area.  The top of your iMovie window should look something
+like this--
+
+![](images/iMovie_1.png "iMovie - initial setup")
+
+The image has a length of time associated to it that says how long the
+image should display.  After dragging, this time starts out as 4 seconds,
+so you need to lengthen the time of the image to match the length of
+the audio.
+
 TODO: finish these instructions.
+
+When you are done, go to Share > "Export using QuickTime..."
+In the "Save exported file as..." diolog box, click the "Options..."
+button next to "Export."  In the "Movie Settings" dialog box,
+click the "Settings..." button in the "Video" section.
+
+![](images/video_compression.png "iMovie video compression settings")
 
 
 [aiff]: http://en.wikipedia.org/wiki/Audio_Interchange_File_Format
 [super-note]: http://www.clearskyapps.com/portfolio/super-note
+[youtube-help]: https://support.google.com/youtube/answer/1696878?hl=en
