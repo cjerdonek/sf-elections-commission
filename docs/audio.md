@@ -90,7 +90,7 @@ Drag the MP3 audio file into the project area.  Also drag the image file
 into the audio area.  The top of your iMovie window should now look
 something like this--
 
-![](images/imovie_1.png "iMovie - initial setup")
+![](images/imovie_01_initial_setup.png "iMovie - initial setup")
 
 The image you dragged has a length of time associated to it that says
 how long it should display in the movie.  After dragging, this time
@@ -103,6 +103,12 @@ properties of the audio you imported.  Select "Clip Adjustments" in the
 box that appears.
 
 ![](images/imovie_02_audio_properties.png "iMovie - Audio properties")
+
+You should see a box appear that says, "Source Duration."  Note the time
+duration somewhere.  This should match the duration of the original
+trimmed audio you made in iTunes.
+
+![](images/imovie_03_audio_duration.png "iMovie - Audio duration")
 
 TODO: finish these instructions.
 
