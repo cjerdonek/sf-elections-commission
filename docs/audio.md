@@ -135,7 +135,28 @@ like 10 minutes might cause the green box to fill up the window as follows.
 
 ![](images/imovie_06_extend_image_duration.png "iMovie - Extend image duration")
 
-TODO: Ken Burns effect.
+If this occurs, change the "granularity" of the project view by moving
+the bar in the lower-right corner of the project window all the way to
+the right to "All."
+
+![](images/imovie_07_granularity.png "iMovie - Project view granularity")
+
+This should cause the green region to reduce back to its original size
+of a single box.
+
+By default, images imported into iMovie have a visual effect applied
+to them called the "Ken Burns effect."  With this effect, the video
+gradually zooms in to or out of the image over the course of the display
+of the image.
+
+To turn this feature off, hover over the image and click the blue gear
+again.  This time, select "Cropping, Ken Burns & Rotation" in the menu
+that pops up.  Some options should appear in the window on the right.
+Select "Fit" and click "Done."  This will cause the image to be still
+over the course of its display.
+
+![](images/imovie_08_turn_off_ken_burns.png "iMovie - Turn off Ken Burns")
+
 
 TODO: finish these instructions.
 
