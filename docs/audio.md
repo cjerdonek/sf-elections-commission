@@ -18,7 +18,7 @@ For recording the meeting, I found that the free iPhone app called
 [Super Note][super-note] by Clear Sky Apps works well.  Here is a
 screen shot:
 
-![](images/supernote.PNG "Super Note screen shot")
+![](images/supernote.png "Super Note screen shot")
 
 After recording the meeting, Super Note lets you download the audio file
 to your computer using DropBox.  The audio file format is [AIFF][aiff],
@@ -47,7 +47,7 @@ and end times (which you can figure out by listening to the audio and
 writing down the times you want).  See the picture below for a sample
 screen shot of this dialog box.
 
-![](images/audio-trim.png "Trim audio")
+![](images/audio_trim.png "Trim audio")
 
 Click OK to close the dialog box and return to the main iTunes window.
 
@@ -73,27 +73,35 @@ size of 800 pixels wide by 450 tall is an example of something that works.
 You can use Apple's "Preview" program to crop and resize screen shots
 to a 16:9 ratio (be careful not to "stretch" the image, though).
 
-Below is an example of a screen shot of the top part of an agenda with
-dimensions 800 pixels by 450 pixels.
+Below is an example image with size 800 by 450.
 
 ![](images/agenda_screen_shot.png "Agenda screen shot for video")
 
 
 ### Create the video
 
-The instructions that follow use iMovie '09.  These instructions
-are adapted from YouTube's own help page [here][youtube-help].
+This subsection says how to create a video from your image and audio file.
+
+These instructions use iMovie '09.  They are adapted from YouTube's own
+help page [here][youtube-help].
 
 Drag the MP3 audio file into the project area.  Also drag the image file
-into the audio area.  The top of your iMovie window should look something
-like this--
+into the audio area.  The top of your iMovie window should now look
+something like this--
 
-![](images/iMovie_1.png "iMovie - initial setup")
+![](images/imovie_1.png "iMovie - initial setup")
 
-The image has a length of time associated to it that says how long the
-image should display.  After dragging, this time starts out as 4 seconds,
-so you need to lengthen the time of the image to match the length of
-the audio.
+The image you dragged has a length of time associated to it that says
+how long it should display in the movie.  After dragging, this time
+starts out as 4 seconds, so you need to lengthen the time of the image
+to match the length of the audio.
+
+To confirm the length of the audio in iMovie, click the green "gear"
+in the upper left corner of the green box.  This lets you access
+properties of the audio you imported.  Select "Clip Adjustments" in the
+box that appears.
+
+![](images/imovie_02_audio_properties.png "iMovie - Audio properties")
 
 TODO: finish these instructions.
 
@@ -102,7 +110,7 @@ In the "Save exported file as..." diolog box, click the "Options..."
 button next to "Export."  In the "Movie Settings" dialog box,
 click the "Settings..." button in the "Video" section.
 
-![](images/video_compression.png "iMovie video compression settings")
+![](images/imovie_10_video_compression.png.png "iMovie video compression settings")
 
 
 [aiff]: http://en.wikipedia.org/wiki/Audio_Interchange_File_Format
