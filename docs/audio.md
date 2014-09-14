@@ -39,9 +39,10 @@ dialog box, click on the "Import Settings..." button.  Under
 "High Quality (160 kbps)."  Click "OK" and "OK" to close the dialog
 boxes and return to iTunes.
 
-To set the start and end times of the audio clip, press "CTRL + mouse-click"
-on the audio file in the iTunes Music Library, and select "Get Info"
-in the pull-down menu that appears.  A dialog box should appear.
+To set the start and end times of the audio clip, control-click
+(press "CTRL + mouse-click") on the audio file in the iTunes Music Library,
+and select "Get Info" in the pull-down menu that appears.
+A dialog box should appear.
 Select "Options" at the top of the dialog box and manually enter start
 and end times (which you can figure out by listening to the audio and
 writing down the times you want).  See the picture below for a sample
@@ -51,12 +52,12 @@ screen shot of this dialog box.
 
 Click OK to close the dialog box and return to the main iTunes window.
 
-Press "CTRL + mouse-click" on the audio file in the iTunes Music Library
+Control-click on the audio file in the iTunes Music Library
 and select "Create MP3 Version."  This should create a new audio file
 in the library.  The length should be shorter to reflect the new start
 and end times you chose.
 
-Press "CTRL + mouse-click" on the audio file in the iTunes Music Library
+Control-click on the audio file in the iTunes Music Library
 and select "Show in Finder."  Copy this MP3 file to a separate location.
 This is your final audio MP3 file.  It would be a good idea to archive
 this file somewhere with the Commission for backup purposes.
@@ -97,7 +98,7 @@ how long it should display in the movie.  After dragging, this time
 starts out as 4 seconds, so you need to lengthen the time of the image
 to match the length of the audio.
 
-To confirm the length of the audio in iMovie, click the green "gear"
+To confirm the length of the _audio clip_ in iMovie, click the green "gear"
 in the upper left corner of the green box.  This lets you access
 properties of the audio you imported.  Select "Clip Adjustments" in the
 box that appears.
@@ -109,6 +110,32 @@ duration somewhere.  This should match the duration of the original
 trimmed audio you made in iTunes.
 
 ![](images/imovie_03_audio_duration.png "iMovie - Audio duration")
+
+Now we will change the length of time of the image to match
+the length of the audio.  To access the image properties, hover over the
+green box corresponding to the image.  A blue "gear" should appear in
+the lower-left corner of the green box.  Click the blue gear.
+
+![](images/imovie_04_image_properties.png "iMovie - Image properties")
+
+Now click "Clip Adjustments."  A dialog box should pop up that lets you
+edit the image duration.
+
+![](images/imovie_05_image_duration.png "iMovie - Image duration")
+
+Set the duration of the image in the format `m:ss`.  Note that iMovie
+seems to have an upper limit of 10 minutes for an image.
+If the audio file is less than 10 minutes, set the image duration
+equal to the duration of the audio.  Otherwise, set the image duration
+equal to the maximum of 10:00.  We will address the audio after
+10 minutes below.
+
+Lengthening the image duration from 4 seconds to something longer
+like 10 minutes might cause the green box to fill up the window as follows.
+
+![](images/imovie_06_extend_image_duration.png "iMovie - Extend image duration")
+
+TODO: Ken Burns effect.
 
 TODO: finish these instructions.
 
