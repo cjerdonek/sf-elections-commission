@@ -85,6 +85,7 @@ This subsection says how to create a video from your image and audio file.
 These instructions use iMovie '09.  They are adapted from YouTube's own
 help page [here][youtube-help].
 
+Start iMovie (e.g. by clicking on it in the "Applications" folder).
 Drag the MP3 audio file into the project area.  Also drag the image file
 into the audio area.  The top of your iMovie window should now look
 something like this--
