@@ -1,8 +1,11 @@
 SF Elections Commission
 =======================
 
-This repository is a personal and unofficial collection of administrative
-documents for the San Francisco Elections Commission.
+This repository is unofficial and is not approved by the San
+Francisco Elections Commission.
+
+This repository is a personal and unofficial collection of documents
+to assist with administrative tasks.
 
 It contains:
 
