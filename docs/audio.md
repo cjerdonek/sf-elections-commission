@@ -192,7 +192,10 @@ because a high quality is not needed for the video.
 
 Click OK twice to close both dialog boxes, and then click save.
 This will generate a ".mov" file, which is the video format for QuickTime
-and is acceptable for YouTube.
+and is acceptable for YouTube.  Note that the export process may take a
+relatively long time.  For example, a 10-minute video may take on the
+order of 10 minutes to create.
+
 
 ### Upload the video to YouTube
 
