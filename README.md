@@ -15,4 +15,12 @@ It contains:
   holding a meeting and recording and posting meeting audio.
 
 
+Technical Note
+--------------
+
+To preview a file in HTML, you can run the following command, for example:
+
+    $ pandoc --from=markdown_github --to=html --output=PATH.html PATH.md
+
+
 [vision-cms]: http://www6.sfgov.org/index.aspx?page=163
