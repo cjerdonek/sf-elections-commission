@@ -180,11 +180,23 @@ dialog box should look like the following:
 ![](images/imovie_09_export_dialog_box.png "iMovie - Export dialog box")
 
 
-Click the "Options..."
-button next to "Export."  In the "Movie Settings" dialog box,
-click the "Settings..." button in the "Video" section.
+Click the "Options..." button next to "Export."  In the "Movie Settings"
+dialog box, click the "Settings..." button in the "Video" section.
+A dialog box like the following should appear.
 
-![](images/imovie_10_video_compression.png.png "iMovie video compression settings")
+![](images/imovie_10_video_compression.png "iMovie video compression settings")
+
+Change the settings to match the settings in the picture above.
+These settings are set to a lower quality to make the export faster, and
+because a high quality is not needed for the video.
+
+Click OK twice to close both dialog boxes, and then click save.
+This will generate a ".mov" file, which is the video format for QuickTime
+and is acceptable for YouTube.
+
+### Upload the video to YouTube
+
+TODO
 
 
 [aiff]: http://en.wikipedia.org/wiki/Audio_Interchange_File_Format
