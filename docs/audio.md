@@ -89,14 +89,16 @@ help page [here][youtube-help].
 Start iMovie (e.g. by clicking on it in the "Applications" folder).
 Drag the MP3 audio file into the project area.  Also drag the image file
 into the audio area.  The top of your iMovie window should now look
-something like this--
+something like the following.  The green region corresponds to the
+audio file, and the picture inside the green region corresponds to
+the visual image.
 
 ![](images/imovie_01_initial_setup.png "iMovie - initial setup")
 
-The image you dragged has a length of time associated to it that says
-how long it should display in the movie.  After dragging, this time
-starts out as 4 seconds, so you need to lengthen the time of the image
-to match the length of the audio.
+The imported image has a length of time associated to it
+that says how long the image should display in the movie.
+After dragging, this time starts out as 4 seconds, so you need to lengthen
+the time of the image to match the length of the audio.
 
 To confirm the length of the _audio clip_ in iMovie, click the green "gear"
 in the upper left corner of the green box.  This lets you access
@@ -113,8 +115,8 @@ trimmed audio you made in iTunes.
 
 Now we will change the length of time of the image to match
 the length of the audio.  To access the image properties, hover over the
-green box corresponding to the image.  A blue "gear" should appear in
-the lower-left corner of the green box.  Click the blue gear.
+image inside the green region.  A blue "gear" should appear in
+the lower-left corner of the image.  Click the blue gear.
 
 ![](images/imovie_04_image_properties.png "iMovie - Image properties")
 
@@ -152,16 +154,33 @@ of the image.
 To turn this feature off, hover over the image and click the blue gear
 again.  This time, select "Cropping, Ken Burns & Rotation" in the menu
 that pops up.  Some options should appear in the window on the right.
-Select "Fit" and click "Done."  This will cause the image to be still
+Select "Fit" and click "Done."  This will cause the image to remain still
 over the course of its display.
 
 ![](images/imovie_08_turn_off_ken_burns.png "iMovie - Turn off Ken Burns")
 
+If the audio file was less than 10 minutes long, you are done editing
+the video.  More likely, the audio file was longer than 10
+minutes long.  In this case, you need to create enough copies of
+the 10-minute image to last the length of the audio.
 
-TODO: finish these instructions.
+To create enough copies of the image, click on the image so that a yellow
+outline surrounds the image.  Press `COMMAND+C` to copy the image.
+Then press `COMMAND+V` to paste enough copies of the 10-minute
+image to span the length of the audio.  Double-check that each image
+(except for the last) is exactly 10 minutes long.  You can do this by
+hovering over each image.  For the last image, you should set the
+duration so that it fills out the remaining length of the audio.
 
-When you are done, go to Share > "Export using QuickTime..."
-In the "Save exported file as..." diolog box, click the "Options..."
+At this point, you are done editing and can create the final video file.
+To do this, go to Share > "Export using QuickTime..."  This should
+open a dialog box called "Save exported file as...".  The bottom of the
+dialog box should look like the following:
+
+![](images/imovie_09_export_dialog_box.png "iMovie - Export dialog box")
+
+
+Click the "Options..."
 button next to "Export."  In the "Movie Settings" dialog box,
 click the "Settings..." button in the "Video" section.
 
