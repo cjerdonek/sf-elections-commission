@@ -2,10 +2,11 @@ SF Elections Commission
 =======================
 
 **Disclaimer:** This repository is a personal and unofficial collection
-of documents to assist with administrative tasks.  It is not approved by
-nor does it represent the San Francisco Elections Commission.
+of documents to assist with administrative tasks.  These documents are
+not approved by nor do they represent the views of the City and County
+of San Francisco nor the San Francisco Elections Commission.
 
-It contains:
+This repository contains--
 
 * [Backup files](web) for some pages of the Commission web site (maintained
   using San Francisco government's [Vision CMS][vision-cms]), and
