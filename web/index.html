@@ -1,3 +1,11 @@
+<style>
+    .sftable th,
+    .sftable td {
+    border-width: thin;
+    border-bottom-style: solid;
+    white-space: nowrap;
+    }
+</style>
 <p>
 The City Charter of San Francisco authorizes the Elections Commission to
 supervise the City's
@@ -8,7 +16,25 @@ supervises the Director of the Department of Elections.
 </p>
 <h2>Announcements</h2>
 <p>
-There are no announcements.
+  <table id="announce" cellpadding="8" style="border-collapse: collapse;" summary="A simple table with one header row and three columns. The table contains information about and links to past announcements.">
+      <thead>
+          <tr>
+              <th id="table_heading_0">Posted Date</th>
+              <th id="table_heading_1">Description</th>
+              <th id="table_heading_2">Link</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td headers="table_heading_0">September 8, 2014</td>
+              <td headers="table_heading_1">A social gathering will be held on Thursday, September 11, 2014.</td>
+              <td headers="table_heading_2"><a href="modules/showdocument.aspx?documentid=2114" target="_blank">Notice (PDF)</a></td>
+          </tr>
+      </tbody>
+  </table></p>
+<p>
+For past announcements, see the
+<a href="index.aspx?page=4601">Past Announcements</a> page.
 </p>
 <h2>Upcoming Meetings</h2>
 <p>
@@ -17,7 +43,7 @@ scheduled meetings also appear below.  BOPEC stands for
 <a href="index.aspx?page=320#bopec" target="_self">Budget and Oversight
 of Public Elections Committee</a>.
 <p>
-<table id="meetings" cellpadding="8" style="border-collapse: collapse;" summary="A simple table with one header row and six columns. The table contains information about upcoming meetings.">
+<table class="sftable" cellpadding="8" style="border-collapse: collapse;" summary="A simple table with one header row and six columns. The table contains information about upcoming meetings.">
     <thead>
         <tr>
             <th id="table_heading_0">Date</th>
