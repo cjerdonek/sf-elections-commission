@@ -1,19 +1,19 @@
 Converting Audio to Video
 =========================
 
-This page contains self-contained instructions for creating a video
-from an audio file.  These instructions are referenced in the
-instructions for [Recording and Posting Meeting Audio](audio.md).
+This document contains instructions for creating a video from an audio file.
+These instructions are referenced in the instructions for
+[Recording and Posting Meeting Audio](audio.md).
 
-These instructions assume you have the following:
+These instructions assume you have--
 
-* an audio file (e.g. an MP3), and
-* an image to display during the video (e.g. a PNG).
+* an audio file (for example an MP3), and
+* an image to display during the video (for example a PNG).
 
-This document describes two methods that can be used:
+The document describes two different methods:
 
-* A more technical method using FFmpeg, and
-* A less technical method for Mac OS X users using iMovie.
+* a more technical method [using FFmpeg](#using-ffmpeg), and
+* a less technical method for Mac OS X users [using iMovie](#using-imovie).
 
 The FFmpeg method is much faster and more automated, but it requires
 more technical knowledge (e.g. familiarity with the command-line).
