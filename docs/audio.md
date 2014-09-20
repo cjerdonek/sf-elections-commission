@@ -230,14 +230,14 @@ and OUTPUT file names):
 
 Notes on the command above:
 
-* `-f image2` means to use the "image2 sequence" format
-* `-loop 1` means to loop over the input stream (for image streams)
-* `-r 2` means 2 frames per second of the image
+* `-f image2` means to use the "image2 sequence" format,
+* `-loop 1` means to loop over the input stream (for image streams),
+* `-r 2` means 2 frames per second of the image, and
 * `-shortest` means to use the shortest stream to determine when encoding
-  should end
+  should end.
 
-See [here](http://superuser.com/a/538168) for more info and where this
-suggested syntax came from.
+See [here](http://superuser.com/a/538168) for more info and for where
+this suggested syntax came from.
 
 
 [aiff]: http://en.wikipedia.org/wiki/Audio_Interchange_File_Format
