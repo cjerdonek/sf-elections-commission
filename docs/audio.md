@@ -1,8 +1,8 @@
-Meeting Audio
-=============
+Recording and Posting Meeting Audio
+===================================
 
-This page contains instructions for recording a meeting, creating a
-trimmed audio MP3 file, creating a video from the audio
+This page contains instructions for recording a meeting, trimming the
+audio file and creating an MP3, creating a video from the audio
 (for posting on YouTube), and posting the video on YouTube.
 
 
