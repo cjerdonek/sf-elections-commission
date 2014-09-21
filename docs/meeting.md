@@ -1,7 +1,10 @@
 Preparing and Holding Meetings
 ==============================
 
-This document contains guidance for preparing and holding a meeting.
+This document contains guidance for preparing and holding a meeting:
+
+* [72 Hours in Advance](#72-hours-in-advance)
+* [After a Meeting](#after-a-meeting)
 
 
 Prepare an Agenda
@@ -45,4 +48,37 @@ Department of Elections office.
 TODO
 
 
+After a Meeting
+---------------
+
+After a meeting, do the following--
+
+1. Follow the instructions [here][post_audio] to convert the meeting
+   audio to a video and post it on YouTube.
+2. Create draft minutes.
+
+On the Commission website--
+
+1. Complete the [Commissioner attendance grid][attendance-grid] for the meeting.
+2. If draft minutes were approved at the meeting, then make sure the
+   finalized minutes are stored on the website (under the Document
+   Central folder for that meeting).  Make sure the final minutes
+   are linked to in the [Past Meetings][past_meetings] grid (without
+   the word "Draft" in the description).  Then Tweet that the
+   approved minutes are now posted.
+3. Move the information for the meeting from
+   [Upcoming Meetings][upcoming_meetings] to [Past Meetings][past_meetings].
+4. Add a row for the next upcoming meeting to Upcoming Meetings.
+5. Add a link to the YouTube video in the Past Meetings grid, and then
+   Tweet a link to the YouTube video.
+6. Upload the draft minutes to the website, add a link to the draft minutes
+   to the Past Meetings grid, and then Tweet the availability of the
+   draft minutes with a link to the Past Meetings page.
+
+
+[attendance-grid]: http://www.sfgov2.org/index.aspx?page=2918
 [gov-info-center]: http://sfpl.org/index.php?pg=0200002601
+[home-page]: http://www.sfgov2.org/index.aspx?page=319
+[past_meetings]: http://www.sfgov2.org/index.aspx?page=1382
+[post_audio]: https://github.com/cjerdonek/sf-elections-commission/blob/master/docs/audio.md
+[upcoming_meetings]: http://www.sfgov2.org/index.aspx?page=319
