@@ -50,9 +50,12 @@ Notes on the command above:
 
 * `-f image2` means to use the "image2 sequence" format,
 * `-loop 1` means to loop over the input stream (for image streams),
-* `-r 2` means 2 frames per second of the image, and
+* `-r 2` means 2 frames per second of the image,
 * `-shortest` means to use the shortest stream to determine when encoding
-  should end.
+  should end, and
+* `-movflags faststart` was added as an attempt to address a YouTube
+  suggestion (see [here][streamable_encoding] for where the suggestion
+  came from).
 
 See [here](http://superuser.com/a/538168) for more info and for where
 this suggested syntax came from.
@@ -61,7 +64,7 @@ When uploading to YouTube, you may get the following warning:
 
 > Your videos will process faster if you encode into a streamable file format.
 
-See the advice [here][streamable-encoding] to perhaps address this issue.
+See the advice [here][streamable_encoding] to perhaps address this issue.
 For example--
 
     $ ffmpeg -i INPUT.mp4 -acodec copy -vcodec copy OUTPUT.mkv
@@ -186,5 +189,5 @@ order of 10 minutes to create.
 
 [ffmpeg]: https://www.ffmpeg.org/
 [macports]: https://www.macports.org/
-[streamable-encoding]: http://hetzel.net/2014-01-29/youtube-videos-will-process-faster-encode-streamable-file-format/
+[streamable_encoding]: http://hetzel.net/2014-01-29/youtube-videos-will-process-faster-encode-streamable-file-format/
 [youtube-help]: https://support.google.com/youtube/answer/1696878?hl=en
