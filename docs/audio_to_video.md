@@ -43,7 +43,8 @@ Then run the following from the command-line (filling in correct INPUT
 and OUTPUT file names):
 
     $ ffmpeg -i INPUT.mp3 -f image2 -loop 1 -r 2 -i INPUT.png \
-      -shortest -c:a copy -c:v libx264 -crf 23 -preset veryfast OUTPUT.mp4
+      -shortest -c:a copy -c:v libx264 -crf 23 -preset veryfast \
+      -movflags faststart OUTPUT.mp4
 
 Notes on the command above:
 
