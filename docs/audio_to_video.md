@@ -56,6 +56,15 @@ Notes on the command above:
 See [here](http://superuser.com/a/538168) for more info and for where
 this suggested syntax came from.
 
+When uploading to YouTube, you may get the following warning:
+
+> Your videos will process faster if you encode into a streamable file format.
+
+See the advice [here][streamable-encoding] to perhaps address this issue.
+For example--
+
+    $ ffmpeg -i INPUT.mp4 -acodec copy -vcodec copy OUTPUT.mkv
+
 
 Using iMovie
 ------------
@@ -176,4 +185,5 @@ order of 10 minutes to create.
 
 [ffmpeg]: https://www.ffmpeg.org/
 [macports]: https://www.macports.org/
+[streamable-encoding]: http://hetzel.net/2014-01-29/youtube-videos-will-process-faster-encode-streamable-file-format/
 [youtube-help]: https://support.google.com/youtube/answer/1696878?hl=en
