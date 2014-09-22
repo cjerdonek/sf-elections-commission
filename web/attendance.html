@@ -1,10 +1,16 @@
 <style>
-    .sftable th,
-    .sftable td {
+    table.sftable th,
+    table.sftable td {
     text-align: center;
     vertical-align: bottom;
     border-style: solid;
     border-width: thin;
+    }
+    tr.committee td {
+    background-color: #F6F6F6; /* very light gray */
+    }
+    tr.sfdescription td {
+    text-align: left;
     }
 </style>
 <p>
@@ -33,6 +39,7 @@ The chart is in reverse chronological order so that the newest information is on
     <li>UL = Unexcused Late</li>
     <li>EE = Early Exit</li>
     <li>V = Vacant seat</li>
+    <li>&ndash; = Attendance not required (e.g. meeting canceled or not a committee member)</li>
 </ul>
 </div>
 <table class="sftable" cellpadding="4" style="border-style: none; border-collapse: collapse;" summary="This table lists Commissioner attendance and has one header row and nine columns.">
@@ -61,16 +68,16 @@ The chart is in reverse chronological order so that the newest information is on
             <td headers="table_heading_7">P</td>
             <td headers="table_heading_8">P</td>
         </tr>
-        <tr>
+        <tr class="committee">
             <td headers="table_heading_0">September 3, 2014</td>
             <td headers="table_heading_1">BOPEC</td>
-            <td headers="table_heading_2">&nbsp;</td>
+            <td headers="table_heading_2">&ndash;</td>
             <td headers="table_heading_3">P</td>
-            <td headers="table_heading_4">&nbsp;</td>
-            <td headers="table_heading_5">&nbsp;</td>
-            <td headers="table_heading_6">&nbsp;</td>
+            <td headers="table_heading_4">&ndash;</td>
+            <td headers="table_heading_5">&ndash;</td>
+            <td headers="table_heading_6">&ndash;</td>
             <td headers="table_heading_7">P</td>
-            <td headers="table_heading_8">&nbsp;</td>
+            <td headers="table_heading_8">&ndash;</td>
         </tr>
         <tr>
             <td headers="table_heading_0">August 20, 2014</td>
@@ -83,8 +90,11 @@ The chart is in reverse chronological order so that the newest information is on
             <td headers="table_heading_7">P</td>
             <td headers="table_heading_8">P</td>
         </tr>
-        <tr>
-            <td style="text-align: left; vertical-align: bottom; border-style: solid; border-width: thin;" colspan="9" headers="table_heading_0">Commission members: Christopher Jerdonek (BS), Charles Jung (Ma), Richard Matthews (CA), Jill Rowe (PD), Rosabella Safont (Tr), Winnie Yu (DA).</td>
+        <tr class="sfdescription">
+            <td colspan="9" headers="table_heading_0">Commission members: Christopher Jerdonek (BS), Charles Jung (Ma), Richard Matthews (CA), Jill Rowe (PD), Rosabella Safont (Tr), and Winnie Yu (DA).</td>
+        </tr>
+        <tr class="sfdescription committee">
+            <td colspan="9" headers="table_heading_0">BOPEC members: Christopher Jerdonek (BS), Jill Rowe (PD), and one unfilled seat.</td>
         </tr>
     </tbody>
 </table>
