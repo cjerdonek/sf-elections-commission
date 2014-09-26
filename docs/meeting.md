@@ -4,6 +4,7 @@ Preparing and Holding Meetings
 This document contains guidance for preparing and holding a meeting:
 
 * [72 Hours in Advance](#72-hours-in-advance)
+* [How to Cancel a Meeting](#how-to-cancel-a-meeting)
 * [After a Meeting](#after-a-meeting)
 
 
@@ -46,6 +47,36 @@ Department of Elections office.
 ### 4. E-mail
 
 TODO
+
+
+How to Cancel a Meeting
+-----------------------
+
+1. Prepare a meeting cancellation notice per Section 67.6(g) of the Sunshine
+   Ordinance:
+
+> (g) If a meeting must be canceled, continued or rescheduled for any
+reason, notice of such change shall be provided to the public as soon
+as is reasonably possible, including posting of a cancellation notice
+
+Create a PDF of this document.  See the [`templates`](templates) directory
+for a sample document.
+
+2. Update the "Upcoming Meetings" table on the Commission home page
+   wording like, "Canceled: no meeting."
+
+![](images/cancel_meeting_home_page.png "Meeting Cancellation on home page")
+
+3. Tweet the meeting cancellation.  Here is a sample:
+   https://twitter.com/SFElectionsComm/status/515617594381205505
+
+4. E-mail the PDF of the meeting cancellation notice to the San Francisco
+   Public Library's Government Information Center, as you would for a
+   normal meeting.
+
+5. Send a courtesy e-mail about the cancellation to the Commission or
+   committee members, Director of Elections, and Deputy City Attorney,
+   as you would for a meeting that was being held.
 
 
 After a Meeting
