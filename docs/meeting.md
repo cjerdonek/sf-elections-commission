@@ -63,20 +63,20 @@ Create a PDF of this document.  See the [`templates`](templates) directory
 for a sample document.
 
 2. Update the "Upcoming Meetings" table on the Commission home page
-   wording like, "Canceled: no meeting."
+wording like, "Canceled: no meeting."
 
 ![](images/cancel_meeting_home_page.png "Meeting Cancellation on home page")
 
 3. Tweet the meeting cancellation.  Here is a sample:
-   https://twitter.com/SFElectionsComm/status/515617594381205505
+https://twitter.com/SFElectionsComm/status/515617594381205505
 
 4. E-mail the PDF of the meeting cancellation notice to the San Francisco
-   Public Library's Government Information Center, as you would for a
-   normal meeting.
+Public Library's Government Information Center, as you would for a
+normal meeting.
 
 5. Send a courtesy e-mail about the cancellation to the Commission or
-   committee members, Director of Elections, and Deputy City Attorney,
-   as you would for a meeting that was being held.
+committee members, Director of Elections, and Deputy City Attorney,
+as you would for a meeting that was being held.
 
 
 After a Meeting
