@@ -2,171 +2,574 @@ SAN FRANCISCO ELECTIONS COMMISSION BYLAWS
 
 (Amended at the meeting of the Elections Commission on June 19, 2013)
 
+
 ARTICLE I: THE COMMISSION
 
 Section 1. Commission Designation
-The Commission is officially designated "The San Francisco Elections Commission" (hereinafter the "Commission").
+
+The Commission is officially designated "The San Francisco Elections
+Commission" (hereinafter the "Commission").
+
 Section 2. Site
-The Commission's principal office and site for filing all relevant documents is: Room 48, 1 Dr. Carlton B. Goodlett Place, San Francisco, California 94102.
+
+The Commission's principal office and site for filing all relevant documents
+is: Room 48, 1 Dr. Carlton B. Goodlett Place, San Francisco, California
+94102.
+
 
 ARTICLE II: PURPOSE
 
 Section 1. Purpose
-A. The Commission shall oversee all public, federal, state, district, and municipal elections in the City and County of San Francisco, as well as set general policies for the Department of Elections.
-B. The Commission shall be responsible for the proper administration of the general practices of the Department of Elections subject to the San Francisco Charter's budgetary and fiscal provisions as well as other applicable state and federal laws.
+
+A. The Commission shall oversee all public, federal, state, district, and
+municipal elections in the City and County of San Francisco, as well as set
+general policies for the Department of Elections.
+
+B. The Commission shall be responsible for the proper administration of the
+general practices of the Department of Elections subject to the San
+Francisco Charter's budgetary and fiscal provisions as well as other
+applicable state and federal laws.
+
 
 ARTICLE III: COMMISSION'S EXISTENCE AND OPERATIONS
 
 Section 1. Commission Establishment
-The Commission exists and functions pursuant to Section 13.103.5 of the San Francisco Charter which establishes the Commission’s jurisdiction, number of members,  terms and term limitations, employment limitations, and other relevant matters controlling the Commission's operation. (See Attachment "A").
-The Commission also generally functions pursuant to Sections 4.102 – 4.104 of the San Francisco Charter, except to the extent that a given subsection conflicts with or is incompatible with the Sections 13.103.5 or 13.104 of the San Francisco Charter.
+
+The Commission exists and functions pursuant to Section 13.103.5 of the San
+Francisco Charter which establishes the Commission’s jurisdiction, number of
+members,  terms and term limitations, employment limitations, and other
+relevant matters controlling the Commission's operation. (See Attachment
+"A").
+
+The Commission also generally functions pursuant to Sections 4.102 – 4.104
+of the San Francisco Charter, except to the extent that a given subsection
+conflicts with or is incompatible with the Sections 13.103.5 or 13.104 of
+the San Francisco Charter.
+
 Section 2. Public Officials
-Because the Charter provision creating the Commission makes Commission members officials of the City and County of San Francisco, the Commissioners are eligible for health benefits pursuant to Section A8.420 of the San Francisco City Charter. (See Attachment "B").
+
+Because the Charter provision creating the Commission makes Commission
+members officials of the City and County of San Francisco, the Commissioners
+are eligible for health benefits pursuant to Section A8.420 of the San
+Francisco City Charter. (See Attachment "B").
+
 
 ARTICLE IV: COMMISSION'S POWERS AND DUTIES
 
-A. The Commission shall create and implement general plans and policies consistent with the Commission's stated Charter purposes and objectives.
-B. The Commission shall consider approval of written plans, prior to each election, submitted by the Director of Elections, detailing the policies, procedures, and personnel that will be used to conduct the election.
-C. The Commission shall conduct an assessment of how well the election plan referred to
-in subsection (B) above succeeded in carrying out a free, fair and functional election.
-D. After public hearing, the Commission shall approve a departmental budget subject to Section 9.103 of the San Francisco Charter.
-E. The Commission shall recommend to the Board of Supervisors rates, fees, and similar charges within the Commission's jurisdiction.
-F. The Commission shall hire, manage, and supervise the Director of the Department of Elections.
-G. The Commission may conduct investigations into areas within the Commission's jurisdiction by holding hearings and taking testimony, and make recommendations to the Mayor or Board of Supervisors.
-H. The Commission shall appoint an Executive Secretary to manage the affairs and operations of the Commission.
+A. The Commission shall create and implement general plans and policies
+consistent with the Commission's stated Charter purposes and objectives.
+
+B. The Commission shall consider approval of written plans, prior to each
+election, submitted by the Director of Elections, detailing the policies,
+procedures, and personnel that will be used to conduct the election.
+
+C. The Commission shall conduct an assessment of how well the election plan
+referred to
+
+in subsection (B) above succeeded in carrying out a free, fair and
+functional election.
+
+D. After public hearing, the Commission shall approve a departmental budget
+subject to Section 9.103 of the San Francisco Charter.
+
+E. The Commission shall recommend to the Board of Supervisors rates, fees,
+and similar charges within the Commission's jurisdiction.
+
+F. The Commission shall hire, manage, and supervise the Director of the
+Department of Elections.
+
+G. The Commission may conduct investigations into areas within the
+Commission's jurisdiction by holding hearings and taking testimony, and make
+recommendations to the Mayor or Board of Supervisors.
+
+H. The Commission shall appoint an Executive Secretary to manage the affairs
+and operations of the Commission.
+
 I. The Commission may retain temporary counsel for specific purposes.
-J. The Commission shall formulate, evaluate, and approve goals, objectives, plans and programs and set general policies consistent with the overall objectives of the City and County.
-K. The Commission shall exercise such other powers and duties as shall be prescribed by the Board of Supervisors which are not inconsistent with other laws which apply to the Elections Commission.
-L. The Commission may adopt rules and regulations consistent with the San Francisco Charter and ordinances of the City and County setting forth general policies and practices relating to all public elections conducted by the department. No rule or regulation shall be adopted, amended, or repealed, without a public hearing. At least ten days' public notice shall be given for such a public hearing. All such rules and regulations shall be filed with the Clerk of the Board of Supervisors.
-M. The Commission shall prepare an annual report describing its activities and shall file such report with the Mayor and the Clerk of the Board of Supervisors consistent with the Commission's duties under Section 4.103 of the San Francisco Charter and Sections 1.56 and 8.16 of the Administrative Code. This annual report shall cover the calendar year from January 1 through December 31.
-N. The Sunshine Ordinance requires the Commission Secretary to maintain a public review file containing a copy of any communication which the Commission Secretary has distributed to or received from a quorum of the Commission concerning a matter calendared by the body within the previous 30 days or likely to be calendared within the next 30 days. The Commission's public review file shall include any correspondence sent to a majority of the Commission in connection with any matter within the jurisdiction of the Commission (regardless of whether it has been calendared or is likely to be calendared in the previous or next 30 days). Any Commissioner who knowingly receives correspondence that on its face is addressed to a majority of the Commission concerning such a matter shall forward such correspondence to the Commission Secretary for inclusion in the public review file.
+
+J. The Commission shall formulate, evaluate, and approve goals, objectives,
+plans and programs and set general policies consistent with the overall
+objectives of the City and County.
+
+K. The Commission shall exercise such other powers and duties as shall be
+prescribed by the Board of Supervisors which are not inconsistent with other
+laws which apply to the Elections Commission.
+
+L. The Commission may adopt rules and regulations consistent with the San
+Francisco Charter and ordinances of the City and County setting forth
+general policies and practices relating to all public elections conducted by
+the department. No rule or regulation shall be adopted, amended, or
+repealed, without a public hearing. At least ten days' public notice shall
+be given for such a public hearing. All such rules and regulations shall be
+filed with the Clerk of the Board of Supervisors.
+
+M. The Commission shall prepare an annual report describing its activities
+and shall file such report with the Mayor and the Clerk of the Board of
+Supervisors consistent with the Commission's duties under Section 4.103 of
+the San Francisco Charter and Sections 1.56 and 8.16 of the Administrative
+Code. This annual report shall cover the calendar year from January 1
+through December 31.
+
+N. The Sunshine Ordinance requires the Commission Secretary to maintain a
+public review file containing a copy of any communication which the
+Commission Secretary has distributed to or received from a quorum of the
+Commission concerning a matter calendared by the body within the previous 30
+days or likely to be calendared within the next 30 days. The Commission's
+public review file shall include any correspondence sent to a majority of
+the Commission in connection with any matter within the jurisdiction of the
+Commission (regardless of whether it has been calendared or is likely to be
+calendared in the previous or next 30 days). Any Commissioner who knowingly
+receives correspondence that on its face is addressed to a majority of the
+Commission concerning such a matter shall forward such correspondence to the
+Commission Secretary for inclusion in the public review file.
+
 
 ARTICLE V: OFFICERS
 
 Section 1. Officers
-A. The Commission's executive officers are President and Vice President, who serve at the Commission's pleasure.
-B. The Commission shall elect the executive officers by majority vote of the Commission's full membership. The election of Commission executive officers shall be conducted at a Commission meeting in January of each year. The terms shall begin immediately at the conclusion of the meeting in which elections are held.
+
+A. The Commission's executive officers are President and Vice President, who
+serve at the Commission's pleasure.
+
+B. The Commission shall elect the executive officers by majority vote of the
+Commission's full membership. The election of Commission executive officers
+shall be conducted at a Commission meeting in January of each year. The
+terms shall begin immediately at the conclusion of the meeting in which
+elections are held.
+
 C. The Executive Officers' terms are one year.
-D. If a vacancy occurs in either executive office, the Commission shall elect a new Executive Officer to fill that vacancy by majority vote of the Commission's full membership at the next regular meeting.
+
+D. If a vacancy occurs in either executive office, the Commission shall
+elect a new Executive Officer to fill that vacancy by majority vote of the
+Commission's full membership at the next regular meeting.
+
 Section 2. The President
+
 A. The President shall preside at all Commission meetings when present.
-B. The President, with the Commission's advice, shall prepare the agenda for all meetings.
-C. The President shall appoint all committee members and committee chairs, who shall serve at the President's pleasure.
-D. In the President's absence, the Vice President shall preside at the Commission meeting. In the absence of both the President and Vice President, the Commission shall elect a President pro tem who shall preside at the Commission meeting.
-E. As soon as reasonably practicable following completion of each calendar year, the President who served at the conclusion of that calendar year shall present a draft annual report to the full Commission.  An annual report shall be approved by the full Commission as soon as reasonably practicable following submission of the draft annual report.
+
+B. The President, with the Commission's advice, shall prepare the agenda for
+all meetings.
+
+C. The President shall appoint all committee members and committee chairs,
+who shall serve at the President's pleasure.
+
+D. In the President's absence, the Vice President shall preside at the
+Commission meeting. In the absence of both the President and Vice President,
+the Commission shall elect a President pro tem who shall preside at the
+Commission meeting.
+
+E. As soon as reasonably practicable following completion of each calendar
+year, the President who served at the conclusion of that calendar year shall
+present a draft annual report to the full Commission.  An annual report
+shall be approved by the full Commission as soon as reasonably practicable
+following submission of the draft annual report.
+
 Section 3. The Vice President
-A. In the absence of the President, the Vice President shall assume the President's duties.
-B. The Vice President shall perform such other duties as the President may determine.
+
+A. In the absence of the President, the Vice President shall assume the
+President's duties.
+
+B. The Vice President shall perform such other duties as the President may
+determine.
+
 
 ARTICLE VI: COMMISSION STAFF
 
 Section 1. Director of Elections
-A. Section 13.104 of the San Francisco Charter establishes the Director of Election's duties, term of service, method of removal and shall control the Director's official conduct.
-B. The Director shall attend all Commission and committee meetings except as excused by the President or the applicable committee Chair.
-C. The Director shall report timely and regularly to the Commission on all matters concerning the Department's operation.
+
+A. Section 13.104 of the San Francisco Charter establishes the Director of
+Election's duties, term of service, method of removal and shall control the
+Director's official conduct.
+
+B. The Director shall attend all Commission and committee meetings except as
+excused by the President or the applicable committee Chair.
+
+C. The Director shall report timely and regularly to the Commission on all
+matters concerning the Department's operation.
+
 Section 2. Commission Executive Secretary
-A. The Executive Secretary shall attend all Commission and committee meetings except as excused by the President or the applicable committee Chair.
-B. The Executive Secretary shall be responsible for the proper recordation and distribution of all Commission actions, correspondence, agendas, and other duties assigned by the Commission President, including research, assisting committee chairs and officers, making recommendations on assigned projects, answering questions from the public about Commission activities and procedures, helping the Department of Elections staff prepare presentations before the Commission, and representing the Commission at public gatherings as required by the Commission President.
-C. The Executive Secretary shall also serve as Executive Assistant to the Commission President and, as such Executive Assistant to the Commission President, shall be responsible for communication between the Commission members, the Commission, and the Director of Elections, as well as other tasks the President may assign.
-Section 3. Annual Reviews of Director of Elections and Commission Executive Secretary
-The Commission shall conduct performance reviews for the Director of Elections and the Executive Secretary during each fiscal year. Each such review shall include, but need not be limited to, a written or in-person evaluation of that individual's performance by the Commission.
+
+A. The Executive Secretary shall attend all Commission and committee
+meetings except as excused by the President or the applicable committee
+Chair.
+
+B. The Executive Secretary shall be responsible for the proper recordation
+and distribution of all Commission actions, correspondence, agendas, and
+other duties assigned by the Commission President, including research,
+assisting committee chairs and officers, making recommendations on assigned
+projects, answering questions from the public about Commission activities
+and procedures, helping the Department of Elections staff prepare
+presentations before the Commission, and representing the Commission at
+public gatherings as required by the Commission President.
+
+C. The Executive Secretary shall also serve as Executive Assistant to the
+Commission President and, as such Executive Assistant to the Commission
+President, shall be responsible for communication between the Commission
+members, the Commission, and the Director of Elections, as well as other
+tasks the President may assign.
+
+Section 3. Annual Reviews of Director of Elections and Commission Executive
+Secretary
+
+The Commission shall conduct performance reviews for the Director of
+Elections and the Executive Secretary during each fiscal year. Each such
+review shall include, but need not be limited to, a written or in-person
+evaluation of that individual's performance by the Commission.
+
 
 ARTICLE VII: COMMITTEES
 
 Section 1. Standing Committee
-The Commission shall establish one standing committee, the Budget and Oversight of Public Elections Committee. The regular meeting of the Committee shall be held on the First Wednesday of each month at 6:00 p.m., except in the case of a City-recognized holiday, when the meeting shall be held on the first Thursday following the first Wednesday of the month. Meetings shall be held at City Hall, 1 Dr. Carlton B. Goodlett Place, Room 421, in the City of San Francisco. The Commission or the Committee may change the date, time or place of its regular meeting by motion. At any time, the President of the Commission or the Chair of the Committee may cancel a regular meeting, subject to provision of appropriate notice.
+
+The Commission shall establish one standing committee, the Budget and
+Oversight of Public Elections Committee. The regular meeting of the
+Committee shall be held on the First Wednesday of each month at 6:00 p.m.,
+except in the case of a City-recognized holiday, when the meeting shall be
+held on the first Thursday following the first Wednesday of the month.
+Meetings shall be held at City Hall, 1 Dr. Carlton B. Goodlett Place, Room
+421, in the City of San Francisco. The Commission or the Committee may
+change the date, time or place of its regular meeting by motion. At any
+time, the President of the Commission or the Chair of the Committee may
+cancel a regular meeting, subject to provision of appropriate notice.
+
 Section 2. Additional Committees
-The Commission may create additional committees when the Commission determines, by a majority vote, such additional committees are necessary.
+
+The Commission may create additional committees when the Commission
+determines, by a majority vote, such additional committees are necessary.
+
 Section 3. Committee Operations
+
 A. Each committee shall consist of three members.
+
 B. A quorum shall consist of a majority of the committee members.
+
 C. The Committee shall act through majority vote of the Committee.
-D. If any Committee adopts a motion making any recommendation to the Commission, the Committee Chair shall promptly advise the Commission President, who shall place that item on the agenda for the next Commission meeting.
+
+D. If any Committee adopts a motion making any recommendation to the
+Commission, the Committee Chair shall promptly advise the Commission
+President, who shall place that item on the agenda for the next Commission
+meeting.
+
 
 ARTICLE VIII: MEETINGS
 
 Section 1. Quorum.
-A. A quorum shall consist of a majority of the members of the Commission, based on the total number of seats designated by law.
-B. For a motion or other transaction to be adopted by the Commission, it must receive a majority vote of the Commission based on the total number of seats designated by law.
+
+A. A quorum shall consist of a majority of the members of the Commission,
+based on the total number of seats designated by law.
+
+B. For a motion or other transaction to be adopted by the Commission, it
+must receive a majority vote of the Commission based on the total number of
+seats designated by law.
+
 Section 2. Public Comment
-A. The Commission meetings are public; the Commission shall encourage public comment.
-B. Any member of the public may address the Commission once for up to three minutes on any agenda item.
+
+A. The Commission meetings are public; the Commission shall encourage public
+comment.
+
+B. Any member of the public may address the Commission once for up to three
+minutes on any agenda item.
+
 C. Public comment is hereby made a permanent agenda item.
-D. When an item may generate considerable public comment, the presiding officer, at his or her sole discretion, may require public commentators to sign up with the Executive Secretary.
+
+D. When an item may generate considerable public comment, the presiding
+officer, at his or her sole discretion, may require public commentators to
+sign up with the Executive Secretary.
+
 1. Public commentators will speak based on "sign up" order.
-2. Public commentators who do not sign or do not wish to give their name may comment after those who signed up to speak.
-E. The presiding officer shall have the right to restrict public comment to a maximum of one minute if circumstances warrant restriction.
+
+2. Public commentators who do not sign or do not wish to give their name may
+comment after those who signed up to speak.
+
+E. The presiding officer shall have the right to restrict public comment to
+a maximum of one minute if circumstances warrant restriction.
+
 Section 3. Public Minutes
-A. The Commission shall record minutes of each meeting and shall comply with the provisions of the San Francisco Sunshine Ordinance (San Francisco Administrative Code Section 67.16).
-B. Whenever practicable, the Commission shall approve the minutes at the next Commission meeting.
+
+A. The Commission shall record minutes of each meeting and shall comply with
+the provisions of the San Francisco Sunshine Ordinance (San Francisco
+Administrative Code Section 67.16).
+
+B. Whenever practicable, the Commission shall approve the minutes at the
+next Commission meeting.
+
 Section 4. Regular Meetings
-A. Regular meetings shall be held on the third Wednesday of each month at 6:00 p.m., except in the case of a City-recognized holiday, when the meeting shall be held on the first Thursday following the third Wednesday of the month. Meetings shall be held at City Hall, 1 Dr. Carlton B. Goodlett Place, Room 408, in the City of San Francisco.
-B. The Commission may change the date, time or place of its regular meeting by motion. At any time, the President may cancel a regular meeting, subject to provision of appropriate notice.
-C. Regular meetings and/or special meetings may be held at other places, dates or times, subject to provisions of appropriate notice.
+
+A. Regular meetings shall be held on the third Wednesday of each month at
+6:00 p.m., except in the case of a City-recognized holiday, when the meeting
+shall be held on the first Thursday following the third Wednesday of the
+month. Meetings shall be held at City Hall, 1 Dr. Carlton B. Goodlett Place,
+Room 408, in the City of San Francisco.
+
+B. The Commission may change the date, time or place of its regular meeting
+by motion. At any time, the President may cancel a regular meeting, subject
+to provision of appropriate notice.
+
+C. Regular meetings and/or special meetings may be held at other places,
+dates or times, subject to provisions of appropriate notice.
+
 Section 5. Closed Meetings
-A. The Commission is authorized to hold closed (non-public) meetings for limited purposes to discuss and act on matters such as threats to the security of the Department of Elections; consideration of the appointment, employment, evaluation, performance, or dismissal of the Director of Elections or Commission Executive Secretary; pending litigation; and certain other matters as authorized by law.
-B. For closed sessions regarding pending litigation, the Commission shall vote on whether to go into closed session.  For all other closed sessions, the President of the Commission may call a closed session upon consultation with the City Attorney, and after determination a closed session is both authorized and appropriate under the circumstances.
+
+A. The Commission is authorized to hold closed (non-public) meetings for
+limited purposes to discuss and act on matters such as threats to the
+security of the Department of Elections; consideration of the appointment,
+employment, evaluation, performance, or dismissal of the Director of
+Elections or Commission Executive Secretary; pending litigation; and certain
+other matters as authorized by law.
+
+B. For closed sessions regarding pending litigation, the Commission shall
+vote on whether to go into closed session.  For all other closed sessions,
+the President of the Commission may call a closed session upon consultation
+with the City Attorney, and after determination a closed session is both
+authorized and appropriate under the circumstances.
+
 Section 6. Special Meetings
-The President of the Commission may call special meetings to address specific matters.
+
+The President of the Commission may call special meetings to address
+specific matters.
+
 Section 7. Attendance
-1. Except in the event of a notified absence (defined below), each member of the Commission is expected to attend each regular, special, or Committee meeting of which he/she is a member.
-2. A member's absence shall constitute a notified absence where the member, in advance of the meeting, informs the Secretary of the Commission or other person whom the Commission has designated that the member will be absent. An absence due to unforeseen circumstances such as illness or emergency shall also qualify as a notified absence where the member reports such absence to the Secretary as soon as reasonably possible.
-3. The Secretary of the Commission shall maintain a record of attendance and shall report all instances of non-notified absences to the member's appointing authority.  In addition, any time a member is absent from three consecutive regular meetings, the Secretary of the Commission shall report such absences to the Commission President and to the member's appointing authority.
-4. In November of each year, the Secretary of the Commission shall submit a written report to the appointing authority for each Commission member detailing such Commission member's attendance at all meetings of the Commission for the prior twelve month period.
+
+1. Except in the event of a notified absence (defined below), each member of
+the Commission is expected to attend each regular, special, or Committee
+meeting of which he/she is a member.
+
+2. A member's absence shall constitute a notified absence where the member,
+in advance of the meeting, informs the Secretary of the Commission or other
+person whom the Commission has designated that the member will be absent. An
+absence due to unforeseen circumstances such as illness or emergency shall
+also qualify as a notified absence where the member reports such absence to
+the Secretary as soon as reasonably possible.
+
+3. The Secretary of the Commission shall maintain a record of attendance and
+shall report all instances of non-notified absences to the member's
+appointing authority.  In addition, any time a member is absent from three
+consecutive regular meetings, the Secretary of the Commission shall report
+such absences to the Commission President and to the member's appointing
+authority.
+
+4. In November of each year, the Secretary of the Commission shall submit a
+written report to the appointing authority for each Commission member
+detailing such Commission member's attendance at all meetings of the
+Commission for the prior twelve month period.
+
 
 ARTICLE IX: VOTING
 
 Section 1. Voting and Abstention.
-Each member present at a Commission meeting shall vote ‘yes’ or ‘no’ when a question is put unless the member is legally prohibited from voting or is excused from voting by a motion adopted by a majority of members present.
+
+Each member present at a Commission meeting shall vote ‘yes’ or ‘no’ when a
+question is put unless the member is legally prohibited from voting or is
+excused from voting by a motion adopted by a majority of members present.
+
 Section 2. Voting By Proxy
+
 No proxy voting shall be allowed.
 
+
 ARTICLE X: COMMISSION DEALINGS WITH THE DEPARTMENT OF ELECTIONS
-The Commission shall deal with the Department of Elections solely through the Director of Elections, or his or her designees; and any dictation, suggestions, or inference prohibited by the San Francisco Charter on the part of any Commission member shall constitute official misconduct; provided, however, nothing contained in this section shall restrict the Commission's powers of oversight of all public elections conducted by the department, hearing, and inquiry provided in the San Francisco Charter.
+
+The Commission shall deal with the Department of Elections solely through
+the Director of Elections, or his or her designees; and any dictation,
+suggestions, or inference prohibited by the San Francisco Charter on the
+part of any Commission member shall constitute official misconduct;
+provided, however, nothing contained in this section shall restrict the
+Commission's powers of oversight of all public elections conducted by the
+department, hearing, and inquiry provided in the San Francisco Charter.
+
 
 ARTICLE XI: COMMISSION ANNUAL REPORT
 
 Section 1.
-Each year, the Commission President shall cause to be bound the "Commission Annual Report".
+
+Each year, the Commission President shall cause to be bound the "Commission
+Annual Report".
+
 Section 2.
-The Commission Annual Report shall contain the President's report of the activities of the Commission during the previous year, as well as any other information the President deems significant and of likely assistance to subsequent Commissions.
+
+The Commission Annual Report shall contain the President's report of the
+activities of the Commission during the previous year, as well as any other
+information the President deems significant and of likely assistance to
+subsequent Commissions.
+
 Section 3.
-It is the intent to preserve and pass on to successive Commissions relevant information so as to make more effective subsequent Commission tenures by providing institutional memory to assist in resolution of recurring Commission problems.
+
+It is the intent to preserve and pass on to successive Commissions relevant
+information so as to make more effective subsequent Commission tenures by
+providing institutional memory to assist in resolution of recurring
+Commission problems.
+
 
 ARTICLE XII: ROBERT'S RULES
 
-At the President's discretion, unless the Charter or other law requires otherwise, meetings shall be governed by the most recent edition of Roberts Rules of Order Newly Revised.
+At the President's discretion, unless the Charter or other law requires
+otherwise, meetings shall be governed by the most recent edition of Roberts
+Rules of Order Newly Revised.
+
 
 ARTICLE XIII: BYLAW AMENDMENTS
 
-The Elections Commission may amend these Bylaws by majority vote of the full Commission after circulating the proposed amendments at least ten (10) days prior to the meeting where a motion to amend is to be made.
+The Elections Commission may amend these Bylaws by majority vote of the full
+Commission after circulating the proposed amendments at least ten (10) days
+prior to the meeting where a motion to amend is to be made.
 
 
 ATTACHMENT A: S.F. CHARTER § 13.103.5. ELECTIONS COMMISSION.
 
-	An Elections Commission shall be established to oversee all public federal, state, district and municipal elections in the City and County. The Commission shall set general policies for the Department of Elections and shall be responsible for the proper administration of the general practices of the Department, subject to the budgetary and fiscal provisions of this Charter. These duties shall include but not be limited to approving written plans prior to each election, submitted by the Director of Elections, detailing the policies, procedures, and personnel that will be used to conduct the election as well as an assessment of how well the plan succeeded in carrying out a free, fair and functional election.
-	The Commission shall consist of seven members who shall serve five-year terms. No person appointed as a Commission member may serve as such for more than two successive five-year terms. Any person appointed as a Commission member to complete more than two and one-half years of a five-year term shall be deemed, for the purpose of this section, to have served one full term. No person having served two successive five-year terms may serve as a Commission member until at least five years after the expiration of the second successive term in office. Any Commission member who resigns with less than two and one-half years remaining until the expiration of the term shall be deemed, for the purposes of this section, to have served a full five-year term.
-	The Mayor, the Board of Supervisors, the City Attorney, the Public Defender, the District Attorney, the Treasurer, and the Board of Education of the San Francisco Unified School District each shall appoint one member of the Commission. The member appointed by the Mayor shall have a background in the electoral process. The member appointed by the City Attorney shall have a background in elections law. The member appointed by the Treasurer shall have a background in financial management. The members appointed by the District Attorney, Public Defender, the Board of Education of the San Francisco Unified School District, and the Board of Supervisors shall be broadly representative of the general public. In the event a vacancy occurs, the appointing authority who appointed the member vacating the office shall appoint a qualified person to complete the remainder of the term. All members initially appointed to the Election Commission shall take office on the first day of January, 2002.
-	The initial terms of Commission members shall expire according to the following guidelines: the term of the members appointed by the Mayor and the Board of Education of the San Francisco Unified School District shall expire on January 1, 2003; the term of the members appointed by the Board of Supervisors and the Treasurer shall expire on January 1 2004; the term of the member appointed by the City Attorney shall expire January 1, 2005; the term of the member appointed by the Public Defender shall expire January 1, 2006; and the term of the member appointed by the District Attorney shall expire January 1, 2007.
-	Members of the Commission shall serve without compensation. Members of the Commission shall be officers of the City and County, and may be removed by the appointing authority only pursuant to Section 15.105. During his or her tenure, members and employees of the Elections Commission are subject to the following restrictions:
-	(a) Restrictions on Holding Office. No member or employee of the Elections Commission may hold any other City or County office or be an officer of a political party.
-	(b) Restrictions on Employment. No member or employee of the Elections Commission may be a registered campaign consultant or registered lobbyist, or be employed by or receive gifts or other compensation from a registered campaign consultant or registered lobbyist. No member of the Elections Commission may hold any employment with the City and County and no employee of the Elections Commission may hold any other employment with the City and County.
-	(c) Restrictions on Political Activities. No member or employee of the Elections Commission may participate in any campaign supporting or opposing a candidate or ballot measure that will appear on the San Francisco ballot, other than candidates seeking election to federal or statewide office. For purposes of this section, participation in a campaign includes but is not limited to making contributions or soliciting contributions to any committee, including general purpose committees; publicly endorsing or urging endorsement of any candidate or ballot measure; or participating in decisions by organizations to participate in a campaign.
-If a person appointed to the Elections Commission is, at the time of appointment, an officer or employee, as prohibited by this section, that person shall be eligible to serve on the Elections Commission only if he or she resigns from his or her office or employment within thirty days of appointment.
+An Elections Commission shall be established to oversee all public federal,
+state, district and municipal elections in the City and County. The
+Commission shall set general policies for the Department of Elections and
+shall be responsible for the proper administration of the general practices
+of the Department, subject to the budgetary and fiscal provisions of this
+Charter. These duties shall include but not be limited to approving written
+plans prior to each election, submitted by the Director of Elections,
+detailing the policies, procedures, and personnel that will be used to
+conduct the election as well as an assessment of how well the plan succeeded
+in carrying out a free, fair and functional election.
+
+The Commission shall consist of seven members who shall serve five-year
+terms. No person appointed as a Commission member may serve as such for more
+than two successive five-year terms. Any person appointed as a Commission
+member to complete more than two and one-half years of a five-year term
+shall be deemed, for the purpose of this section, to have served one full
+term. No person having served two successive five-year terms may serve as a
+Commission member until at least five years after the expiration of the
+second successive term in office. Any Commission member who resigns with
+less than two and one-half years remaining until the expiration of the term
+shall be deemed, for the purposes of this section, to have served a full
+five-year term.
+
+The Mayor, the Board of Supervisors, the City Attorney, the Public Defender,
+the District Attorney, the Treasurer, and the Board of Education of the San
+Francisco Unified School District each shall appoint one member of the
+Commission. The member appointed by the Mayor shall have a background in the
+electoral process. The member appointed by the City Attorney shall have a
+background in elections law. The member appointed by the Treasurer shall
+have a background in financial management. The members appointed by the
+District Attorney, Public Defender, the Board of Education of the San
+Francisco Unified School District, and the Board of Supervisors shall be
+broadly representative of the general public. In the event a vacancy occurs,
+the appointing authority who appointed the member vacating the office shall
+appoint a qualified person to complete the remainder of the term. All
+members initially appointed to the Election Commission shall take office on
+the first day of January, 2002.
+
+The initial terms of Commission members shall expire according to the
+following guidelines: the term of the members appointed by the Mayor and the
+Board of Education of the San Francisco Unified School District shall expire
+on January 1, 2003; the term of the members appointed by the Board of
+Supervisors and the Treasurer shall expire on January 1 2004; the term of
+the member appointed by the City Attorney shall expire January 1, 2005; the
+term of the member appointed by the Public Defender shall expire January 1,
+2006; and the term of the member appointed by the District Attorney shall
+expire January 1, 2007.
+
+Members of the Commission shall serve without compensation. Members of the
+Commission shall be officers of the City and County, and may be removed by
+the appointing authority only pursuant to Section 15.105. During his or her
+tenure, members and employees of the Elections Commission are subject to the
+following restrictions:
+
+(a) Restrictions on Holding Office. No member or employee of the Elections
+Commission may hold any other City or County office or be an officer of a
+political party.
+
+(b) Restrictions on Employment. No member or employee of the Elections
+Commission may be a registered campaign consultant or registered lobbyist,
+or be employed by or receive gifts or other compensation from a registered
+campaign consultant or registered lobbyist. No member of the Elections
+Commission may hold any employment with the City and County and no employee
+of the Elections Commission may hold any other employment with the City and
+County.
+
+(c) Restrictions on Political Activities. No member or employee of the
+Elections Commission may participate in any campaign supporting or opposing
+a candidate or ballot measure that will appear on the San Francisco ballot,
+other than candidates seeking election to federal or statewide office. For
+purposes of this section, participation in a campaign includes but is not
+limited to making contributions or soliciting contributions to any
+committee, including general purpose committees; publicly endorsing or
+urging endorsement of any candidate or ballot measure; or participating in
+decisions by organizations to participate in a campaign.
+
+If a person appointed to the Elections Commission is, at the time of
+appointment, an officer or employee, as prohibited by this section, that
+person shall be eligible to serve on the Elections Commission only if he or
+she resigns from his or her office or employment within thirty days of
+appointment.
 
 (Added November 2001; amended November 2002)
 
 
-ATTACHMENT B: S.F. CHARTER § A8.420. ESTABLISHMENT OF AND MEMBERSHIP IN HEALTH SERVICE SYSTEM.
+ATTACHMENT B: S.F. CHARTER § A8.420. ESTABLISHMENT OF AND MEMBERSHIP IN
+HEALTH SERVICE SYSTEM.
 
-	A health service system is hereby established. Said system shall be administered by the human resources department subject to the approval of the health service board. The members of the system shall consist of all permanent employees, which shall include officers of the City and County, of the San Francisco Unified School District, and of the Parking Authority of the City and County of San Francisco and such other employees as may be determined by ordinance, subject to such conditions and qualifications as the Board of Supervisors may impose, and such employees as may be determined by collective bargaining agreement. Any employee who adheres to the faith or teachings of any recognized religious sect, denomination or organization and, in accordance with its creed, tenets or principles, depends for healing upon prayers in the practice of religion shall be exempt from the system upon filing annually with the human resources department an affidavit stating such adherence and dependence and disclaiming any benefits under the system. The human resources department shall have the power to exempt any person whose compensation exceeds the amount deemed sufficient for self coverage and any person who otherwise has provided for adequate medical care. Any claim or request for exemption denied by the human resources department may be appealed to the health services board.
+A health service system is hereby established. Said system shall be
+administered by the human resources department subject to the approval of
+the health service board. The members of the system shall consist of all
+permanent employees, which shall include officers of the City and County, of
+the San Francisco Unified School District, and of the Parking Authority of
+the City and County of San Francisco and such other employees as may be
+determined by ordinance, subject to such conditions and qualifications as
+the Board of Supervisors may impose, and such employees as may be determined
+by collective bargaining agreement. Any employee who adheres to the faith or
+teachings of any recognized religious sect, denomination or organization
+and, in accordance with its creed, tenets or principles, depends for healing
+upon prayers in the practice of religion shall be exempt from the system
+upon filing annually with the human resources department an affidavit
+stating such adherence and dependence and disclaiming any benefits under the
+system. The human resources department shall have the power to exempt any
+person whose compensation exceeds the amount deemed sufficient for self
+coverage and any person who otherwise has provided for adequate medical
+care. Any claim or request for exemption denied by the human resources
+department may be appealed to the health services board.
 
 
 ATTACHMENT C: S.F. CHARTER § 13.104. DEPARTMENT OF ELECTIONS.
 
-	A Department of Elections shall be established to conduct all public federal, state, district and municipal elections in the City and County. The department shall be administered by the Director of Elections, who shall be vested with the day-to-day conduct and management of the Department and of voter registration and matters pertaining to elections in the City and County. The Director shall report to the Elections Commission.
-	For purposes of this section, the conduct of elections shall include, but not be limited to: voter registration; the nomination and filing process for candidates to City and County offices; the preparation and distribution of voter information materials; ballots, precinct operations and vote count; the prevention of fraud in such elections; and the recount of ballots in cases of challenge or fraud.
-	The Director shall be appointed by the Elections Commission from a list of qualified applicants provided pursuant to the civil service provisions of this Charter. The Director shall serve a five-year term, during which he or she may be removed by the Elections Commission for cause, upon written charges and following a hearing. The Elections Commission shall present the written charges to the Director no less than thirty days before the hearing. If the Elections Commission votes to remove the Director, he or she shall have the right to appeal to the Civil Service Commission. On appeal, the Civil Service Commission shall be limited to consideration of the record before the Elections Commission; however, the Civil Service Commission may independently evaluate and weigh evidence and may in its discretion consider evidence proffered to the Elections Commission that the Commission excluded and may in its discretion exclude evidence that the Elections Commission considered. The term of the Director shall expire five years after his or her appointment. No less than thirty days before the expiration of the Director's term, the Elections Commission shall appoint a Director for the next term, who may but need not be the incumbent Director. Subject to the civil service provisions of this Charter, the Director shall have the power to appoint and remove other employees of the Department of Elections.
-	In addition to any other conflict of interest provisions applicable to City employees, the Director of Elections and all other employees of the Department of Elections shall be subject to the conflict-of-interest provisions in Section 13.103.5. The Elections Commission, may upon the recommendation of the Director of Elections and a finding that the Department will not have adequate staffing to conduct an election, request from the Board of Supervisors a waiver of the conflict-of-interest provisions in Section 13.103.5 for employees working no more than thirty days in a single calendar year. The Board of Supervisors shall approve or deny such requests from the Elections Commission by motion.
+A Department of Elections shall be established to conduct all public
+federal, state, district and municipal elections in the City and County. The
+department shall be administered by the Director of Elections, who shall be
+vested with the day-to-day conduct and management of the Department and of
+voter registration and matters pertaining to elections in the City and
+County. The Director shall report to the Elections Commission.
+
+For purposes of this section, the conduct of elections shall include, but
+not be limited to: voter registration; the nomination and filing process for
+candidates to City and County offices; the preparation and distribution of
+voter information materials; ballots, precinct operations and vote count;
+the prevention of fraud in such elections; and the recount of ballots in
+cases of challenge or fraud.
+
+The Director shall be appointed by the Elections Commission from a list of
+qualified applicants provided pursuant to the civil service provisions of
+this Charter. The Director shall serve a five-year term, during which he or
+she may be removed by the Elections Commission for cause, upon written
+charges and following a hearing. The Elections Commission shall present the
+written charges to the Director no less than thirty days before the hearing.
+If the Elections Commission votes to remove the Director, he or she shall
+have the right to appeal to the Civil Service Commission. On appeal, the
+Civil Service Commission shall be limited to consideration of the record
+before the Elections Commission; however, the Civil Service Commission may
+independently evaluate and weigh evidence and may in its discretion consider
+evidence proffered to the Elections Commission that the Commission excluded
+and may in its discretion exclude evidence that the Elections Commission
+considered. The term of the Director shall expire five years after his or
+her appointment. No less than thirty days before the expiration of the
+Director's term, the Elections Commission shall appoint a Director for the
+next term, who may but need not be the incumbent Director. Subject to the
+civil service provisions of this Charter, the Director shall have the power
+to appoint and remove other employees of the Department of Elections.
+
+In addition to any other conflict of interest provisions applicable to City
+employees, the Director of Elections and all other employees of the
+Department of Elections shall be subject to the conflict-of-interest
+provisions in Section 13.103.5. The Elections Commission, may upon the
+recommendation of the Director of Elections and a finding that the
+Department will not have adequate staffing to conduct an election, request
+from the Board of Supervisors a waiver of the conflict-of-interest
+provisions in Section 13.103.5 for employees working no more than thirty
+days in a single calendar year. The Board of Supervisors shall approve or
+deny such requests from the Elections Commission by motion.
 
 (Amended November 2001)
