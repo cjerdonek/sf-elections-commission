@@ -43,6 +43,12 @@ FFmpeg using [MacPorts][macports] as follows:
     $ sudo port install ffmpeg
 
 
+### Increase the Volume
+
+    # Increase the volume by 1.5x.
+    $ ffmpeg -i input.mp3 -af 'volume=1.5' output.mp3
+
+
 ### Combine files
 
 If necessary, combine multiple files:
