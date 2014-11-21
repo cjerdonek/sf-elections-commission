@@ -34,19 +34,39 @@ open-source command-line utility [FFmpeg][ffmpeg].
 
 This method requires a fair bit of technical knowledge.
 
+
+### Install FFmpeg
+
 First, install FFmpeg.  For example, on Mac OS X you can use install
 FFmpeg using [MacPorts][macports] as follows:
 
     $ sudo port install ffmpeg
 
-Then run the following from the command-line (filling in correct INPUT
-and OUTPUT file names):
+
+### Combine files
+
+If necessary, combine multiple files:
+
+    $ ffmpeg -i concat:"part1.mp3|part2.mp3" -acodec copy audio_combined.mp3
+
+
+### Convert audio to video
+
+To create a video file from an audio file, run the following from the
+command-line (filling in correct INPUT and OUTPUT file names):
 
     $ ffmpeg -i INPUT.mp3 -f image2 -loop 1 -r 2 -i INPUT.png \
       -shortest -c:a copy -c:v libx264 -crf 23 -preset veryfast \
       -movflags faststart OUTPUT.mp4
 
-Notes on the command above:
+And then--
+
+    $ ffmpeg -i INPUT.mp4 -acodec copy -vcodec copy OUTPUT.mkv
+
+
+#### Notes on the commands above
+
+Regarding the first command--
 
 * `-f image2` means to use the "image2 sequence" format,
 * `-loop 1` means to loop over the input stream (for image streams),
@@ -58,16 +78,25 @@ Notes on the command above:
   came from).
 
 See [here](http://superuser.com/a/538168) for more info and for where
-this suggested syntax came from.
+the suggested syntax came from.
 
-When uploading to YouTube, you may get the following warning:
+The second command significantly speeds up YouTube processing time, and it
+prevents the following YouTube warning from showing up after uploading
+to YouTube:
 
 > Your videos will process faster if you encode into a streamable file format.
 
-See the advice [here][streamable_encoding] to perhaps address this issue.
-For example--
+This second command is advice taken from [here][streamable_encoding].
 
-    $ ffmpeg -i INPUT.mp4 -acodec copy -vcodec copy OUTPUT.mkv
+
+### Second approach
+
+TODO: also try the following--
+
+    $ ffmpeg -loop 1 -i image.jpg -i audio.mp3 -c:v libx264 \
+      -c:a aac -strict experimental -b:a 192k -shortest output.mp4
+
+(from http://www.labnol.org/internet/useful-ffmpeg-commands/28490/ )
 
 
 Using iMovie
