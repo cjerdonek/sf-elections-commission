@@ -90,6 +90,16 @@ create a video file.
 
 TODO
 
+Suggested tags:
+
+    Meeting,Elections,Elections Commission,San Francisco (US County),
+    San Francisco Elections Commission,County Commission (Organization Type)
+
+Other settings:
+
+* Category: News & Politics
+* Video location: City Hall, San Francisco, California
+
 
 [aiff]: http://en.wikipedia.org/wiki/Audio_Interchange_File_Format
 [create-video]: audio_to_video.md
