@@ -99,6 +99,7 @@ Other settings:
 
 * Category: News & Politics
 * Video location: City Hall, San Francisco, California
+* Video Language: English
 
 
 [aiff]: http://en.wikipedia.org/wiki/Audio_Interchange_File_Format
