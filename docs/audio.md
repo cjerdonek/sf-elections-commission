@@ -88,12 +88,40 @@ create a video file.
 
 ### Upload the video to YouTube
 
-TODO
+Below are things to fill out.
+
+
+#### Full Commission meetings
+
+Title: December 17, 2014 Elections Commission Meeting (audio only)
+
+Description:
+
+    December 17, 2014 meeting of the San Francisco Elections Commission.
+
+    Agenda (PDF): link
+
+    Agenda Packet: link
+
+
+#### BOPEC meetings
+
+Title: December 3, 2014 BOPEC Meeting (audio only)
+
+Description:
+
+    December 3, 2014 meeting of the Budget & Oversight of Public Elections Committee (BOPEC) of the San Francisco Elections Commission.
+
+    Agenda (PDF): link
+
+    Agenda Packet: link
+
 
 Suggested tags:
 
     Meeting,Elections,Elections Commission,San Francisco (US County),
     San Francisco Elections Commission,County Commission (Organization Type)
+
 
 Other settings:
 
