@@ -1,15 +1,26 @@
 
+from __future__ import absolute_import
+
+import argparse
+# TODO: remove old (insecure) e-mail code.
+import email
 from email import encoders
 from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.utils import COMMASPACE, formataddr
 import getpass
+import httplib2
 import logging
 import os
 from smtplib import SMTP
 import sys
 import tarfile
+
+from apiclient.discovery import build
+from oauth2client.client import flow_from_clientsecrets
+from oauth2client.file import Storage
+from oauth2client import tools
 
 from electcomm.common import confirm
 from electcomm.config import get_config
@@ -73,7 +84,7 @@ def send_email(smtp_host, smtp_port, smtp_user, smtp_pass, from_address,
     smtp_connection.close()
 
 
-def main():
+def main_old():
     config = get_config()
     settings = config.data['settings']
 
@@ -96,3 +107,40 @@ def main():
                subject="subject",
                body="body",
                attachment_paths=[])
+
+
+def main():
+    config = get_config()
+    google_client_secret_path = config.get_google_client_secret_path()
+
+    # Check https://developers.google.com/gmail/api/auth/scopes for all available scopes
+    OAUTH_SCOPE = 'https://www.googleapis.com/auth/gmail.readonly'
+
+    # Location of the credentials storage file
+    STORAGE = Storage('gmail.storage')
+
+    # Start the OAuth flow to retrieve credentials
+    flow = flow_from_clientsecrets(google_client_secret_path, scope=OAUTH_SCOPE)
+    http = httplib2.Http()
+
+    parser = argparse.ArgumentParser(parents=[tools.argparser])
+    flags = parser.parse_args()
+
+    # Try to retrieve credentials from storage or run the flow to generate them
+    credentials = STORAGE.get()
+    if credentials is None or credentials.invalid:
+      credentials = tools.run_flow(flow, STORAGE, flags=flags, http=http)
+
+    # Authorize the httplib2.Http object with our credentials
+    http = credentials.authorize(http)
+
+    # Build the Gmail service from discovery
+    gmail_service = build('gmail', 'v1', http=http)
+
+    # Retrieve a page of threads
+    threads = gmail_service.users().threads().list(userId='me').execute()
+
+    # Print ID for each thread
+    if threads['threads']:
+      for thread in threads['threads']:
+        print('Thread ID: %s' % (thread['id']))

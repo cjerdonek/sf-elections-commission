@@ -6,13 +6,9 @@ import shlex
 
 import tweepy
 
+# TODO: move to config.
 USERNAME = "SFElectionsComm"
-NAME_BOPEC = "Budget & Oversight of Public Elections Committee (BOPEC)"
-NAME_COMMISSION = "Elections Commission"
-WEB_SITE_HOME = "http://www.sfgov2.org/index.aspx?page=319"
-WEB_SITE_MEETINGS = "http://www.sfgov2.org/index.aspx?page=1382"
 
-BODY_NAMES = {'bopec': NAME_BOPEC, 'commission': NAME_COMMISSION}
 URL_PATTERN = re.compile(r"http://\S*")
 
 
@@ -22,28 +18,6 @@ def get_length(tweet):
     """Calculate how long the URL will be once Twitter shortens it."""
     new_string, url_count = URL_PATTERN.subn("", tweet)
     return len(new_string) + url_count * 22
-
-
-def parse_label(label):
-    """For example: 2015_01_07_bopec."""
-    parts = label.split("_")
-    body = parts.pop()
-    body_name = BODY_NAMES[body]
-    year, month, day = (int(s) for s in parts)
-    dt = date(year, month, day)
-    return body_name, dt
-
-
-def make_tweet(format_string, label):
-    body, date = parse_label(label)
-    return format_string.format(date=date, day=date.day, body=body,
-                                home_page=WEB_SITE_HOME)
-
-def get_cancel_tweet(label):
-    # Date for example: Wed, January 7, 2015
-    format = ("The {0} meeting of the {{body}} will not be held: {{home_page}}"
-              .format("{date:%a, %B {day}, %Y}"))
-    return make_tweet(format, label)
 
 
 def get_raw_oauth():
