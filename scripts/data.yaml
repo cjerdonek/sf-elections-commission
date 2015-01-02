@@ -15,6 +15,3 @@ people:
   library:
     name: "San Francisco Documents Librarian"
     mail: "sfdocs@sfpl.org"
-meetings:
-  2015_01_07_bopec:
-    held: false
