@@ -1,6 +1,8 @@
 
 """Common helper functions."""
 
+from six.moves import input
+
 from datetime import date
 
 

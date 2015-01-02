@@ -6,8 +6,9 @@ import shlex
 
 import tweepy
 
-# TODO: move to config.
-USERNAME = "SFElectionsComm"
+from electcomm import common
+from electcomm.config import get_config
+
 
 URL_PATTERN = re.compile(r"http://\S*")
 
@@ -23,10 +24,7 @@ def get_length(tweet):
 def get_raw_oauth():
     """Return OAuthHandler without access token."""
     config = get_config()
-    # The first value is the application's non-secret Consumer Key (API Key).
-    # The second is the application's Consumer Secret (API Secret).
-    api_key = config['twitter_consumer_api_key']
-    api_secret = config['twitter_consumer_api_secret']
+    api_key, api_secret = config.get_twitter_consumer_creds()
     auth = tweepy.OAuthHandler(api_key, api_secret)
     return auth
 
@@ -34,13 +32,10 @@ def get_raw_oauth():
 def get_oauth(username):
     """Return OAuthHandler with access token."""
     config = get_config()
-    user_config = config['users'][username]
-    key = user_config['twitter_access_token_key']
-    secret = user_config['twitter_access_token_secret']
+    key, secret = config.get_twitter_user_creds(username)
 
     auth = get_raw_oauth()
     auth.set_access_token(key, secret)
-
     return auth
 
 
@@ -67,30 +62,17 @@ def get_access_token():
     print("twitter_access_token_secret: {0}".format(access_token_secret))
 
 
-def tweet(message=None):
-    username = USERNAME
+def tweet(username, message=None):
     if not message:
         message = input("message: ").strip()
     auth = get_oauth(username)
     api = tweepy.API(auth)
-    response = input('Are you sure you want to tweet this?\n'
-                     'user: {user}\n'
-                     'text: "{text}"\n'
-                     'length: {length} chars (reduced from {old_length})\n'
-                     '(yes/no)? '
-                     .format(user=username, text=message, length=get_length(message),
-                             old_length=len(message)))
-    if response != 'yes':
-        exit('** Aborted.')
+
+    msg = ('Are you sure you want to tweet this?\n'
+           'user: {user}\n'
+           'text: "{text}"\n'
+           'length: {length} chars (reduced from {old_length})\n'
+           .format(user=username, text=message, length=get_length(message),
+                   old_length=len(message)))
+    common.confirm(msg)
     api.update_status(message)
-
-
-def main():
-    label = '2015_01_07_bopec'
-    print(get_cancel_tweet(label))
-    exit()
-    tweet()
-
-
-if __name__ == '__main__':
-    main()

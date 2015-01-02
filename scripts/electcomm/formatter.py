@@ -17,6 +17,10 @@ INDEX_HTML = """\
 </tr>
 """.format(date_format=DATE_FORMAT_SHORT)
 
+TWEET_CANCEL = """\
+The {date_format} meeting of the {{body_full}} will not be held: {{home_page}}
+""".format(date_format=DATE_FORMAT_SHORT)
+
 NAME_BOPEC = "Budget & Oversight of Public Elections Committee (BOPEC)"
 NAME_COMMISSION = "Elections Commission"
 WEB_SITE_HOME = "http://www.sfgov2.org/index.aspx?page=319"
@@ -29,8 +33,7 @@ def make_tweet(format_string, label):
     return format_string.format(date=date, day=date.day, body=body,
                                 home_page=WEB_SITE_HOME)
 def get_cancel_tweet(label):
-    format = ("The {0} meeting of the {{body}} will not be held: {{home_page}}"
-              .format("{date:%a, %B {day}, %Y}"))
+    format = ()
     return make_tweet(format, label)
 
 
@@ -62,11 +65,14 @@ class Formatter(object):
 
     def get_format_kwargs(self):
         body_short_name = self.body.short_name
+        body_full_name = self.body.full_name
         return {
             'body_short': body_short_name,
             'body_short_html': html_escape(body_short_name),
+            'body_full': body_full_name,
             'date_short': self.date,
             'day': self.date.day,
+            'home_page': WEB_SITE_HOME,
         }
 
     def get_formatted(self, format_str, **extra):
@@ -78,3 +84,6 @@ class Formatter(object):
         # Read canceled from YAML.
         desc = 'Canceled: no meeting'
         return self.get_formatted(INDEX_HTML, desc=desc)
+
+    def make_tweet_announce(self):
+        return self.get_formatted(TWEET_CANCEL)
