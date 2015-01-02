@@ -1,3 +1,17 @@
+settings:
+  smtp_host: "smtp.gmail.com"
+  smtp_port: 587
+  smtp_user: "chris.jerdonek"
+people:
+  chris_gov:
+    name: "Chris Jerdonek"
+    mail: "cjerdonek.sfgov@gmail.com"
+  chris_test:
+    name: "Chris Test"
+    mail: "jerdonek@post.harvard.edu"
+  library:
+    name: "San Francisco Documents Librarian"
+    mail: "sfdocs@sfpl.org"
 meetings:
   2015_01_07_bopec:
     held: false

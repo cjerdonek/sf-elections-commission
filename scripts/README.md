@@ -1,4 +1,4 @@
 Setup
 =====
 
-    $ pip install pyyaml tweepy
+    $ pip install google-api-python-client pyyaml tweepy
