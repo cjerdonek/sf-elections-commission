@@ -5,7 +5,6 @@ import re
 import shlex
 
 import tweepy
-import yaml
 
 USERNAME = "SFElectionsComm"
 NAME_BOPEC = "Budget & Oversight of Public Elections Committee (BOPEC)"
@@ -45,14 +44,6 @@ def get_cancel_tweet(label):
     format = ("The {0} meeting of the {{body}} will not be held: {{home_page}}"
               .format("{date:%a, %B {day}, %Y}"))
     return make_tweet(format, label)
-
-
-def get_config():
-    repo_root = os.path.join(os.path.dirname(__file__), os.pardir)
-    config_path = os.path.join(repo_root, 'temp.yaml')
-    with open(config_path) as f:
-        config = yaml.load(f)
-    return config
 
 
 def get_raw_oauth():
