@@ -2,3 +2,7 @@
 __pycache__/
 .DS_Store
 docs/*.html
+# For google API storage.
+*.storage
+*.secret.json
+*.secret.yaml
