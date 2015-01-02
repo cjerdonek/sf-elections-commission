@@ -4,7 +4,7 @@ Preparing and Holding Meetings
 This document contains guidance for preparing and holding a meeting:
 
 * [72 Hours in Advance](#72-hours-in-advance)
-* [How to Cancel a Meeting](#how-to-cancel-a-meeting)
+* [Canceling a Meeting](#how-to-cancel-a-meeting)
 * [After a Meeting](#after-a-meeting)
 
 
@@ -14,8 +14,8 @@ Prepare an Agenda
 TODO
 
 
-72 Hours in Advance
--------------------
+Meeting Notification
+--------------------
 
 This section contains things to do at least 72 hours before each meeting.
 Most of these things relate to providing notice of the meeting.
@@ -49,34 +49,33 @@ Department of Elections office.
 TODO
 
 
-How to Cancel a Meeting
------------------------
+Canceled Meetings
+-----------------
 
-First, prepare a meeting cancellation notice per Section 67.6(g) of the
-Sunshine Ordinance:
+Section 67.6(g) of the Sunshine Ordinance says--
 
 > (g) If a meeting must be canceled, continued or rescheduled for any
 reason, notice of such change shall be provided to the public as soon
 as is reasonably possible, including posting of a cancellation notice...
 
-Create a PDF of this document.  See the [`templates`](templates) directory
-for a sample document.
+Do the following steps:
 
-Then do the following notification steps:
+1. Create a meeting cancellation notice as a PDF.  See the
+   [`templates`](templates) directory for a sample.
 
-1. Update the "Upcoming Meetings" table on the Commission home page
-   wording like, "Canceled: no meeting."
+2. Update the "Upcoming Meetings" table on the Commission home page
+   with wording like, "Canceled: no meeting."
 
    ![](images/cancel_meeting_home_page.png "Meeting Cancellation on home page")
 
-2. Tweet the meeting cancellation.  Here is a sample:
+3. Tweet the meeting cancellation.  Here is a sample:
    https://twitter.com/SFElectionsComm/status/515617594381205505
 
-3. E-mail the PDF of the meeting cancellation notice to the San Francisco
+4. E-mail the PDF of the meeting cancellation notice to the San Francisco
    Public Library's Government Information Center, as you would for a
    normal meeting.
 
-4. Also send a courtesy e-mail about the cancellation to the Commission or
+5. Also send a courtesy e-mail about the cancellation to the Commission or
    committee members, Director of Elections, and Deputy City Attorney,
    as you would for a meeting that was being held.
 
