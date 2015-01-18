@@ -1,10 +1,21 @@
 
 from cgi import escape as html_escape
 
+from pycomm import common
 from pycomm.common import parse_label
 
 # For example: "Wed, January 7, 2015".
 DATE_FORMAT_SHORT = "{date:%a, %B {day}, %Y}"
+
+HTML_MINUTES = (
+    '<a href="modules/showdocument.aspx?documentid={minutes_id}" target="_blank">\n'
+    '{draft_prefix}Minutes (PDF)</a>'
+)
+
+HTML_YOUTUBE_FORMAT = (
+    '<a href="https://www.youtube.com/watch?v={youtube_id}" '
+    'target="_blank">{youtube_duration} (YT)</a>'
+)
 
 INDEX_HTML = """\
 <tr>
@@ -22,15 +33,15 @@ HTML_PAST_MEETING = """\
     <td headers="table_heading_0">{date_short}</td>
     <td headers="table_heading_1">{{body_short_html}}</td>
     <td headers="table_heading_2">
-    <a href="modules/showdocument.aspx?documentid=2325" target="_blank">
+    <a href="modules/showdocument.aspx?documentid={{agenda_id}}" target="_blank">
     Agenda (PDF)</a> |
-    <a href="index.aspx?page=4408&amp;parent=2324">Packet</a>
+    <a href="index.aspx?page=4408&amp;parent={{agenda_packet_id}}">Packet</a>
     </td>
     <td headers="table_heading_4">
-    TBD
+    {{minutes_html}}
     </td>
     <td headers="table_heading_5">
-    <a href="https://www.youtube.com/watch?v=zzBeTGAnJy8" target="_blank">53:23 (YT)</a>
+    {{youtube_html}}
     </td>
 </tr>
 """.format(date_short=DATE_FORMAT_SHORT)
@@ -92,12 +103,30 @@ class Formatter(object):
     def __init__(self, config):
         self.config = config
 
-    def get_meeting_kwargs(self, meeting_label):
-        body, date = parse_meeting_label(meeting_label)
+    def get_meeting_kwargs(self, label):
+        data = self.config.get_meeting(label)
+        body, date = parse_meeting_label(label)
         body_name_full = body.name_full
         body_name_medium = body.name_medium
         body_name_short = body.name_short
+
+        # Minutes
+        minutes_id = data['minutes_id']
+        if minutes_id:
+            draft_prefix = 'Draft ' if data['minutes_draft'] else ''
+            minutes_html = common.indent(HTML_MINUTES.format(
+                                minutes_id=minutes_id,
+                                draft_prefix=draft_prefix))
+
+        # YouTube
+        youtube_id = data['youtube_id']
+        youtube_duration = data['youtube_duration']
+        youtube_html = HTML_YOUTUBE_FORMAT.format(youtube_id=youtube_id,
+                                                  youtube_duration=youtube_duration)
+
         return {
+            'agenda_id': data['agenda_id'],
+            'agenda_packet_id': data['agenda_packet_id'],
             'body_name_medium': body_name_medium,
             'body_short': body_name_short,
             'body_short_html': html_escape(body_name_short),
@@ -105,6 +134,8 @@ class Formatter(object):
             'date': date,
             'day': date.day,
             'home_page': WEB_SITE_HOME,
+            'minutes_html': minutes_html,
+            'youtube_html': youtube_html,
         }
 
     def get_formatted(self, format_str, **kwargs):

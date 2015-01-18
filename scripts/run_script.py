@@ -3,6 +3,7 @@ from __future__ import absolute_import
 
 import logging
 
+import set_path
 from pycomm import email, tweet
 from pycomm.config import get_config
 from pycomm.formatter import Formatter

@@ -5,14 +5,11 @@ import os
 import yaml
 
 
-def get_scripts_dir():
-    return os.path.join(os.path.dirname(__file__), os.pardir)
-
+REPO_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 
 def get_config_file(file_name):
-    scripts_dir = get_scripts_dir()
-    data_dir = os.path.join(scripts_dir, 'data')
-    config_path = os.path.join(data_dir, file_name)
+    config_dir = os.path.join(REPO_DIR, 'config')
+    config_path = os.path.join(config_dir, file_name)
     with open(config_path) as f:
         data = yaml.load(f)
     return data
@@ -20,9 +17,11 @@ def get_config_file(file_name):
 
 def get_config():
     people_data = get_config_file('people.yaml')['people']
+    meeting_data = get_config_file('meetings.yaml')['meetings']
 
     config = Config()
     config.data = get_config_file('data.yaml')
+    config.meetings = meeting_data
     config.people = people_data
     config.twitter_secret = get_config_file('twitter.secret.yaml')
 
@@ -33,6 +32,9 @@ class Config(object):
 
     def __init__(self):
         pass
+
+    def get_meeting(self, label):
+        return self.meetings[label]
 
     def get_person(self, label):
         return self.people[label]

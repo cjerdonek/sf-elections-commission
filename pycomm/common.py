@@ -6,6 +6,11 @@ from six.moves import input
 from datetime import date
 
 
+def indent(text, indent='    '):
+    lines = text.splitlines(True)
+    lines = lines[:1] + [indent + line for line in lines[1:]]
+    return "".join(lines)
+
 def parse_label(label):
     """
     Arguments:
