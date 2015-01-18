@@ -22,8 +22,8 @@ from oauth2client.client import flow_from_clientsecrets
 from oauth2client.file import Storage
 from oauth2client import tools
 
-from electcomm.common import confirm
-from electcomm.config import get_config
+from pycomm.common import confirm
+from pycomm.config import get_config
 
 
 SMTP_HOST = "smtp.gmail.com"

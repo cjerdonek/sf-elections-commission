@@ -6,8 +6,8 @@ import shlex
 
 import tweepy
 
-from electcomm import common
-from electcomm.config import get_config
+from pycomm import common
+from pycomm.config import get_config
 
 
 URL_PATTERN = re.compile(r"http://\S*")

@@ -1,7 +1,7 @@
 
 from cgi import escape as html_escape
 
-from electcomm.common import parse_label
+from pycomm.common import parse_label
 
 # For example: "Wed, January 7, 2015".
 DATE_FORMAT_SHORT = "{date:%a, %B {day}, %Y}"
