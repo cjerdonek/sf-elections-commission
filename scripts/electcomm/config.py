@@ -9,26 +9,33 @@ def get_scripts_dir():
     return os.path.join(os.path.dirname(__file__), os.pardir)
 
 
-def get_config():
+def get_config_file(file_name):
     scripts_dir = get_scripts_dir()
-    config_path = os.path.join(scripts_dir, 'data.yaml')
+    data_dir = os.path.join(scripts_dir, 'data')
+    config_path = os.path.join(data_dir, file_name)
     with open(config_path) as f:
         data = yaml.load(f)
-    twitter_path = os.path.join(scripts_dir, 'twitter.secret.yaml')
-    with open(twitter_path) as f:
-        twitter_data = yaml.load(f)
+    return data
 
-    return Config(data, twitter_data=twitter_data)
+
+def get_config():
+    people_data = get_config_file('people.yaml')['people']
+
+    config = Config()
+    config.data = get_config_file('data.yaml')
+    config.people = people_data
+    config.twitter_secret = get_config_file('twitter.secret.yaml')
+
+    return config
 
 
 class Config(object):
 
-    def __init__(self, data, twitter_data):
-        self.data = data
-        self.twitter_data = twitter_data
+    def __init__(self):
+        pass
 
     def get_person(self, label):
-        return self.data['people'][label]
+        return self.people[label]
 
     def get_google_client_secret_path(self):
         # Path to the client_secret.json file downloaded from the Developer Console
@@ -36,7 +43,7 @@ class Config(object):
         return os.path.join(scripts_dir, 'google_client_secret.json')
 
     def get_twitter_consumer_creds(self):
-        data = self.twitter_data
+        data = self.twitter_secret
         # The first value is the application's non-secret Consumer Key (API Key).
         # The second is the application's Consumer Secret (API Secret).
         api_key = data['twitter_consumer_api_key']
@@ -48,7 +55,7 @@ class Config(object):
         return person['twitter_username']
 
     def get_twitter_user_creds(self, username):
-        data = self.twitter_data
+        data = self.twitter_secret
         config = data['users'][username]
         key = config['twitter_access_token_key']
         secret = config['twitter_access_token_secret']
