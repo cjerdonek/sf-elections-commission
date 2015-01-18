@@ -4,8 +4,15 @@ meetings:
     agenda_id: 2325
     agenda_packet_id: 2324
     minutes_id: 2353
+    minutes_draft: True
+    youtube_duration: "53:23"
     youtube_id: "zzBeTGAnJy8"
   2015_01_07_bopec:
     status: canceled
   2015_01_21_commission:
+    agenda_id: 2357
+    agenda_packet_id: 2359
+  2015_02_04_bopec:
+    status: TBD
+  2015_02_18_commission:
     status: TBD
