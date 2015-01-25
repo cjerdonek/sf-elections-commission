@@ -9,9 +9,11 @@ meetings:
     youtube_id: "zzBeTGAnJy8"
   2015_01_07_bopec:
     status: canceled
-  2015_01_21_commission:
+  20150121_commission:
     agenda_id: 2357
     agenda_packet_id: 2359
+    youtube_id: "LfwRZn0j20Y"
+    youtube_length: "1:00:08"
   2015_02_04_bopec:
     status: TBD
   2015_02_18_commission:

@@ -16,9 +16,9 @@ def parse_label(label):
     Arguments:
       label: for example: 2015_01_07_bopec.
     """
-    parts = label.split("_")
-    body_label = parts.pop()
-    year, month, day = (int(s) for s in parts)
+    date_string, body_label = label.split("_")
+    date_parts = date_string[:4], date_string[4:6], date_string[6:8]
+    year, month, day = (int(s) for s in date_parts)
     dt = date(year, month, day)
     return body_label, dt
 
