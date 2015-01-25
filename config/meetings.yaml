@@ -1,4 +1,13 @@
 meetings:
+  20150218_commission:
+    status: TBD
+  20150204_bopec:
+    status: TBD
+  20150121_commission:
+    agenda_id: 2357
+    agenda_packet_id: 2359
+    youtube_id: "LfwRZn0j20Y"
+    youtube_length: "1:00:08"
   20141217_commission:
     status: TBD
     agenda_id: 2325
@@ -9,12 +18,3 @@ meetings:
     youtube_length: "53:23"
   20150107_bopec:
     status: canceled
-  20150121_commission:
-    agenda_id: 2357
-    agenda_packet_id: 2359
-    youtube_id: "LfwRZn0j20Y"
-    youtube_length: "1:00:08"
-  20150204_bopec:
-    status: TBD
-  20150218_commission:
-    status: TBD
