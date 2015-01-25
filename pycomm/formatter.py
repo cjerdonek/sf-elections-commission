@@ -4,8 +4,12 @@ from cgi import escape as html_escape
 from pycomm import common
 from pycomm.common import parse_label
 
-# For example: "Wed, January 7, 2015".
-DATE_FORMAT_SHORT = "{date:%a, %B {day}, %Y}"
+
+# TODO: DRY up the variables below with our helper functions.
+NAME_BOPEC = "Budget & Oversight of Public Elections Committee (BOPEC)"
+NAME_COMMISSION = "Elections Commission"
+WEB_SITE_HOME = "http://www.sfgov2.org/index.aspx?page=319"
+WEB_SITE_MEETINGS = "http://www.sfgov2.org/index.aspx?page=1382"
 
 COMMANDS_AUDIO_FORMAT = """\
 Commands
@@ -75,50 +79,76 @@ INDEX_HTML = """\
     <td headers="table_heading_4">&nbsp;</td>
     <td headers="table_heading_5">&nbsp;</td>
 </tr>
-""".format(date_short=DATE_FORMAT_SHORT)
+"""
 
 HTML_PAST_MEETING = """\
 <tr>
-    <td headers="table_heading_0">{date_short}</td>
-    <td headers="table_heading_1">{{body_short_html}}</td>
+    <td headers="table_heading_0">{date_full_short_day}</td>
+    <td headers="table_heading_1">{body_short_html}</td>
     <td headers="table_heading_2">
-    <a href="modules/showdocument.aspx?documentid={{agenda_id}}" target="_blank">
+    <a href="{url_agenda_html}" target="_blank">
     Agenda (PDF)</a> |
-    <a href="index.aspx?page=4408&amp;parent={{agenda_packet_id}}">Packet</a>
+    <a href="{url_agenda_packet_html}">Packet</a>
     </td>
     <td headers="table_heading_4">
-    {{minutes_html}}
+    {minutes_html}
     </td>
     <td headers="table_heading_5">
-    {{youtube_html}}
+    {youtube_html}
     </td>
 </tr>
-""".format(date_short=DATE_FORMAT_SHORT)
+"""
 
 TWEET_CANCEL = """\
-The {date_short} meeting of the {{body_full}} will not be held: {{home_page}}
-""".format(date_short=DATE_FORMAT_SHORT)
+The {date_short} meeting of the {body_full} will not be held: {home_page}
+"""
 
 TWEET_AGENDA_POSTED = (
     "The agenda and packet for this {date:%A}'s "
     "{date:%B {day}} {body_name_medium} meeting are now posted: {home_page}"
 )
 
-NAME_BOPEC = "Budget & Oversight of Public Elections Committee (BOPEC)"
-NAME_COMMISSION = "Elections Commission"
-WEB_SITE_HOME = "http://www.sfgov2.org/index.aspx?page=319"
-WEB_SITE_MEETINGS = "http://www.sfgov2.org/index.aspx?page=1382"
+TWEET_YOUTUBE = (
+    "The audio for last {date:%A}'s {date:%B} {day} {body_name_medium} "
+    "meeting is now posted on YouTube ({youtube_length_text}): {youtube_url}"
+)
 
 BODY_NAMES = {'bopec': NAME_BOPEC, 'commission': NAME_COMMISSION}
 
 TEMPLATES = {
-    'audio': COMMANDS_AUDIO_FORMAT
+    'audio': COMMANDS_AUDIO_FORMAT,
+    'html_past': HTML_PAST_MEETING,
 }
 
+TWEET_TEMPLATES = {
+    'youtube': TWEET_YOUTUBE,
+}
 
-def get_date_full_no_day(date):
-    """Return the date in the following format: "January 7, 2015""."""
+def get_date_full(date):
+    """Return the date in the following format: "January 7, 2015"."""
     return "{0:%B {day}, %Y}".format(date, day=date.day)
+
+def get_date_full_short_day(date):
+    """Return the date in the following format: "Wed, January 7, 2015"."""
+    return "{0:%a, %B {day}, %Y}".format(date, day=date.day)
+
+
+def get_youtube_url(youtube_id):
+    return "http://youtu.be/{0}".format(youtube_id)
+
+
+def format_youtube_length(length):
+    parts = length.split(":")
+    if len(parts) == 3:
+        hours = int(parts[0])
+        text = "{0}:{1} hour".format(hours, parts[1])
+        if hours > 1:
+            text += "s"
+    elif len(parts) == 2:
+        text = "{0} mins".format(parts[0])
+    else:
+        raise Exception("bad length: {0}".format(length))
+    return text
 
 
 def get_absolute_url(rel_url):
@@ -205,9 +235,11 @@ class Formatter(object):
         # YouTube
         audio_base = "{0:%Y%m%d}_{1}".format(date, body_label)
         youtube_id = data.get('youtube_id')
-        youtube_duration = data.get('youtube_duration')
+        youtube_length = data.get('youtube_length')
+        youtube_length_text = format_youtube_length(youtube_length)
         youtube_html = HTML_YOUTUBE_FORMAT.format(youtube_id=youtube_id,
-                                                  youtube_duration=youtube_duration)
+                                                  youtube_duration=youtube_length)
+        youtube_url = get_youtube_url(youtube_id)
 
         return {
             'audio_base': audio_base,
@@ -217,17 +249,27 @@ class Formatter(object):
             'body_short_html': html_escape(body_name_short),
             'body_full': body_name_full,
             'date': date,
-            'date_full_no_day': get_date_full_no_day(date),
+            'date_full_short_day': get_date_full_short_day(date),
+            'date_full_no_day': get_date_full(date),
             'day': date.day,
             'home_page': WEB_SITE_HOME,
             'minutes_html': minutes_html,
+            'url_agenda_html': html_escape(url_agenda),
             'url_agenda_absolute': get_absolute_url(url_agenda),
+            'url_agenda_packet_html': html_escape(url_agenda_packet),
             'url_agenda_packet_absolute': get_absolute_url(url_agenda_packet),
             'youtube_html': youtube_html,
+            'youtube_length_text': youtube_length_text,
+            'youtube_url': youtube_url,
         }
 
     def get_formatted(self, format_str, **kwargs):
-        return format_str.format(**kwargs)
+        try:
+            formatted = format_str.format(**kwargs)
+        except KeyError:
+            # TODO: include more info.
+            raise
+        return formatted
 
     def format_meeting_text(self, format_str, meeting_label):
         kwargs = self.get_meeting_kwargs(meeting_label)
@@ -235,6 +277,11 @@ class Formatter(object):
 
     def make_meeting_text(self, template_label, meeting_label):
         format_str = TEMPLATES[template_label]
+        kwargs = self.get_meeting_kwargs(meeting_label)
+        return self.get_formatted(format_str, **kwargs)
+
+    def make_tweet(self, template_label, meeting_label):
+        format_str = TWEET_TEMPLATES[template_label]
         kwargs = self.get_meeting_kwargs(meeting_label)
         return self.get_formatted(format_str, **kwargs)
 
