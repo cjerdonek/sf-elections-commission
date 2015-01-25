@@ -5,11 +5,8 @@ from pycomm import common
 from pycomm.common import parse_label
 
 
-# TODO: DRY up the variables below with our helper functions.
-NAME_BOPEC = "Budget & Oversight of Public Elections Committee (BOPEC)"
-NAME_COMMISSION = "Elections Commission"
-WEB_SITE_HOME = "http://www.sfgov2.org/index.aspx?page=319"
-WEB_SITE_MEETINGS = "http://www.sfgov2.org/index.aspx?page=1382"
+URL_HOME = "index.aspx?page=319"
+URL_MEETINGS = "index.aspx?page=1382"
 
 COMMANDS_AUDIO_FORMAT = """\
 Commands
@@ -108,12 +105,15 @@ TWEET_AGENDA_POSTED = (
     "{date:%B {day}} {body_name_medium} meeting are now posted: {home_page}"
 )
 
+TWEET_MINUTES_APPROVED = (
+    "The approved minutes for the {date:%b. {day}, %Y} {body_name_medium} "
+    "meeting are now posted: {url_past_meetings_absolute}"
+)
+
 TWEET_YOUTUBE = (
     "The audio for last {date:%A}'s {date:%B} {day} {body_name_medium} "
     "meeting is now posted on YouTube ({youtube_length_text}): {youtube_url}"
 )
-
-BODY_NAMES = {'bopec': NAME_BOPEC, 'commission': NAME_COMMISSION}
 
 TEMPLATES = {
     'audio': COMMANDS_AUDIO_FORMAT,
@@ -121,6 +121,7 @@ TEMPLATES = {
 }
 
 TWEET_TEMPLATES = {
+    'minutes_approved': TWEET_MINUTES_APPROVED,
     'youtube': TWEET_YOUTUBE,
 }
 
@@ -176,7 +177,7 @@ class BodyCommission(object):
 
     label = "commission"
     name_short = "Commission"
-    name_medium = "Elections Commission"
+    name_medium = "SF Elections Commission"
     name_full = "San Francisco Elections Commission"
     name_complete = "San Francisco Elections Commission"
 
@@ -225,7 +226,7 @@ class Formatter(object):
 
         # Minutes
         minutes_id = data.get('minutes_id')
-        minutes_html = None
+        minutes_html = "TBA"
         if minutes_id:
             draft_prefix = 'Draft ' if data['minutes_draft'] else ''
             minutes_html = common.indent(HTML_MINUTES.format(
@@ -252,12 +253,13 @@ class Formatter(object):
             'date_full_short_day': get_date_full_short_day(date),
             'date_full_no_day': get_date_full(date),
             'day': date.day,
-            'home_page': WEB_SITE_HOME,
+            'home_page': get_absolute_url(URL_HOME),
             'minutes_html': minutes_html,
             'url_agenda_html': html_escape(url_agenda),
             'url_agenda_absolute': get_absolute_url(url_agenda),
             'url_agenda_packet_html': html_escape(url_agenda_packet),
             'url_agenda_packet_absolute': get_absolute_url(url_agenda_packet),
+            'url_past_meetings_absolute': get_absolute_url(URL_MEETINGS),
             'youtube_html': youtube_html,
             'youtube_length_text': youtube_length_text,
             'youtube_url': youtube_url,
