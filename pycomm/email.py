@@ -2,8 +2,6 @@
 from __future__ import absolute_import
 
 import argparse
-# TODO: remove old (insecure) e-mail code.
-import email
 from email import encoders
 from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
@@ -32,6 +30,95 @@ SMTP_PORT = 587
 log = logging.getLogger("fbsubmit")
 
 
+def _format_emails(addresses):
+    return COMMASPACE.join(formataddr(a) for a in addresses)
+
+
+def _add_email_info(message, from_address, to_addresses, cc_addresses, subject):
+    """
+    In this function, each e-mail address should be a 2-tuple of the form:
+    realname, email_address.  If there is no realname, then make it something
+    that evaluates to false.
+
+    Arguments:
+      message: a MIMEText or MIMEMultipart object, for example
+        MIMEText(message_text) or MIMEMultipart().
+    """
+    message["From"] = formataddr(from_address)
+    message["To"] = _format_emails(to_addresses)
+    message["Cc"] = _format_emails(cc_addresses)
+    message["Subject"] = subject
+
+
+# This function was copied and modified from here:
+# https://developers.google.com/gmail/api/guides/sending
+def create_message(message, sender, to_list, cc_list, subject):
+    """Create an email message for the Google Gmail API.
+
+    Arguments:
+      message: a MIMEText or MIMEMultipart object.
+
+    Returns:
+      An object containing a base64url encoded email object.
+    """
+    _add_email_info(sender, to_list, cc_list, subject)
+    return {'raw': base64.urlsafe_b64encode(message.as_string())}
+
+
+# This function was copied and modified from here:
+# https://developers.google.com/gmail/api/guides/sending
+def create_message_with_attachment(
+    sender, to, subject, message_text, file_dir, filename):
+    """Create a message for an email.
+
+    Args:
+      sender: Email address of the sender.
+      to: Email address of the receiver.
+      subject: The subject of the email message.
+      message_text: The text of the email message.
+      file_dir: The directory containing the file to be attached.
+      filename: The name of the file to be attached.
+
+    Returns:
+      An object containing a base64url encoded email object.
+    """
+    message = MIMEMultipart()
+    message['to'] = to
+    message['from'] = sender
+    message['subject'] = subject
+
+    msg = MIMEText(message_text)
+    message.attach(msg)
+
+    path = os.path.join(file_dir, filename)
+    content_type, encoding = mimetypes.guess_type(path)
+
+    if content_type is None or encoding is not None:
+      content_type = 'application/octet-stream'
+    main_type, sub_type = content_type.split('/', 1)
+    if main_type == 'text':
+      fp = open(path, 'rb')
+      msg = MIMEText(fp.read(), _subtype=sub_type)
+      fp.close()
+    elif main_type == 'image':
+      fp = open(path, 'rb')
+      msg = MIMEImage(fp.read(), _subtype=sub_type)
+      fp.close()
+    elif main_type == 'audio':
+      fp = open(path, 'rb')
+      msg = MIMEAudio(fp.read(), _subtype=sub_type)
+      fp.close()
+    else:
+      fp = open(path, 'rb')
+      msg = MIMEBase(main_type, sub_type)
+      msg.set_payload(fp.read())
+      fp.close()
+
+    msg.add_header('Content-Disposition', 'attachment', filename=filename)
+    message.attach(msg)
+
+    return {'raw': base64.urlsafe_b64encode(message.as_string())}
+
 def add_attachment(mime_multipart, attachment_path):
     """Add an attachment to the given MIMEMultipart instance."""
     part = MIMEBase('application', 'octet-stream')
@@ -42,10 +129,7 @@ def add_attachment(mime_multipart, attachment_path):
     mime_multipart.attach(part)
 
 
-def format_emails(addresses):
-    return COMMASPACE.join(formataddr(a) for a in addresses)
-
-
+# TODO: stop using this insecure version.
 def send_email(smtp_host, smtp_port, smtp_user, smtp_pass, from_address,
                to_addresses, cc_addresses, subject, body, attachment_paths):
     """Send an e-mail.
@@ -109,8 +193,7 @@ def main_old():
                attachment_paths=[])
 
 
-def main():
-    config = get_config()
+def send_email(config):
     google_client_secret_path = config.get_google_client_secret_path()
 
     # Check https://developers.google.com/gmail/api/auth/scopes for all available scopes
@@ -123,8 +206,10 @@ def main():
     flow = flow_from_clientsecrets(google_client_secret_path, scope=OAUTH_SCOPE)
     http = httplib2.Http()
 
+    # Get default flags.
     parser = argparse.ArgumentParser(parents=[tools.argparser])
-    flags = parser.parse_args()
+    flags = parser.parse_args([])
+    print("debug: flags: {0!r}".format(flags))
 
     # Try to retrieve credentials from storage or run the flow to generate them
     credentials = STORAGE.get()

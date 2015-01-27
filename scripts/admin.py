@@ -6,7 +6,7 @@ import logging
 import sys
 
 import set_path
-from pycomm import email
+from pycomm.email import send_email
 # TODO: rename module to tweeting.
 from pycomm import tweet as tweeting
 from pycomm.config import get_config
@@ -49,6 +49,11 @@ def tweet(ns):
     tweeting.tweet(username, message=text)
 
 
+def email(ns):
+    config = get_config()
+    send_email(config)
+
+
 def create_parser():
     """Return an ArgumentParser object."""
     text_choices = sorted(formatting.TEMPLATES.keys())
@@ -74,6 +79,13 @@ def create_parser():
     parser.add_argument('text_type', metavar='TEXT_TYPE', choices=tweet_choices,
         help=("what text to tweet."))
     parser.set_defaults(run_command=tweet)
+
+    parser = sub.add_parser("meetingemail", help="send an e-mail related to a meeting.")
+    parser.add_argument('meeting_label', metavar='LABEL',
+        help=("meeting label, for example 2015_01_07_bopec or 2015_01_21_commission."))
+    parser.add_argument('email_type', metavar='EMAIL_TYPE', choices=('foo', ),
+        help=("what e-mail to send."))
+    parser.set_defaults(run_command=email)
 
     parser = sub.add_parser("imagesizes", help="show 16:9 image sizes to help with screen shots")
     parser.set_defaults(run_command=show_image_size)

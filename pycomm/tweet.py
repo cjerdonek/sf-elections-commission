@@ -21,24 +21,6 @@ def get_length(tweet):
     return len(new_string) + url_count * 22
 
 
-def get_raw_oauth():
-    """Return OAuthHandler without access token."""
-    config = get_config()
-    api_key, api_secret = config.get_twitter_consumer_creds()
-    auth = tweepy.OAuthHandler(api_key, api_secret)
-    return auth
-
-
-def get_oauth(username):
-    """Return OAuthHandler with access token."""
-    config = get_config()
-    key, secret = config.get_twitter_user_creds(username)
-
-    auth = get_raw_oauth()
-    auth.set_access_token(key, secret)
-    return auth
-
-
 def get_access_token():
     """Return an OAuth access token on behalf of a Twitter user.
 
@@ -62,10 +44,27 @@ def get_access_token():
     print("twitter_access_token_secret: {0}".format(access_token_secret))
 
 
-def tweet(username, message=None):
+def get_raw_oauth(config):
+    """Return OAuthHandler without access token."""
+    api_key, api_secret = config.get_twitter_consumer_creds()
+    auth = tweepy.OAuthHandler(api_key, api_secret)
+
+    return auth
+
+
+def get_oauth(config, username):
+    """Return OAuthHandler with access token."""
+    auth = get_raw_oauth(config)
+    key, secret = config.get_twitter_user_creds(username)
+    auth.set_access_token(key, secret)
+
+    return auth
+
+
+def tweet(config, username, message=None):
     if not message:
         message = input("message: ").strip()
-    auth = get_oauth(username)
+    auth = get_oauth(config, username)
     api = tweepy.API(auth)
 
     msg = ('Are you sure you want to tweet this?\n'

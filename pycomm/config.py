@@ -7,9 +7,14 @@ import yaml
 
 REPO_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 
-def get_config_file(file_name):
+
+def get_config_file_path(file_name):
     config_dir = os.path.join(REPO_DIR, 'config')
-    config_path = os.path.join(config_dir, file_name)
+    return os.path.join(config_dir, file_name)
+
+
+def get_config_file(file_name):
+    config_path = get_config_file_path(file_name)
     with open(config_path) as f:
         data = yaml.load(f)
     return data
@@ -41,8 +46,7 @@ class Config(object):
 
     def get_google_client_secret_path(self):
         # Path to the client_secret.json file downloaded from the Developer Console
-        scripts_dir = get_scripts_dir()
-        return os.path.join(scripts_dir, 'google_client_secret.json')
+        return get_config_file_path('google_client.secret.json')
 
     def get_twitter_consumer_creds(self):
         data = self.twitter_secret
