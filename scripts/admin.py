@@ -2,7 +2,9 @@
 from __future__ import absolute_import
 
 from argparse import ArgumentParser
+from datetime import date
 import logging
+import os
 import sys
 
 import set_path
@@ -20,8 +22,16 @@ def get_formatter():
     return formatter
 
 
+def next_day(dt, days=1):
+    return date(dt.year, dt.month, dt.day + days)
+
 def command_upcoming(ns):
-    print ns
+    today = date.today()
+    current = date(today.year, today.month, 1)
+    while current.weekday() != 2:
+        current = next_day(current, 1)
+    print current
+    print next_day(current, 14)
 
 
 def show_image_size(ns):
@@ -51,8 +61,11 @@ def tweet(ns):
 
 def email(ns):
     config = get_config()
-    send_email(config)
-
+    sender = ("Chris Jerdonek", "foo@example.com")
+    to_list = [("Chris Jerdonek", "foo@example.com")]
+    path = "temp.txt"
+    send_email(config, sender, to_list, subject="test", body="This is a test.",
+               attach_paths=[path])
 
 def create_parser():
     """Return an ArgumentParser object."""
@@ -63,7 +76,9 @@ def create_parser():
 
     sub = root_parser.add_subparsers(help='sub-command help')
 
-    parser = sub.add_parser("listupcoming", help="list labels for the next few regular meetings")
+    parser = sub.add_parser("upcoming", help="list labels for the next few regular meetings")
+    parser.add_argument('--count', default=3, type=int,
+        help=("show the meeting labels for the next COUNT regular meetings."))
     parser.set_defaults(run_command=command_upcoming)
 
     parser = sub.add_parser("meetingtext", help="generate meeting strings.")

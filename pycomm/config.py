@@ -21,7 +21,7 @@ def get_config_file(file_name):
 
 
 def get_config():
-    people_data = get_config_file('people.yaml')['people']
+    people_data = get_config_file('people.secret.yaml')['people']
     meeting_data = get_config_file('meetings.yaml')['meetings']
 
     config = Config()
@@ -47,6 +47,9 @@ class Config(object):
     def get_google_client_secret_path(self):
         # Path to the client_secret.json file downloaded from the Developer Console
         return get_config_file_path('google_client.secret.json')
+
+    def get_gmail_storage_path(self):
+        return get_config_file_path('gmail.storage')
 
     def get_twitter_consumer_creds(self):
         data = self.twitter_secret
