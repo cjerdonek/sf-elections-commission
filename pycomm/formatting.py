@@ -2,11 +2,48 @@
 from cgi import escape as html_escape
 
 from pycomm import common
-from pycomm.common import parse_label
 
 
 URL_HOME = "index.aspx?page=319"
 URL_MEETINGS = "index.aspx?page=1382"
+
+FILES_FORMAT = """\
+Folder structure
+----------------
+
+{date:%Y-%m-%d} {body_name_short}/
+
+    {file_name_prefix}_Agenda.pdf
+
+    Agenda Packet/
+
+        2014-09-03_BOPEC_Minutes_Draft.pdf
+
+    Agenda Prep/
+
+        {file_name_prefix}_Agenda.odt
+
+    Minutes/
+
+        {file_name_prefix}_Minutes_Draft.odt
+        {file_name_prefix}_Minutes_Draft.pdf
+
+
+Vision CMS structure
+--------------------
+
+{date:%Y} Meetings/
+
+    {date:%Y-%m-%d} {body_name_short}/
+
+        {date:%Y-%m-%d} {body_name_short} Agenda
+
+        {date:%B {day}, %Y} {body_name_short} Agenda Packet/
+
+            For #3: Draft Minutes for April 2, 2014 BOPEC Meeting
+
+
+"""
 
 COMMANDS_AUDIO_FORMAT = """\
 Commands
@@ -70,7 +107,7 @@ HTML_YOUTUBE_FORMAT = (
 INDEX_HTML = """\
 <tr>
     <td headers="table_heading_0">{date_short}</td>
-    <td headers="table_heading_1">{{body_short_html}}</td>
+    <td headers="table_heading_1">{{body_name_short_html}}</td>
     <td headers="table_heading_2">{{desc}}</td>
     <td headers="table_heading_3">&nbsp;</td>
     <td headers="table_heading_4">&nbsp;</td>
@@ -81,7 +118,7 @@ INDEX_HTML = """\
 HTML_PAST_MEETING = """\
 <tr>
     <td headers="table_heading_0">{date_full_short_day}</td>
-    <td headers="table_heading_1">{body_short_html}</td>
+    <td headers="table_heading_1">{body_name_short_html}</td>
     <td headers="table_heading_2">
     <a href="{url_agenda_html}" target="_blank">
     Agenda (PDF)</a> |
@@ -95,6 +132,12 @@ HTML_PAST_MEETING = """\
     </td>
 </tr>
 """
+
+GENERAL_TEMPLATES = {
+    'audio': COMMANDS_AUDIO_FORMAT,
+    'files': FILES_FORMAT,
+    'html_past': HTML_PAST_MEETING,
+}
 
 TWEET_CANCEL = """\
 The {date_short} meeting of the {body_full} will not be held: {home_page}
@@ -115,19 +158,21 @@ TWEET_YOUTUBE = (
     "meeting is now posted on YouTube ({youtube_length_text}): {youtube_url}"
 )
 
+EMAIL_LIBRARY = """\
+foo
+"""
+
+EMAIL_LIBRARY_SUBJECT = """\
+meeting notice: {date:%b {day}, %Y} {body_name_library_subject}"""
+
 EMAIL_TEMPLATES = {
-    'notify_body': TWEET_MINUTES_APPROVED,
-    'notify_library': TWEET_YOUTUBE,
+    'notify_body': EMAIL_LIBRARY,
+    'notify_library': EMAIL_LIBRARY,
 }
 
 EMAIL_SUBJECTS = {
-    'notify_body': TWEET_MINUTES_APPROVED,
-    'notify_library': TWEET_YOUTUBE,
-}
-
-GENERAL_TEMPLATES = {
-    'audio': COMMANDS_AUDIO_FORMAT,
-    'html_past': HTML_PAST_MEETING,
+    'notify_body': EMAIL_LIBRARY,
+    'notify_library': EMAIL_LIBRARY_SUBJECT,
 }
 
 TWEET_TEMPLATES = {
@@ -185,7 +230,8 @@ def get_cancel_tweet(label):
 
 class BodyCommission(object):
 
-    label = "commission"
+    label = common.LABEL_COMMISSION
+    name_file_name = "Elections_Comm"
     name_short = "Commission"
     name_medium = "SF Elections Commission"
     name_full = "San Francisco Elections Commission"
@@ -194,7 +240,9 @@ class BodyCommission(object):
 
 class BodyBOPEC(object):
 
-    label = "bopec"
+    label = common.LABEL_BOPEC
+    name_file_name = "BOPEC"
+    name_library_subject = "BOPEC (SF Elections Commission)"
     name_short = "BOPEC"
     name_medium = "BOPEC"
     name_full = "Budget & Oversight of Public Elections Committee (BOPEC)"
@@ -228,6 +276,8 @@ class Formatter(object):
         body_name_medium = body.name_medium
         body_name_short = body.name_short
         body_label = body.label
+        file_name_prefix = ("{date:%Y_%m_%d}_{body}".
+                            format(date=date, body=body.name_file_name))
 
         agenda_id = data.get('agenda_id')
         agenda_packet_id = data.get('agenda_packet_id')
@@ -243,26 +293,18 @@ class Formatter(object):
                                 minutes_id=minutes_id,
                                 draft_prefix=draft_prefix))
 
-        # YouTube
-        audio_base = "{0:%Y%m%d}_{1}".format(date, body_label)
-        youtube_id = data.get('youtube_id')
-        youtube_length = data.get('youtube_length')
-        youtube_length_text = format_youtube_length(youtube_length)
-        youtube_html = HTML_YOUTUBE_FORMAT.format(youtube_id=youtube_id,
-                                                  youtube_duration=youtube_length)
-        youtube_url = get_youtube_url(youtube_id)
-
-        return {
-            'audio_base': audio_base,
+        kwargs = {
             'body_name_complete': body.name_complete,
+            'body_name_library_subject': body.name_library_subject,
             'body_name_medium': body_name_medium,
-            'body_short': body_name_short,
-            'body_short_html': html_escape(body_name_short),
+            'body_name_short': body_name_short,
+            'body_name_short_html': html_escape(body_name_short),
             'body_full': body_name_full,
             'date': date,
             'date_full_short_day': get_date_full_short_day(date),
             'date_full_no_day': get_date_full(date),
             'day': date.day,
+            'file_name_prefix': file_name_prefix,
             'home_page': get_absolute_url(URL_HOME),
             'minutes_html': minutes_html,
             'url_agenda_html': html_escape(url_agenda),
@@ -270,10 +312,25 @@ class Formatter(object):
             'url_agenda_packet_html': html_escape(url_agenda_packet),
             'url_agenda_packet_absolute': get_absolute_url(url_agenda_packet),
             'url_past_meetings_absolute': get_absolute_url(URL_MEETINGS),
-            'youtube_html': youtube_html,
-            'youtube_length_text': youtube_length_text,
-            'youtube_url': youtube_url,
         }
+
+        # YouTube
+        youtube_id = data.get('youtube_id')
+        if youtube_id is not None:
+            audio_base = "{0:%Y%m%d}_{1}".format(date, body_label)
+            youtube_length = data.get('youtube_length')
+            youtube_length_text = format_youtube_length(youtube_length)
+            youtube_html = HTML_YOUTUBE_FORMAT.format(youtube_id=youtube_id,
+                                                      youtube_duration=youtube_length)
+            youtube_url = get_youtube_url(youtube_id)
+            kwargs.update({
+                'audio_base': audio_base,
+                'youtube_html': youtube_html,
+                'youtube_length_text': youtube_length_text,
+                'youtube_url': youtube_url,
+            })
+
+        return kwargs
 
     def get_formatted(self, format_str, **kwargs):
         try:
@@ -288,7 +345,7 @@ class Formatter(object):
         return self.get_formatted(format_str, **kwargs)
 
     def get_meeting_text(self, template_label, meeting_label):
-        format_str = TEMPLATES[template_label]
+        format_str = GENERAL_TEMPLATES[template_label]
         return self.format_meeting_text(format_str, meeting_label)
 
     def make_tweet(self, template_label, meeting_label):

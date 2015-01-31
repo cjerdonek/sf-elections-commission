@@ -8,12 +8,12 @@ import os
 import sys
 
 import set_path
-from pycomm.email import send_email
+from pycomm import common
+from pycomm import emailing
 # TODO: rename module to tweeting.
 from pycomm import tweet as tweeting
 from pycomm.config import get_config
-# TODO: rename module to formatting.
-from pycomm import formatter as formatting
+from pycomm import formatting
 
 
 def get_formatter():
@@ -22,16 +22,10 @@ def get_formatter():
     return formatter
 
 
-def next_day(dt, days=1):
-    return date(dt.year, dt.month, dt.day + days)
-
 def command_upcoming(ns):
-    today = date.today()
-    current = date(today.year, today.month, 1)
-    while current.weekday() != 2:
-        current = next_day(current, 1)
-    print current
-    print next_day(current, 14)
+    labels = common.next_meeting_labels(month_count=3)
+    for label in labels:
+        print(label)
 
 
 def show_image_size(ns):
@@ -40,11 +34,9 @@ def show_image_size(ns):
         print("{0}:{1}".format(w, h))
 
 
-def meeting_text(ns):
+def meeting_text(ns, formatter):
     meeting_label, text_type = ns.meeting_label, ns.text_type
-
-    formatter = get_formatter()
-    text = formatter.make_meeting_text(text_type, meeting_label)
+    text = formatter.get_meeting_text(text_type, meeting_label)
     print(text)
 
 
@@ -59,17 +51,20 @@ def tweet(ns):
     tweeting.tweet(username, message=text)
 
 
-def email(ns):
-    config = get_config()
-    sender = ("Chris Jerdonek", "foo@example.com")
-    to_list = [("Chris Jerdonek", "foo@example.com")]
-    path = "temp.txt"
-    send_email(config, sender, to_list, subject="test", body="This is a test.",
-               attach_paths=[path])
+def email(ns, formatter):
+    emailing.send_email(formatter=formatter, meeting=ns.meeting_label,
+                        email_type=ns.email_type, attach_paths=ns.attach_paths)
+
+
+def add_meeting_label_argument(parser):
+    parser.add_argument('meeting_label', metavar='MEETING',
+        help=('meeting label, for example "20150107_bopec" or "20150121_commission".'))
+
 
 def create_parser():
     """Return an ArgumentParser object."""
-    text_choices = sorted(formatting.TEMPLATES.keys())
+    email_choices = sorted(formatting.EMAIL_TEMPLATES.keys())
+    text_choices = sorted(formatting.GENERAL_TEMPLATES.keys())
     tweet_choices = sorted(formatting.TWEET_TEMPLATES.keys())
 
     root_parser = ArgumentParser(description="command for helping with admin tasks")
@@ -82,24 +77,23 @@ def create_parser():
     parser.set_defaults(run_command=command_upcoming)
 
     parser = sub.add_parser("meetingtext", help="generate meeting strings.")
-    parser.add_argument('meeting_label', metavar='LABEL',
-        help=("meeting label, for example 2015_01_07_bopec or 2015_01_21_commission."))
+    add_meeting_label_argument(parser)
     parser.add_argument('text_type', metavar='TEXT_TYPE', choices=text_choices,
         help=("what text to generate."))
     parser.set_defaults(run_command=meeting_text)
 
     parser = sub.add_parser("meetingtweet", help="tweet about a meeting.")
-    parser.add_argument('meeting_label', metavar='LABEL',
-        help=("meeting label, for example 2015_01_07_bopec or 2015_01_21_commission."))
+    add_meeting_label_argument(parser)
     parser.add_argument('text_type', metavar='TEXT_TYPE', choices=tweet_choices,
         help=("what text to tweet."))
     parser.set_defaults(run_command=tweet)
 
     parser = sub.add_parser("meetingemail", help="send an e-mail related to a meeting.")
-    parser.add_argument('meeting_label', metavar='LABEL',
-        help=("meeting label, for example 2015_01_07_bopec or 2015_01_21_commission."))
-    parser.add_argument('email_type', metavar='EMAIL_TYPE', choices=('foo', ),
+    add_meeting_label_argument(parser)
+    parser.add_argument('email_type', metavar='EMAIL_TYPE', choices=email_choices,
         help=("what e-mail to send."))
+    parser.add_argument('--attach', dest='attach_paths', metavar='PATH', nargs="*",
+        help=("paths of any attachments."))
     parser.set_defaults(run_command=email)
 
     parser = sub.add_parser("imagesizes", help="show 16:9 image sizes to help with screen shots")
@@ -116,7 +110,8 @@ def main(argv=None):
     logging.basicConfig(level='INFO')
     parser = create_parser()
     ns = parser.parse_args(argv)
-    ns.run_command(ns)
+    formatter = get_formatter()
+    ns.run_command(ns, formatter=formatter)
 
 
 if __name__ == '__main__':

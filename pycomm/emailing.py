@@ -21,11 +21,37 @@ from oauth2client.client import flow_from_clientsecrets
 from oauth2client.file import Storage
 from oauth2client import tools
 
-from pycomm.common import confirm
-from pycomm.config import get_config
+from pycomm import common
+from pycomm import formatting
 
 
-log = logging.getLogger("fbsubmit")
+def get_email_info(formatter, email_type, meeting):
+    config = formatter.config
+
+    body_label, dt = common.parse_label(meeting)
+
+    sender = "cjerdonek"
+    cc_list = []
+    if email_type == 'notify_library':
+        to_list = ['sfpl']
+    elif email_type == 'notify_body' and body_label == common.LABEL_BOPEC:
+        to_list = ['jrowe', 'jarntz', 'cjerdonek']
+    else:
+        raise Exception("invalid: {0}".format((email_type, meeting)))
+
+    subject_format = formatting.EMAIL_SUBJECTS[email_type]
+    body_format = formatting.EMAIL_TEMPLATES[email_type]
+
+    subject = formatter.format_meeting_text(subject_format, meeting)
+    body = formatter.format_meeting_text(body_format, meeting)
+
+    sender = config.get_email(sender)
+    to_list = [config.get_email(k) for k in to_list]
+    cc_list = [config.get_email(k) for k in cc_list]
+
+    info = EmailInfo(sender=sender, to_list=to_list, cc_list=cc_list,
+                     subject=subject, body=body)
+    return info
 
 
 def format_email(address):
@@ -173,9 +199,7 @@ def send_message(service, message):
     return message
 
 
-# TODO: pull addresses from config:
-# from_address = config.get_email('chris_gov')
-def send_email(config, sender, to_list, subject, body, cc_list=None, attach_paths=None):
+def raw_send_email(config, sender, to_list, subject, body, cc_list=None, attach_paths=None):
     """Send an email message.
 
     Each e-mail address in the arguments should be a 2-tuple of the form:
@@ -190,6 +214,24 @@ def send_email(config, sender, to_list, subject, body, cc_list=None, attach_path
     {email}
     {line}
     """).format(line=70*'*', email=printable)
-    confirm(confirm_text)
+    common.confirm(confirm_text)
     service = get_email_service(config)
     send_message(service, message)
+
+
+def send_email(formatter, email_type, meeting, attach_paths=None):
+    info = get_email_info(formatter, email_type, meeting)
+    raw_send_email(config=formatter.config, sender=info.sender,
+                   to_list=info.to_list, cc_list=info.cc_list,
+                   subject=info.subject, body=info.body,
+                   attach_paths=attach_paths)
+
+
+class EmailInfo(object):
+
+    def __init__(self, sender, to_list, cc_list, subject, body):
+        self.sender = sender
+        self.to_list = to_list
+        self.cc_list = cc_list
+        self.subject = subject
+        self.body = body
