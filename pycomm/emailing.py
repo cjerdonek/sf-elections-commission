@@ -25,9 +25,6 @@ from pycomm.common import confirm
 from pycomm.config import get_config
 
 
-SMTP_HOST = "smtp.gmail.com"
-SMTP_PORT = 587
-
 log = logging.getLogger("fbsubmit")
 
 
