@@ -21,11 +21,10 @@ def get_config_file(file_name):
 
 
 def get_config():
-    people_data = get_config_file('people.secret.yaml')['people']
+    people_data = get_config_file('people.secret.yaml')['entities']
     meeting_data = get_config_file('meetings.yaml')['meetings']
 
     config = Config()
-    config.data = get_config_file('data.yaml')
     config.meetings = meeting_data
     config.people = people_data
     config.twitter_secret = get_config_file('twitter.secret.yaml')
@@ -72,5 +71,5 @@ class Config(object):
 
     def get_email(self, label):
         """Return a realname, email_address 2-tuple."""
-        person = self.data['people'][label]
+        person = self.people[label]
         return person['name'], person['mail']

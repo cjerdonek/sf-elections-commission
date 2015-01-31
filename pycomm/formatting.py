@@ -115,7 +115,17 @@ TWEET_YOUTUBE = (
     "meeting is now posted on YouTube ({youtube_length_text}): {youtube_url}"
 )
 
-TEMPLATES = {
+EMAIL_TEMPLATES = {
+    'notify_body': TWEET_MINUTES_APPROVED,
+    'notify_library': TWEET_YOUTUBE,
+}
+
+EMAIL_SUBJECTS = {
+    'notify_body': TWEET_MINUTES_APPROVED,
+    'notify_library': TWEET_YOUTUBE,
+}
+
+GENERAL_TEMPLATES = {
     'audio': COMMANDS_AUDIO_FORMAT,
     'html_past': HTML_PAST_MEETING,
 }
@@ -277,10 +287,9 @@ class Formatter(object):
         kwargs = self.get_meeting_kwargs(meeting_label)
         return self.get_formatted(format_str, **kwargs)
 
-    def make_meeting_text(self, template_label, meeting_label):
+    def get_meeting_text(self, template_label, meeting_label):
         format_str = TEMPLATES[template_label]
-        kwargs = self.get_meeting_kwargs(meeting_label)
-        return self.get_formatted(format_str, **kwargs)
+        return self.format_meeting_text(format_str, meeting_label)
 
     def make_tweet(self, template_label, meeting_label):
         format_str = TWEET_TEMPLATES[template_label]
