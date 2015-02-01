@@ -170,6 +170,21 @@ TWEET_TEMPLATES = {
 }
 
 
+EMAIL_BODY = """\
+Hi,
+
+The agenda and packet for next {date:%A}'s BOPEC meeting on
+{date:%B {date.day}, %Y} is now posted online:
+
+http://www.sfgov2.org/index.aspx?page=319
+
+Thanks a lot,
+--Chris
+"""
+
+EMAIL_BODY_SUBJECT = """\
+{body_name_short}: {date.month}/{date.day}/{date.year} agenda now online"""
+
 # TODO: include phone number.
 # TODO: wrap paragraphs individually.
 EMAIL_LIBRARY = """\
@@ -188,12 +203,12 @@ EMAIL_LIBRARY_SUBJECT = """\
 meeting notice: {date:%b {date.day}, %Y} {body_name_library_subject}"""
 
 EMAIL_TEMPLATES = {
-    'notify_body': EMAIL_LIBRARY,
+    'tell_body': EMAIL_BODY,
     'tell_library': EMAIL_LIBRARY,
 }
 
 EMAIL_SUBJECTS = {
-    'notify_body': EMAIL_LIBRARY,
+    'tell_body': EMAIL_BODY_SUBJECT,
     'tell_library': EMAIL_LIBRARY_SUBJECT,
 }
 
