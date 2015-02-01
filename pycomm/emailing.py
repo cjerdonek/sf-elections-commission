@@ -32,12 +32,12 @@ def get_email_info(formatter, email_type, meeting):
 
     sender = "cjerdonek"
     cc_list = []
-    if email_type == 'notify_library':
+    if email_type == 'tell_library':
         to_list = ['sfpl']
     elif email_type == 'notify_body' and body_label == common.LABEL_BOPEC:
         to_list = ['jrowe', 'jarntz', 'cjerdonek']
     else:
-        raise Exception("invalid: {0}".format((email_type, meeting)))
+        raise Exception("invalid email args: {0}".format((email_type, meeting)))
 
     subject_format = formatting.EMAIL_SUBJECTS[email_type]
     body_format = formatting.EMAIL_TEMPLATES[email_type]

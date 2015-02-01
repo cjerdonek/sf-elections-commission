@@ -40,15 +40,13 @@ def meeting_text(ns, formatter):
     print(text)
 
 
-def tweet(ns):
+def tweet(ns, formatter):
+    config = formatter.config
     meeting_label, text_type = ns.meeting_label, ns.text_type
-
-    config = get_config()
-    formatter = get_formatter()
 
     username = config.get_twitter_username('commission')
     text = formatter.make_tweet(text_type, meeting_label)
-    tweeting.tweet(username, message=text)
+    tweeting.tweet(config=config, username=username, message=text)
 
 
 def email(ns, formatter):
@@ -76,19 +74,19 @@ def create_parser():
         help=("show the meeting labels for the next COUNT regular meetings."))
     parser.set_defaults(run_command=command_upcoming)
 
-    parser = sub.add_parser("meetingtext", help="generate meeting strings.")
+    parser = sub.add_parser("format", help="generate meeting strings.")
     add_meeting_label_argument(parser)
     parser.add_argument('text_type', metavar='TEXT_TYPE', choices=text_choices,
         help=("what text to generate."))
     parser.set_defaults(run_command=meeting_text)
 
-    parser = sub.add_parser("meetingtweet", help="tweet about a meeting.")
+    parser = sub.add_parser("tweet", help="tweet about a meeting.")
     add_meeting_label_argument(parser)
     parser.add_argument('text_type', metavar='TEXT_TYPE', choices=tweet_choices,
         help=("what text to tweet."))
     parser.set_defaults(run_command=tweet)
 
-    parser = sub.add_parser("meetingemail", help="send an e-mail related to a meeting.")
+    parser = sub.add_parser("email", help="send an e-mail related to a meeting.")
     add_meeting_label_argument(parser)
     parser.add_argument('email_type', metavar='EMAIL_TYPE', choices=email_choices,
         help=("what e-mail to send."))

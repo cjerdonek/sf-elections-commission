@@ -163,27 +163,40 @@ TWEET_YOUTUBE = (
     "meeting is now posted on YouTube ({youtube_length_text}): {youtube_url}"
 )
 
+TWEET_TEMPLATES = {
+    'agenda_posted': TWEET_AGENDA_POSTED,
+    'minutes_approved': TWEET_MINUTES_APPROVED,
+    'youtube': TWEET_YOUTUBE,
+}
+
+
+# TODO: include phone number.
+# TODO: wrap paragraphs individually.
 EMAIL_LIBRARY = """\
-foo
+Hello,
+
+See attached for a public notice of the {date:%B {date.day}, %Y} meeting of
+the {body_name_complete}.
+
+Thank you,
+
+Chris Jerdonek, President
+San Francisco Elections Commission
 """
 
 EMAIL_LIBRARY_SUBJECT = """\
-meeting notice: {date:%b {day}, %Y} {body_name_library_subject}"""
+meeting notice: {date:%b {date.day}, %Y} {body_name_library_subject}"""
 
 EMAIL_TEMPLATES = {
     'notify_body': EMAIL_LIBRARY,
-    'notify_library': EMAIL_LIBRARY,
+    'tell_library': EMAIL_LIBRARY,
 }
 
 EMAIL_SUBJECTS = {
     'notify_body': EMAIL_LIBRARY,
-    'notify_library': EMAIL_LIBRARY_SUBJECT,
+    'tell_library': EMAIL_LIBRARY_SUBJECT,
 }
 
-TWEET_TEMPLATES = {
-    'minutes_approved': TWEET_MINUTES_APPROVED,
-    'youtube': TWEET_YOUTUBE,
-}
 
 def get_date_full(date):
     """Return the date in the following format: "January 7, 2015"."""
