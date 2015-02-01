@@ -94,24 +94,28 @@ Video Location
 
 """
 
-HTML_MINUTES = (
-    '<a href="modules/showdocument.aspx?documentid={minutes_id}" target="_blank">\n'
-    '{draft_prefix}Minutes (PDF)</a>'
-)
-
 HTML_YOUTUBE_FORMAT = (
     '<a href="https://www.youtube.com/watch?v={youtube_id}" '
     'target="_blank">{youtube_duration} (YT)</a>'
 )
 
-INDEX_HTML = """\
+# TODO: put in "&nbsp;" if meeting is canceled, etc.
+# <td headers="table_heading_2">{desc}</td>
+# <td headers="table_heading_3">&nbsp;</td>
+# <td headers="table_heading_4">&nbsp;</td>
+# <td headers="table_heading_5">&nbsp;</td>
+HTML_INDEX = """\
 <tr>
-    <td headers="table_heading_0">{date_short}</td>
-    <td headers="table_heading_1">{{body_name_short_html}}</td>
-    <td headers="table_heading_2">{{desc}}</td>
-    <td headers="table_heading_3">&nbsp;</td>
-    <td headers="table_heading_4">&nbsp;</td>
-    <td headers="table_heading_5">&nbsp;</td>
+    <td headers="table_heading_0">{date_full_short_day}</td>
+    <td headers="table_heading_1">{body_name_short_html}</td>
+    <td headers="table_heading_2">{meeting_time}</td>
+    <td headers="table_heading_3">{meeting_place}</td>
+    <td headers="table_heading_4">
+    {agenda_link_html}
+    </td>
+    <td headers="table_heading_5">
+    {agenda_packet_link_html}
+    </td>
 </tr>
 """
 
@@ -136,6 +140,7 @@ HTML_PAST_MEETING = """\
 GENERAL_TEMPLATES = {
     'audio': COMMANDS_AUDIO_FORMAT,
     'files': FILES_FORMAT,
+    'html_index': HTML_INDEX,
     'html_past': HTML_PAST_MEETING,
 }
 
@@ -184,7 +189,7 @@ def get_date_full(date):
     """Return the date in the following format: "January 7, 2015"."""
     return "{0:%B {day}, %Y}".format(date, day=date.day)
 
-def get_date_full_short_day(date):
+def get_date_full_with_short_day(date):
     """Return the date in the following format: "Wed, January 7, 2015"."""
     return "{0:%a, %B {day}, %Y}".format(date, day=date.day)
 
@@ -215,8 +220,20 @@ def get_agenda_link(agenda_id):
     return "modules/showdocument.aspx?documentid={0}".format(agenda_id)
 
 
-def get_agenda_packet_link(agenda_packet_id):
+def get_agenda_packet_url(agenda_packet_id):
     return "index.aspx?page=4408&parent={0}".format(agenda_packet_id)
+
+
+def get_document_link_html(doc_id, text):
+    # TODO: html-escape the text.
+    return """\
+<a href="modules/showdocument.aspx?documentid={0:d}" target="_blank">
+{1}</a>""".format(doc_id, text)
+
+
+def get_agenda_packet_url_html(folder_id):
+    packet_url = html_escape(get_agenda_packet_url(folder_id))
+    return ('<a href="{0}">Packet</a>'.format(packet_url))
 
 
 def make_tweet(format_string, label):
@@ -248,10 +265,11 @@ class BodyBOPEC(object):
     name_full = "Budget & Oversight of Public Elections Committee (BOPEC)"
     name_complete = ("Budget & Oversight of Public Elections Committee (BOPEC) "
                      "of the San Francisco Elections Commission")
+    meeting_place = "City Hall, Room 421"
 
 
 def get_meeting_info(label):
-    body_label, date = parse_label(label)
+    body_label, date = common.parse_label(label)
 
     body_classes = {
         'bopec': BodyBOPEC,
@@ -279,21 +297,36 @@ class Formatter(object):
         file_name_prefix = ("{date:%Y_%m_%d}_{body}".
                             format(date=date, body=body.name_file_name))
 
+        meeting_time = "6:00 PM"
+        meeting_place = body.meeting_place
+
         agenda_id = data.get('agenda_id')
+        # TODO: clean up the below.
         agenda_packet_id = data.get('agenda_packet_id')
         url_agenda = get_agenda_link(agenda_id)
-        url_agenda_packet = get_agenda_packet_link(agenda_packet_id)
+        url_agenda_packet = get_agenda_packet_url(agenda_packet_id)
+        agenda_link_html = common.indent(
+            get_document_link_html(doc_id=agenda_id, text="Agenda (PDF)"))
+        agenda_packet_link_html = common.indent(
+            get_agenda_packet_url_html(agenda_packet_id))
 
         # Minutes
         minutes_id = data.get('minutes_id')
         minutes_html = "TBA"
         if minutes_id:
             draft_prefix = 'Draft ' if data['minutes_draft'] else ''
+            # TODO: clean this up.
+            HTML_MINUTES = (
+                '<a href="modules/showdocument.aspx?documentid={minutes_id}" target="_blank">\n'
+                '{draft_prefix}Minutes (PDF)</a>'
+            )
             minutes_html = common.indent(HTML_MINUTES.format(
                                 minutes_id=minutes_id,
                                 draft_prefix=draft_prefix))
 
         kwargs = {
+            'agenda_link_html': agenda_link_html,
+            'agenda_packet_link_html': agenda_packet_link_html,
             'body_name_complete': body.name_complete,
             'body_name_library_subject': body.name_library_subject,
             'body_name_medium': body_name_medium,
@@ -301,12 +334,14 @@ class Formatter(object):
             'body_name_short_html': html_escape(body_name_short),
             'body_full': body_name_full,
             'date': date,
-            'date_full_short_day': get_date_full_short_day(date),
+            'date_full_short_day': get_date_full_with_short_day(date),
             'date_full_no_day': get_date_full(date),
             'day': date.day,
             'file_name_prefix': file_name_prefix,
             'home_page': get_absolute_url(URL_HOME),
             'minutes_html': minutes_html,
+            'meeting_place': meeting_place,
+            'meeting_time': meeting_time,
             'url_agenda_html': html_escape(url_agenda),
             'url_agenda_absolute': get_absolute_url(url_agenda),
             'url_agenda_packet_html': html_escape(url_agenda_packet),
@@ -352,14 +387,6 @@ class Formatter(object):
         format_str = TWEET_TEMPLATES[template_label]
         kwargs = self.get_meeting_kwargs(meeting_label)
         return self.get_formatted(format_str, **kwargs)
-
-    def make_html_index_announce(self):
-        # Read canceled from YAML.
-        desc = 'Canceled: no meeting'
-        return self.get_formatted(INDEX_HTML, desc=desc)
-
-    def make_html_past_meeting(self, label):
-        return self.format_meeting_text(HTML_PAST_MEETING, label)
 
     def make_tweet_announce(self, label):
         return self.format_meeting_text(TWEET_CANCEL, label)
