@@ -65,7 +65,7 @@ def email(ns, formatter):
                         email_type=ns.email_type, attach_paths=ns.attach_paths)
 
 
-def show_image_size(ns):
+def command_image_sizes(ns, formatter):
     for x in xrange(56, 64):
         w, h = (16 * x, 9 * x)
         print("{0}:{1}".format(w, h))
@@ -119,7 +119,7 @@ def create_parser():
     parser.set_defaults(run_command=email)
 
     parser = sub.add_parser("imagesizes", help="show 16:9 image sizes to help with screen shots")
-    parser.set_defaults(run_command=show_image_size)
+    parser.set_defaults(run_command=command_image_sizes)
 
 
 

@@ -391,22 +391,22 @@ class Formatter(object):
         }
 
         # YouTube
+        audio_base = "{0:%Y%m%d}_{1}".format(date, body_label)
         youtube_id = data.get('youtube_id')
         if youtube_id is None:
             youtube_link_html = TBD
         else:
-            audio_base = "{0:%Y%m%d}_{1}".format(date, body_label)
             youtube_length = data.get('youtube_length')
             youtube_length_text = format_youtube_length(youtube_length)
             youtube_link_html = HTML_YOUTUBE_FORMAT.format(youtube_id=youtube_id,
                                                       youtube_duration=youtube_length)
             youtube_url = get_youtube_url(youtube_id)
             kwargs.update({
-                'audio_base': audio_base,
                 'youtube_length_text': youtube_length_text,
                 'youtube_url': youtube_url,
             })
         kwargs.update({
+            'audio_base': audio_base,
             'youtube_link_html': youtube_link_html,
         })
 
