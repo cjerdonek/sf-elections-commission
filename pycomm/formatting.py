@@ -3,6 +3,8 @@ from cgi import escape as html_escape
 
 from pycomm import common
 
+NBSP = "&nbsp;"
+TBD = "TBD"
 
 URL_HOME = "index.aspx?page=319"
 URL_MEETINGS = "index.aspx?page=1382"
@@ -276,24 +278,28 @@ def get_cancel_tweet(label):
 class BodyCommission(object):
 
     label = common.LABEL_COMMISSION
+    meeting_place = "City Hall, Room 408"
+
     name_file_name = "Elections_Comm"
     name_short = "Commission"
     name_medium = "SF Elections Commission"
     name_full = "San Francisco Elections Commission"
     name_complete = "San Francisco Elections Commission"
+    name_library_subject = "SF Elections Commission"
 
 
 class BodyBOPEC(object):
 
     label = common.LABEL_BOPEC
+    meeting_place = "City Hall, Room 421"
+
     name_file_name = "BOPEC"
-    name_library_subject = "BOPEC (SF Elections Commission)"
     name_short = "BOPEC"
     name_medium = "BOPEC"
     name_full = "Budget & Oversight of Public Elections Committee (BOPEC)"
     name_complete = ("Budget & Oversight of Public Elections Committee (BOPEC) "
                      "of the San Francisco Elections Commission")
-    meeting_place = "City Hall, Room 421"
+    name_library_subject = "BOPEC (SF Elections Commission)"
 
 
 def get_meeting_info(label):
@@ -325,22 +331,30 @@ class Formatter(object):
         file_name_prefix = ("{date:%Y_%m_%d}_{body}".
                             format(date=date, body=body.name_file_name))
 
-        meeting_time = "6:00 PM"
-        meeting_place = body.meeting_place
-
         agenda_id = data.get('agenda_id')
         # TODO: clean up the below.
         agenda_packet_id = data.get('agenda_packet_id')
         url_agenda = get_agenda_link(agenda_id)
         url_agenda_packet = get_agenda_packet_url(agenda_packet_id)
-        agenda_link_html = common.indent(
-            get_document_link_html(doc_id=agenda_id, text="Agenda (PDF)"))
-        agenda_packet_link_html = common.indent(
-            get_agenda_packet_url_html(agenda_packet_id))
+
+        meeting_status = data.get('status')
+        meeting_time = "6:00 PM"
+        meeting_place = body.meeting_place
+
+        if meeting_status is None:
+            agenda_link_html = common.indent(
+                get_document_link_html(doc_id=agenda_id, text="Agenda (PDF)"))
+            agenda_packet_link_html = common.indent(
+                get_agenda_packet_url_html(agenda_packet_id))
+        elif meeting_status == "TBD":
+            agenda_link_html = TBD
+            agenda_packet_link_html = NBSP
+        else:
+            raise Exception("unknown status: {0}".format(meeting_status))
 
         # Minutes
         minutes_id = data.get('minutes_id')
-        minutes_html = "TBA"
+        minutes_html = TBD
         if minutes_id:
             draft_prefix = 'Draft ' if data['minutes_draft'] else ''
             # TODO: clean this up.

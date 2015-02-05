@@ -40,6 +40,11 @@ class Config(object):
     def get_meeting(self, label):
         return self.meetings[label]
 
+    def get_next_meeting_labels(self, label):
+        keys = sorted(self.meetings.keys())
+        index = keys.index(label)
+        return keys[index:]
+
     def get_person(self, label):
         return self.people[label]
 

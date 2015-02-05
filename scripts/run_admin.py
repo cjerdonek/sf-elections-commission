@@ -22,25 +22,31 @@ def get_formatter():
     return formatter
 
 
-def command_upcoming(ns):
+def command_labels(ns, formatter):
     labels = common.next_meeting_labels(month_count=3)
     for label in labels:
         print(label)
 
 
-def show_image_size(ns):
-    for x in xrange(56, 64):
-        w, h = (16 * x, 9 * x)
-        print("{0}:{1}".format(w, h))
-
-
-def meeting_text(ns, formatter):
+def command_text(ns, formatter):
     meeting_label, text_type = ns.meeting_label, ns.text_type
     text = formatter.get_meeting_text(text_type, meeting_label)
     print(text)
 
 
-def tweet(ns, formatter):
+def command_index_html(ns, formatter):
+    config = formatter.config
+    text_type = "html_index"
+    label = ns.meeting_label
+
+    labels = config.get_next_meeting_labels(label)
+    text = 60 * "-" + "\n"
+    for label in labels:
+        text += formatter.get_meeting_text(text_type, label)
+    print(text)
+
+
+def command_tweet(ns, formatter):
     config = formatter.config
     meeting_label, text_type = ns.meeting_label, ns.text_type
 
@@ -52,6 +58,12 @@ def tweet(ns, formatter):
 def email(ns, formatter):
     emailing.send_email(formatter=formatter, meeting=ns.meeting_label,
                         email_type=ns.email_type, attach_paths=ns.attach_paths)
+
+
+def show_image_size(ns):
+    for x in xrange(56, 64):
+        w, h = (16 * x, 9 * x)
+        print("{0}:{1}".format(w, h))
 
 
 def add_meeting_label_argument(parser):
@@ -69,22 +81,29 @@ def create_parser():
 
     sub = root_parser.add_subparsers(help='sub-command help')
 
-    parser = sub.add_parser("upcoming", help="list labels for the next few regular meetings")
+    parser = sub.add_parser("labels", help="list labels for the next few regular meetings")
     parser.add_argument('--count', default=3, type=int,
         help=("show the meeting labels for the next COUNT regular meetings."))
-    parser.set_defaults(run_command=command_upcoming)
+    parser.set_defaults(run_command=command_labels)
 
-    parser = sub.add_parser("format", help="generate meeting strings.")
+    parser = sub.add_parser("text", help="generate text blocks for meetings.")
     add_meeting_label_argument(parser)
     parser.add_argument('text_type', metavar='TEXT_TYPE', choices=text_choices,
         help=("what text to generate."))
-    parser.set_defaults(run_command=meeting_text)
+    parser.set_defaults(run_command=command_text)
+
+    parser = sub.add_parser("index_html", help="make the meeting index HTML "
+                            "for the home page.")
+    add_meeting_label_argument(parser)
+    parser.add_argument('--count', default=3, type=int,
+        help=("include the next COUNT meetings."))
+    parser.set_defaults(run_command=command_index_html)
 
     parser = sub.add_parser("tweet", help="tweet about a meeting.")
     add_meeting_label_argument(parser)
     parser.add_argument('text_type', metavar='TEXT_TYPE', choices=tweet_choices,
         help=("what text to tweet."))
-    parser.set_defaults(run_command=tweet)
+    parser.set_defaults(run_command=command_tweet)
 
     parser = sub.add_parser("email", help="send an e-mail related to a meeting.")
     add_meeting_label_argument(parser)
