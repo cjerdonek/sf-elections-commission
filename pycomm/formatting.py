@@ -29,6 +29,8 @@ Folder structure
 
         {file_name_prefix}_Minutes_Draft.odt
         {file_name_prefix}_Minutes_Draft.pdf
+        {file_name_prefix}_Minutes.odt
+        {file_name_prefix}_Minutes.pdf
 
 
 Vision CMS structure
@@ -39,6 +41,8 @@ Vision CMS structure
     {date:%Y-%m-%d} {body_name_short}/
 
         {date:%Y-%m-%d} {body_name_short} Agenda
+        {date:%Y-%m-%d} {body_name_short} Minutes (Draft)
+        {date:%Y-%m-%d} {body_name_short} Minutes
 
         {date:%B {day}, %Y} {body_name_short} Agenda Packet/
 
@@ -356,15 +360,10 @@ class Formatter(object):
         minutes_id = data.get('minutes_id')
         minutes_html = TBD
         if minutes_id:
-            draft_prefix = 'Draft ' if data['minutes_draft'] else ''
-            # TODO: clean this up.
-            HTML_MINUTES = (
-                '<a href="modules/showdocument.aspx?documentid={minutes_id}" target="_blank">\n'
-                '{draft_prefix}Minutes (PDF)</a>'
-            )
-            minutes_html = common.indent(HTML_MINUTES.format(
-                                minutes_id=minutes_id,
-                                draft_prefix=draft_prefix))
+            draft_prefix = 'Draft ' if data.get('minutes_draft') else ''
+            text = "{0}Minutes (PDF)".format(draft_prefix)
+            minutes_html = common.indent(
+                get_document_link_html(doc_id=minutes_id, text=text))
 
         kwargs = {
             'agenda_link_html': agenda_link_html,
