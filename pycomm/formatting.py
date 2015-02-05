@@ -164,8 +164,9 @@ TWEET_MINUTES_APPROVED = (
     "meeting are now posted online: {url_past_meetings_absolute}"
 )
 
+# TODO: make the "today" phrase depend on the current date.
 TWEET_YOUTUBE = (
-    "The audio for last {date:%A}'s {date:%B} {day} {body_name_medium} "
+    "The audio for today's {date:%B} {date.day} {body_name_medium} "
     "meeting is now posted on YouTube ({youtube_length_text}): {youtube_url}"
 )
 
