@@ -16,6 +16,11 @@ from pycomm.config import get_config
 from pycomm import formatting
 
 
+def display(text):
+    print(60 * "-")
+    print(text)
+
+
 def get_formatter():
     config = get_config()
     formatter = formatting.Formatter(config)
@@ -31,7 +36,7 @@ def command_labels(ns, formatter):
 def command_text(ns, formatter):
     meeting_label, text_type = ns.meeting_label, ns.text_type
     text = formatter.get_meeting_text(text_type, meeting_label)
-    print(text)
+    display(text)
 
 
 def command_index_html(ns, formatter):
@@ -40,10 +45,10 @@ def command_index_html(ns, formatter):
     label = ns.meeting_label
 
     labels = config.get_next_meeting_labels(label)
-    text = 60 * "-" + "\n"
+    text = ""
     for label in labels:
         text += formatter.get_meeting_text(text_type, label)
-    print(text)
+    display(text)
 
 
 def command_tweet(ns, formatter):
