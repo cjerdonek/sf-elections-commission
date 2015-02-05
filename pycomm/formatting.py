@@ -155,13 +155,13 @@ The {date_short} meeting of the {body_full} will not be held: {home_page}
 """
 
 TWEET_AGENDA_POSTED = (
-    "The agenda and packet for this {date:%A}'s "
-    "{date:%B {day}} {body_name_medium} meeting are now posted: {home_page}"
+    "The agenda and packet for this {date:%A}'s {date:%B {day}} "
+    "{body_name_medium} meeting are now posted online: {home_page}"
 )
 
 TWEET_MINUTES_APPROVED = (
     "The approved minutes for the {date:%b. {day}, %Y} {body_name_medium} "
-    "meeting are now posted: {url_past_meetings_absolute}"
+    "meeting are now posted online: {url_past_meetings_absolute}"
 )
 
 TWEET_YOUTUBE = (
