@@ -121,8 +121,6 @@ def create_parser():
     parser = sub.add_parser("imagesizes", help="show 16:9 image sizes to help with screen shots")
     parser.set_defaults(run_command=command_image_sizes)
 
-
-
     return root_parser
 
 
