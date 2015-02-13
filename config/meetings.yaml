@@ -17,6 +17,8 @@ meetings:
   20150121_commission:
     agenda_id: 2357
     agenda_packet_id: 2359
+    minutes_id: 2433
+    minutes_draft: True
     youtube_id: "LfwRZn0j20Y"
     youtube_length: "1:00:08"
   20150204_bopec:

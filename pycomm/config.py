@@ -38,7 +38,13 @@ class Config(object):
         pass
 
     def get_meeting(self, label):
-        return self.meetings[label]
+        try:
+            return self.meetings[label]
+        except KeyError:
+            labels = sorted(self.meetings.keys())
+            msg = "available labels:\n" + "\n".join(labels)
+            print(msg)
+            raise
 
     def get_next_meeting_labels(self, label):
         keys = sorted(self.meetings.keys())
