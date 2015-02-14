@@ -193,6 +193,11 @@ http://www.sfgov2.org/index.aspx?page=319
 
 Thanks a lot,
 --Chris
+
+--
+San Francisco Elections Commission
+Website: http://sfgov.org/electionscommission
+Twitter: @SFElectionsComm
 """
 
 EMAIL_BODY_SUBJECT = """\
@@ -203,13 +208,16 @@ EMAIL_BODY_SUBJECT = """\
 EMAIL_LIBRARY = """\
 Hello,
 
-See attached for a public notice of the {date:%B {date.day}, %Y} meeting of
-the {body_name_complete} for posting.
+See attached for a public notice of the {date:%B {date.day}, %Y}
+meeting of the {body_name_complete} for posting.
 
 Thank you,
 
 Chris Jerdonek, President
 San Francisco Elections Commission
+
+Website: http://sfgov.org/electionscommission
+Twitter: @SFElectionsComm
 """
 
 EMAIL_LIBRARY_SUBJECT = """\
