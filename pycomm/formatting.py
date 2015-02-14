@@ -159,6 +159,11 @@ TWEET_AGENDA_POSTED = (
     "{body_name_medium} meeting are now posted online: {home_page}"
 )
 
+TWEET_MINUTES_DRAFT = (
+    "Draft minutes for the {date:%b. {day}, %Y} {body_name_medium} "
+    "meeting are now posted online: {url_past_meetings_absolute}"
+)
+
 TWEET_MINUTES_APPROVED = (
     "The approved minutes for the {date:%b. {day}, %Y} {body_name_medium} "
     "meeting are now posted online: {url_past_meetings_absolute}"
@@ -173,6 +178,7 @@ TWEET_YOUTUBE = (
 TWEET_TEMPLATES = {
     'agenda_posted': TWEET_AGENDA_POSTED,
     'minutes_approved': TWEET_MINUTES_APPROVED,
+    'minutes_draft': TWEET_MINUTES_DRAFT,
     'youtube': TWEET_YOUTUBE,
 }
 
@@ -198,7 +204,7 @@ EMAIL_LIBRARY = """\
 Hello,
 
 See attached for a public notice of the {date:%B {date.day}, %Y} meeting of
-the {body_name_complete}.
+the {body_name_complete} for posting.
 
 Thank you,
 
@@ -287,7 +293,7 @@ class BodyCommission(object):
 
     name_file_name = "Elections_Comm"
     name_short = "Commission"
-    name_medium = "SF Elections Commission"
+    name_medium = "Elections Commission"
     name_full = "San Francisco Elections Commission"
     name_complete = "San Francisco Elections Commission"
     name_library_subject = "SF Elections Commission"

@@ -27,6 +27,8 @@ from pycomm import formatting
 
 def get_email_info(formatter, email_type, meeting):
     config = formatter.config
+    # Calling this method checks that the meeting label is valid.
+    config.get_meeting(meeting)
 
     body_label, dt = common.parse_label(meeting)
 
