@@ -187,12 +187,11 @@ EMAIL_BODY = """\
 Hi,
 
 This is an FYI that the agenda and packet for next {date:%A}'s
-{date:%B {date.day}, %Y} {body_name_medium} meeting is now posted online:
+{date:%B {date.day}, %Y} {body_name_medium} meeting are now posted online:
 
 http://sfgov.org/electionscommission
 
 Thanks a lot (and please remember not to reply to all),
-
 --Chris
 
 San Francisco Elections Commission
