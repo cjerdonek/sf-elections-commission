@@ -36,6 +36,9 @@ def get_email_info(formatter, email_type, meeting):
     cc_list = []
     if email_type == 'tell_library':
         to_list = ['sfpl']
+    elif email_type == 'tell_body' and body_label == common.LABEL_COMMISSION:
+        body = config.get_body(body_label)
+        to_list = body + ['jarntz', 'ashen', 'jwhite']
     elif email_type == 'tell_body' and body_label == common.LABEL_BOPEC:
         to_list = ['jrowe', 'jarntz', 'cjerdonek']
     else:

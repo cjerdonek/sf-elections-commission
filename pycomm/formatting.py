@@ -186,18 +186,19 @@ TWEET_TEMPLATES = {
 EMAIL_BODY = """\
 Hi,
 
-The agenda and packet for next {date:%A}'s BOPEC meeting on
-{date:%B {date.day}, %Y} is now posted online:
+This is an FYI that the agenda and packet for next {date:%A}'s
+{date:%B {date.day}, %Y} {body_name_medium} meeting is now posted online:
 
-http://www.sfgov2.org/index.aspx?page=319
+http://sfgov.org/electionscommission
 
-Thanks a lot,
+Thanks a lot (and please remember not to reply to all),
+
 --Chris
 
---
 San Francisco Elections Commission
 Website: http://sfgov.org/electionscommission
 Twitter: @SFElectionsComm
+
 """
 
 EMAIL_BODY_SUBJECT = """\

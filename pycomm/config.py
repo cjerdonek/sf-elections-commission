@@ -21,7 +21,7 @@ def get_config_file(file_name):
 
 
 def get_config():
-    people_data = get_config_file('people.secret.yaml')['entities']
+    people_data = get_config_file('people.secret.yaml')
     meeting_data = get_config_file('meetings.yaml')['meetings']
 
     config = Config()
@@ -51,8 +51,12 @@ class Config(object):
         index = keys.index(label)
         return keys[index:]
 
+    def get_body(self, key):
+        """Return a list of labels."""
+        return self.people[key]
+
     def get_person(self, label):
-        return self.people[label]
+        return self.people['entities'][label]
 
     def get_google_client_secret_path(self):
         # Path to the client_secret.json file downloaded from the Developer Console
@@ -82,5 +86,5 @@ class Config(object):
 
     def get_email(self, label):
         """Return a realname, email_address 2-tuple."""
-        person = self.people[label]
+        person = self.get_person(label)
         return person['name'], person['mail']
