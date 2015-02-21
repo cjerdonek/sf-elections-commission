@@ -27,8 +27,8 @@ def get_formatter():
     return formatter
 
 
-def command_labels(ns, formatter):
-    labels = common.next_meeting_labels(month_count=3)
+def command_upcoming(ns, formatter):
+    labels = common.next_meeting_labels(count=ns.count)
     for label in labels:
         print(label)
 
@@ -42,9 +42,7 @@ def command_text(ns, formatter):
 def command_index_html(ns, formatter):
     config = formatter.config
     text_type = "html_index"
-    label = ns.meeting_label
-
-    labels = config.get_next_meeting_labels(label)
+    labels = config.get_next_meeting_labels(count=ns.count)
     text = ""
     for label in labels:
         text += formatter.get_meeting_text(text_type, label)
@@ -71,9 +69,20 @@ def command_image_sizes(ns, formatter):
         print("{0}:{1}".format(w, h))
 
 
+def add_count_argument(parser, default=None):
+    if default is None:
+        default = 3
+    parser.add_argument('--count', default=default, type=int,
+        help=("include the next COUNT meetings.  Defaults to {0}".format(default)))
+
 def add_meeting_label_argument(parser):
     parser.add_argument('meeting_label', metavar='MEETING',
         help=('meeting label, for example "20150107_bopec" or "20150121_commission".'))
+
+
+def make_subparser(sub, command_name, desc=None, **kwargs):
+    parser = sub.add_parser(command_name, help=desc, description=desc, **kwargs)
+    return parser
 
 
 def create_parser():
@@ -86,10 +95,10 @@ def create_parser():
 
     sub = root_parser.add_subparsers(help='sub-command help')
 
-    parser = sub.add_parser("labels", help="list labels for the next few regular meetings")
-    parser.add_argument('--count', default=3, type=int,
-        help=("show the meeting labels for the next COUNT regular meetings."))
-    parser.set_defaults(run_command=command_labels)
+    parser = make_subparser(sub, "upcoming",
+                desc="generate the labels for the upcoming regular meetings.")
+    add_count_argument(parser)
+    parser.set_defaults(run_command=command_upcoming)
 
     parser = sub.add_parser("text", help="generate text blocks for meetings.")
     add_meeting_label_argument(parser)
@@ -97,11 +106,9 @@ def create_parser():
         help=("what text to generate."))
     parser.set_defaults(run_command=command_text)
 
-    parser = sub.add_parser("index_html", help="make the meeting index HTML "
-                            "for the home page.")
-    add_meeting_label_argument(parser)
-    parser.add_argument('--count', default=3, type=int,
-        help=("include the next COUNT meetings."))
+    parser = make_subparser(sub, "index_html",
+                desc="make the meeting index HTML for the home page.")
+    add_count_argument(parser)
     parser.set_defaults(run_command=command_index_html)
 
     parser = sub.add_parser("tweet", help="tweet about a meeting.")

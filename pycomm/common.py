@@ -28,8 +28,8 @@ def parse_label(label):
     date_string, body_label = label.split("_")
     date_parts = date_string[:4], date_string[4:6], date_string[6:8]
     year, month, day = (int(s) for s in date_parts)
-    dt = date(year, month, day)
-    return body_label, dt
+    date_ = date(year, month, day)
+    return body_label, date_
 
 
 def confirm(msg):
@@ -42,7 +42,8 @@ def advance_days(dt, days=1):
     return date(dt.year, dt.month, dt.day + days)
 
 
-def labels_in_month(year, month):
+def _labels_in_month(year, month):
+    """Return the meeting labels for the meetings in the given month."""
     # Start at the first.
     day = date(year, month, 1)
     while day.weekday() != 2:  # Wednesday
@@ -54,15 +55,17 @@ def labels_in_month(year, month):
     return labels
 
 
-def next_meeting_labels(month_count):
+def next_meeting_labels(count):
     today = date.today()
     year, month = today.year, today.month
 
     labels = []
-    for i in xrange(month_count):
-        current = date(year, month, 1)
-        new_labels = labels_in_month(year, month)
-        labels.extend(new_labels)
+    while len(labels) < count:
+        new_labels = _labels_in_month(year, month)
+        for label in new_labels:
+            body_label, date_ = parse_label(label)
+            if date_ > today:
+                labels.append(label)
         month += 1
 
-    return labels
+    return labels[:count]

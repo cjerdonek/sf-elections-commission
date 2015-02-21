@@ -1,8 +1,11 @@
 
 """Exposes config data."""
 
+import datetime
 import os
 import yaml
+
+from pycomm import common
 
 
 REPO_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
@@ -46,10 +49,27 @@ class Config(object):
             print(msg)
             raise
 
-    def get_next_meeting_labels(self, label):
-        keys = sorted(self.meetings.keys())
-        index = keys.index(label)
-        return keys[index:]
+    def get_meeting_labels(self):
+        return sorted(self.meetings.keys())
+
+    def get_next_meeting_label(self):
+        labels = self.get_meeting_labels()
+        today = datetime.date.today()
+        for label in labels:
+            body_label, date_ = common.parse_label(label)
+            if date_ > today:
+                return label
+        raise Exception("no next meeting")
+
+    def get_next_meeting_labels(self, count):
+        label = self.get_next_meeting_label()
+        labels = self.get_meeting_labels()
+        index = labels.index(label)
+        labels = labels[index:index + count]
+        if len(labels) < count:
+            raise Exception("config file only contains next {0} meetings: {1}"
+                            .format(len(labels), ", ".join(labels)))
+        return labels
 
     def get_body(self, key):
         """Return a list of labels."""

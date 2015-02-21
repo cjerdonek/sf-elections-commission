@@ -113,7 +113,7 @@ HTML_YOUTUBE_FORMAT = (
 HTML_INDEX = """\
 <tr>
     <td headers="table_heading_0">{date_full_short_day}</td>
-    <td headers="table_heading_1">{body_name_short_html}</td>
+    <td headers="table_heading_1">{body_name_index_html}</td>
     <td headers="table_heading_2">{meeting_time}</td>
     <td headers="table_heading_3">{meeting_place}</td>
     <td headers="table_heading_4">
@@ -208,8 +208,13 @@ EMAIL_BODY_SUBJECT = """\
 EMAIL_LIBRARY = """\
 Hello,
 
-See attached for a public notice of the {date:%B {date.day}, %Y}
-meeting of the {body_name_complete} for posting.
+Attached is the agenda for the {date:%B {date.day}, %Y}
+meeting of the {body_name_complete}.
+
+The agenda and agenda packet is or will also be posted on the
+Elections Commission home page:
+
+http://sfgov.org/electionscommission
 
 Thank you,
 
@@ -300,6 +305,7 @@ class BodyCommission(object):
     meeting_place = "City Hall, Room 408"
 
     name_file_name = "Elections_Comm"
+    name_index_html = "Commission"
     name_short = "Commission"
     name_medium = "Elections Commission"
     name_full = "San Francisco Elections Commission"
@@ -313,6 +319,7 @@ class BodyBOPEC(object):
     meeting_place = "City Hall, Room 421"
 
     name_file_name = "BOPEC"
+    name_index_html = "BOPEC*"
     name_short = "BOPEC"
     name_medium = "BOPEC"
     name_full = "Budget & Oversight of Public Elections Committee (BOPEC)"
@@ -384,6 +391,7 @@ class Formatter(object):
             'agenda_link_html': agenda_link_html,
             'agenda_packet_link_html': agenda_packet_link_html,
             'body_name_complete': body.name_complete,
+            'body_name_index_html': body.name_index_html,
             'body_name_library_subject': body.name_library_subject,
             'body_name_medium': body_name_medium,
             'body_name_short': body_name_short,
