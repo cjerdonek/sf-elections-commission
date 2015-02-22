@@ -169,9 +169,8 @@ TWEET_MINUTES_APPROVED = (
     "meeting are now posted online: {url_past_meetings_absolute}"
 )
 
-# TODO: make the "today" phrase depend on the current date.
 TWEET_YOUTUBE = (
-    "The audio for today's {date:%B} {date.day} {body_name_medium} "
+    "The audio for {day_reference}'s {date:%B} {date.day} {body_name_medium} "
     "meeting is now posted on YouTube ({youtube_length_text}): {youtube_url}"
 )
 
@@ -256,7 +255,7 @@ def format_youtube_length(length):
     parts = length.split(":")
     if len(parts) == 3:
         hours = int(parts[0])
-        text = "{0}:{1} hour".format(hours, parts[1])
+        text = "{0}:{1} hours".format(hours, parts[1])
         if hours > 1:
             text += "s"
     elif len(parts) == 2:
@@ -401,6 +400,8 @@ class Formatter(object):
             'date_full_short_day': get_date_full_with_short_day(date),
             'date_full_no_day': get_date_full(date),
             'day': date.day,
+            # TODO: dynamically change this: e.g. today or yesterday.
+            'day_reference': "last Wednesday",
             'file_name_prefix': file_name_prefix,
             'home_page': get_absolute_url(URL_HOME),
             'minutes_html': minutes_html,
