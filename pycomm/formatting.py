@@ -374,6 +374,11 @@ class Formatter(object):
         elif meeting_status == "TBD":
             agenda_link_html = TBD
             agenda_packet_link_html = NBSP
+        elif meeting_status == "canceled":
+            meeting_time = "Canceled: no meeting"
+            meeting_place = NBSP
+            agenda_link_html = NBSP
+            agenda_packet_link_html = NBSP
         else:
             raise Exception("unknown status: {0}".format(meeting_status))
 
