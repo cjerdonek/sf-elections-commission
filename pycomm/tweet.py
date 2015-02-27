@@ -37,7 +37,7 @@ def get_access_token():
     print("calling: {0}".format(cmd))
     os.system(cmd)
     # Prompt the user for the verifier code supplied by Twitter in the browser.
-    verifier = input('Verifier: ').strip()
+    verifier = raw_input('Verifier: ').strip()
     access_token = auth.get_access_token(verifier)
     access_token_key, access_token_secret = access_token
     print("twitter_access_token_key: {0}".format(access_token_key))
@@ -63,7 +63,7 @@ def get_oauth(config, username):
 
 def tweet(config, username, message=None):
     if not message:
-        message = input("message: ").strip()
+        message = raw_input("message: ").strip()
     auth = get_oauth(config, username)
     api = tweepy.API(auth)
 

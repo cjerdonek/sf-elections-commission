@@ -51,6 +51,12 @@ def command_index_html(ns, formatter):
 
 def command_tweet(ns, formatter):
     config = formatter.config
+    username = config.get_twitter_username('commission')
+    tweeting.tweet(config=config, username=username, message=None)
+
+
+def command_tweet_meeting(ns, formatter):
+    config = formatter.config
     meeting_label, text_type = ns.meeting_label, ns.text_type
 
     username = config.get_twitter_username('commission')
@@ -81,7 +87,9 @@ def add_meeting_label_argument(parser):
 
 
 def make_subparser(sub, command_name, desc=None, **kwargs):
-    parser = sub.add_parser(command_name, help=desc, description=desc, **kwargs)
+    # Capitalize the first letter for the long description.
+    capitalized = desc[0].upper() + desc[1:]
+    parser = sub.add_parser(command_name, help=desc, description=capitalized, **kwargs)
     return parser
 
 
@@ -106,16 +114,9 @@ def create_parser():
         help=("what text to generate."))
     parser.set_defaults(run_command=command_text)
 
-    parser = make_subparser(sub, "index_html",
-                desc="make the meeting index HTML for the home page.")
+    parser = make_subparser(sub, "index_html", desc="make the meeting index HTML for the home page.")
     add_count_argument(parser)
     parser.set_defaults(run_command=command_index_html)
-
-    parser = sub.add_parser("tweet", help="tweet about a meeting.")
-    add_meeting_label_argument(parser)
-    parser.add_argument('text_type', metavar='TEXT_TYPE', choices=tweet_choices,
-        help=("what text to tweet."))
-    parser.set_defaults(run_command=command_tweet)
 
     parser = sub.add_parser("email", help="send an e-mail related to a meeting.")
     add_meeting_label_argument(parser)
@@ -124,6 +125,15 @@ def create_parser():
     parser.add_argument('--attach', dest='attach_paths', metavar='PATH', nargs="*",
         help=("paths of any attachments."))
     parser.set_defaults(run_command=email)
+
+    parser = make_subparser(sub, "tweet", desc="send a tweet.")
+    parser.set_defaults(run_command=command_tweet)
+
+    parser = sub.add_parser("tweet_meeting", help="send a tweet related to a meeting.")
+    add_meeting_label_argument(parser)
+    parser.add_argument('text_type', metavar='TEXT_TYPE', choices=tweet_choices,
+        help=("what text to tweet."))
+    parser.set_defaults(run_command=command_tweet)
 
     parser = sub.add_parser("imagesizes", help="show 16:9 image sizes to help with screen shots")
     parser.set_defaults(run_command=command_image_sizes)
