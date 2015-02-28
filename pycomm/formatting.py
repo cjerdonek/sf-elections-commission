@@ -244,13 +244,9 @@ This is an FYI that the agenda and packet for next {date:%A}'s
 
 http://sfgov.org/electionscommission
 
-Thanks a lot (and please remember not to reply to all),
---Chris
+Thanks (and please remember not to reply to all),
 
-San Francisco Elections Commission
-Website: http://sfgov.org/electionscommission
-Twitter: @SFElectionsComm
-
+{email_footer}
 """
 
 _EMAIL_BODY_CANCELLATION = """\
@@ -261,7 +257,7 @@ meeting is canceled and will not be held:
 
 http://sfgov.org/electionscommission
 
-Thanks a lot (and please remember not to reply to all),
+Thanks (and please remember not to reply to all),
 
 {email_footer}
 """
