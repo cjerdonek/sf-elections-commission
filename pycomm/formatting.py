@@ -231,10 +231,12 @@ Thank you,
 {email_footer}
 """
 
-_EMAIL_BODY_NOTICE_SUBJECT = """\
-{body_name_short}: {date.month}/{date.day}/{date.year} agenda now online"""
+_EMAIL_BODY_SUBJECT_PREFIX = "{date.month}/{date.day}/{date.year} {body_name_short} meeting: "
 
-EMAIL_BODY = """\
+_EMAIL_BODY_SUBJECT = _EMAIL_BODY_SUBJECT_PREFIX + "agenda now online"
+_EMAIL_BODY_CANCELLATION_SUBJECT = _EMAIL_BODY_SUBJECT_PREFIX + "canceled"
+
+_EMAIL_BODY_ = """\
 Hi,
 
 This is an FYI that the agenda and packet for next {date:%A}'s
@@ -251,16 +253,30 @@ Twitter: @SFElectionsComm
 
 """
 
+_EMAIL_BODY_CANCELLATION = """\
+Hi,
+
+This is an FYI that next {date:%A}'s {date:%B {date.day}, %Y} {body_name_medium}
+meeting is canceled and will not be held:
+
+http://sfgov.org/electionscommission
+
+Thanks a lot (and please remember not to reply to all),
+
+{email_footer}
+"""
+
 
 EMAIL_SUBJECTS = {
-    'body_notice': _EMAIL_BODY_NOTICE_SUBJECT,
-    'public_notice': _EMAIL_PUBLIC_NOTICE_SUBJECT,
+    'body_notice': _EMAIL_BODY_SUBJECT,
+    'body_notice_cancellation': _EMAIL_BODY_CANCELLATION_SUBJECT,
+    'public_notice_cancellation': _EMAIL_PUBLIC_NOTICE_SUBJECT,
 }
 
 
 EMAIL_TEMPLATES = {
-    'body_notice': EMAIL_BODY,
-    'body_notice_': EMAIL_BODY,
+    'body_notice': _EMAIL_BODY_,
+    'body_notice_cancellation': _EMAIL_BODY_CANCELLATION,
     'public_notice': _EMAIL_PUBLIC_NOTICE,
     'public_notice_cancellation': _EMAIL_PUBLIC_NOTICE_CANCELLATION,
 }
@@ -348,6 +364,8 @@ class BodyCommission(object):
 
     sender = "cjerdonek"
     public_bcc = None
+    body_to = ["cjerdonek", "cjung", "rmatthews", "jrowe", "rsafont", "wyu",
+               "jarntz", "ashen", "jwhite"]
     initials = ""
     signature = "Chris Jerdonek, President"
 
@@ -368,6 +386,8 @@ class BodyBOPEC(object):
 
     sender = "commission"
     public_bcc = ["jrowe"]
+    body_to = ["cjerdonek", "jarntz"]
+    body_cc = ["jrowe"]
     initials = "/cjj"
     signature = ""
 
@@ -509,7 +529,7 @@ class Formatter(object):
     def get_email_texts(self, email_choice, meeting_label):
         email_key = make_notice_template_key(self.config, email_choice, meeting_label)
 
-        subject_format = EMAIL_SUBJECTS[email_choice]
+        subject_format = EMAIL_SUBJECTS[email_key]
         body_format = EMAIL_TEMPLATES[email_key]
 
         subject = self.format_meeting_text(subject_format, meeting_label)

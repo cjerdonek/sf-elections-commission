@@ -40,11 +40,9 @@ def get_email_info(formatter, email_choice, meeting_label):
         bcc_list = config.get_entities('distribution')
         if body.public_bcc is not None:
             bcc_list += body.public_bcc
-    elif email_choice == 'body_notice' and body_label == common.LABEL_COMMISSION:
-        body = config.get_entities(body_label)
-        to_list = body + ['jarntz', 'ashen', 'jwhite']
-    elif email_choice == 'tell_body' and body_label == common.LABEL_BOPEC:
-        to_list = ['jrowe', 'jarntz', 'cjerdonek']
+    elif email_choice == 'body_notice':
+        to_list += body.body_to
+        cc_list += body.body_cc
     else:
         raise Exception("invalid email args: {0}".format((email_choice, meeting_label)))
 
