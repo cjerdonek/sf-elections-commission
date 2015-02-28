@@ -150,8 +150,10 @@ GENERAL_TEMPLATES = {
     'html_past': HTML_PAST_MEETING,
 }
 
+TWEET_CHOICES = ['meeting_posted', 'minutes_approved', 'minutes_draft', 'youtube']
+
 TWEET_CANCEL = """\
-The {date_short} meeting of the {body_full} will not be held: {home_page}
+Next {date:%A}'s {date:%B {day}} meeting of the {body_full} will not be held: {home_page}
 """
 
 TWEET_AGENDA_POSTED = (
@@ -176,6 +178,7 @@ TWEET_YOUTUBE = (
 
 TWEET_TEMPLATES = {
     'agenda_posted': TWEET_AGENDA_POSTED,
+    'meeting_canceled': TWEET_CANCEL,
     'minutes_approved': TWEET_MINUTES_APPROVED,
     'minutes_draft': TWEET_MINUTES_DRAFT,
     'youtube': TWEET_YOUTUBE,
@@ -457,13 +460,17 @@ class Formatter(object):
         format_str = GENERAL_TEMPLATES[template_label]
         return self.format_meeting_text(format_str, meeting_label)
 
-    def make_tweet(self, template_label, meeting_label):
-        format_str = TWEET_TEMPLATES[template_label]
+    def make_tweet(self, tweet_label, meeting_label):
+        # TODO: make this logic less brittle (e.g. by making it more DRY).
+        if tweet_label == 'meeting_posted':
+            data = self.config.get_meeting(meeting_label)
+            meeting_status = data.get('status')
+            if meeting_status is None:
+                tweet_label = 'agenda_posted'
+            elif meeting_status == 'canceled':
+                tweet_label = 'meeting_canceled'
+            else:
+                raise Exception('invalid status: {0}'.format(meeting_status))
+        format_str = TWEET_TEMPLATES[tweet_label]
         kwargs = self.get_meeting_kwargs(meeting_label)
         return self.get_formatted(format_str, **kwargs)
-
-    def make_tweet_announce(self, label):
-        return self.format_meeting_text(TWEET_CANCEL, label)
-
-    def make_tweet_agenda_posted(self, label):
-        return self.format_meeting_text(TWEET_AGENDA_POSTED, label)

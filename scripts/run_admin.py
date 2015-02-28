@@ -97,7 +97,7 @@ def create_parser():
     """Return an ArgumentParser object."""
     email_choices = sorted(formatting.EMAIL_TEMPLATES.keys())
     text_choices = sorted(formatting.GENERAL_TEMPLATES.keys())
-    tweet_choices = sorted(formatting.TWEET_TEMPLATES.keys())
+    tweet_choices = sorted(formatting.TWEET_CHOICES)
 
     root_parser = ArgumentParser(description="command for helping with admin tasks")
 
@@ -133,7 +133,7 @@ def create_parser():
     add_meeting_label_argument(parser)
     parser.add_argument('text_type', metavar='TEXT_TYPE', choices=tweet_choices,
         help=("what text to tweet."))
-    parser.set_defaults(run_command=command_tweet)
+    parser.set_defaults(run_command=command_tweet_meeting)
 
     parser = sub.add_parser("imagesizes", help="show 16:9 image sizes to help with screen shots")
     parser.set_defaults(run_command=command_image_sizes)
