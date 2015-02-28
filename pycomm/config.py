@@ -49,6 +49,11 @@ class Config(object):
             print(msg)
             raise
 
+    def is_meeting_canceled(self, label):
+        data = self.get_meeting(label)
+        status = data.get('status')
+        return status == 'canceled'
+
     def get_meeting_labels(self):
         return sorted(self.meetings.keys())
 
@@ -71,7 +76,7 @@ class Config(object):
                             .format(len(labels), ", ".join(labels)))
         return labels
 
-    def get_body(self, key):
+    def get_entities(self, key):
         """Return a list of labels."""
         return self.people[key]
 
@@ -104,7 +109,10 @@ class Config(object):
         secret = config['twitter_access_token_secret']
         return key, secret
 
-    def get_email(self, label):
+    def get_email(self, value):
         """Return a realname, email_address 2-tuple."""
-        person = self.get_person(label)
-        return person['name'], person['mail']
+        person = self.get_person(value) if isinstance(value, basestring) else value
+        try:
+            return person['name'], person['mail']
+        except:
+            raise Exception("person: {0}".format(person))

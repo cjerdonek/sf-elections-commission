@@ -25,37 +25,38 @@ from pycomm import common
 from pycomm import formatting
 
 
-def get_email_info(formatter, email_type, meeting):
+def get_email_info(formatter, email_choice, meeting_label):
+    """Return an EmailInfo object."""
     config = formatter.config
-    # Calling this method checks that the meeting label is valid.
-    config.get_meeting(meeting)
+    # Calling this method also checks that the meeting label is valid.
+    body, date, data = formatting.get_meeting_info(config, meeting_label)
 
-    body_label, dt = common.parse_label(meeting)
-
-    sender = "cjerdonek"
+    sender = body.sender
+    to_list = []
     cc_list = []
-    if email_type == 'tell_library':
-        to_list = ['sfpl']
-    elif email_type == 'tell_body' and body_label == common.LABEL_COMMISSION:
-        body = config.get_body(body_label)
+    bcc_list = []
+    if email_choice == 'public_notice':
+        to_list += [sender]
+        bcc_list = config.get_entities('distribution')
+        if body.public_bcc is not None:
+            bcc_list += body.public_bcc
+    elif email_choice == 'body_notice' and body_label == common.LABEL_COMMISSION:
+        body = config.get_entities(body_label)
         to_list = body + ['jarntz', 'ashen', 'jwhite']
-    elif email_type == 'tell_body' and body_label == common.LABEL_BOPEC:
+    elif email_choice == 'tell_body' and body_label == common.LABEL_BOPEC:
         to_list = ['jrowe', 'jarntz', 'cjerdonek']
     else:
-        raise Exception("invalid email args: {0}".format((email_type, meeting)))
+        raise Exception("invalid email args: {0}".format((email_choice, meeting_label)))
 
-    subject_format = formatting.EMAIL_SUBJECTS[email_type]
-    body_format = formatting.EMAIL_TEMPLATES[email_type]
-
-    subject = formatter.format_meeting_text(subject_format, meeting)
-    body = formatter.format_meeting_text(body_format, meeting)
+    subject, body = formatter.get_email_texts(email_choice=email_choice, meeting_label=meeting_label)
 
     sender = config.get_email(sender)
-    to_list = [config.get_email(k) for k in to_list]
-    cc_list = [config.get_email(k) for k in cc_list]
+    to_list = [config.get_email(val) for val in to_list]
+    cc_list = [config.get_email(val) for val in cc_list]
+    bcc_list = [config.get_email(val) for val in bcc_list]
 
-    info = EmailInfo(sender=sender, to_list=to_list, cc_list=cc_list,
-                     subject=subject, body=body)
+    info = EmailInfo(subject=subject, body=body, sender=sender, to_list=to_list,
+                     cc_list=cc_list, bcc_list=bcc_list)
     return info
 
 
@@ -75,7 +76,7 @@ def format_emails(addresses):
     return email_utils.COMMASPACE.join(format_email(a) for a in addresses)
 
 
-def _add_email_info(mime, from_address, to_addresses, subject, cc_addresses=None):
+def _add_email_info(mime, from_address, to_addresses, subject, cc_list=None, bcc_list=None):
     """
     In this function, each e-mail address should be a 2-tuple of the form:
     realname, email_address.  If there is no realname, then make it something
@@ -87,8 +88,10 @@ def _add_email_info(mime, from_address, to_addresses, subject, cc_addresses=None
     """
     mime["From"] = format_email(from_address)
     mime["To"] = format_emails(to_addresses)
-    if cc_addresses:
-        mime["Cc"] = format_emails(cc_addresses)
+    if cc_list:
+        mime["Cc"] = format_emails(cc_list)
+    if bcc_list:
+        mime["Bcc"] = format_emails(bcc_list)
     mime["Subject"] = subject
 
 
@@ -124,7 +127,8 @@ def _add_attachment(mime, path):
 
 # This function was copied and modified from here:
 # https://developers.google.com/gmail/api/guides/sending
-def create_message(sender, to_list, subject, body, cc_list=None, attach_paths=None):
+def create_message(sender, to_list, subject, body, cc_list=None, bcc_list=None,
+                   attach_paths=None):
     """Create an email message for the Google Gmail API.
 
     Arguments:
@@ -135,7 +139,7 @@ def create_message(sender, to_list, subject, body, cc_list=None, attach_paths=No
     """
     message = MIMEText(body)
     mime = MIMEMultipart() if attach_paths else message
-    _add_email_info(mime, sender, to_list, subject, cc_addresses=cc_list)
+    _add_email_info(mime, sender, to_list, subject, cc_list=cc_list, bcc_list=bcc_list)
 
     if attach_paths:
         mime.attach(message)
@@ -204,7 +208,8 @@ def send_message(service, message):
     return message
 
 
-def raw_send_email(config, sender, to_list, subject, body, cc_list=None, attach_paths=None):
+def raw_send_email(config, sender, to_list, subject, body, cc_list=None,
+                   bcc_list=None, attach_paths=None):
     """Send an email message.
 
     Each e-mail address in the arguments should be a 2-tuple of the form:
@@ -212,7 +217,8 @@ def raw_send_email(config, sender, to_list, subject, body, cc_list=None, attach_
     something that evaluates to false.
     """
     message, printable = create_message(sender, to_list, subject, body,
-                                        cc_list=cc_list, attach_paths=attach_paths)
+                                        cc_list=cc_list, bcc_list=bcc_list,
+                                        attach_paths=attach_paths)
     confirm_text = textwrap.dedent("""\
     Are you sure you want to send the following?
     {line}
@@ -224,19 +230,20 @@ def raw_send_email(config, sender, to_list, subject, body, cc_list=None, attach_
     send_message(service, message)
 
 
-def send_email(formatter, email_type, meeting, attach_paths=None):
-    info = get_email_info(formatter, email_type, meeting)
-    raw_send_email(config=formatter.config, sender=info.sender,
-                   to_list=info.to_list, cc_list=info.cc_list,
-                   subject=info.subject, body=info.body,
+def send_email(formatter, email_choice, meeting_label, attach_paths=None):
+    info = get_email_info(formatter, email_choice, meeting_label=meeting_label)
+    raw_send_email(config=formatter.config, subject=info.subject, body=info.body,
+                   sender=info.sender, to_list=info.to_list,
+                   cc_list=info.cc_list, bcc_list=info.bcc_list,
                    attach_paths=attach_paths)
 
 
 class EmailInfo(object):
 
-    def __init__(self, sender, to_list, cc_list, subject, body):
+    def __init__(self, sender, to_list, cc_list, bcc_list, subject, body):
         self.sender = sender
         self.to_list = to_list
         self.cc_list = cc_list
+        self.bcc_list = bcc_list
         self.subject = subject
         self.body = body

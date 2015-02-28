@@ -64,9 +64,9 @@ def command_tweet_meeting(ns, formatter):
     tweeting.tweet(config=config, username=username, message=text)
 
 
-def email(ns, formatter):
-    emailing.send_email(formatter=formatter, meeting=ns.meeting_label,
-                        email_type=ns.email_type, attach_paths=ns.attach_paths)
+def command_email(ns, formatter):
+    emailing.send_email(formatter=formatter, meeting_label=ns.meeting_label,
+                        email_choice=ns.email_type, attach_paths=ns.attach_paths)
 
 
 def command_image_sizes(ns, formatter):
@@ -95,7 +95,7 @@ def make_subparser(sub, command_name, desc=None, **kwargs):
 
 def create_parser():
     """Return an ArgumentParser object."""
-    email_choices = sorted(formatting.EMAIL_TEMPLATES.keys())
+    email_choices = sorted(formatting.EMAIL_CHOICES)
     text_choices = sorted(formatting.GENERAL_TEMPLATES.keys())
     tweet_choices = sorted(formatting.TWEET_CHOICES)
 
@@ -118,13 +118,13 @@ def create_parser():
     add_count_argument(parser)
     parser.set_defaults(run_command=command_index_html)
 
-    parser = sub.add_parser("email", help="send an e-mail related to a meeting.")
+    parser = make_subparser(sub, "email", desc="send an e-mail related to a meeting.")
     add_meeting_label_argument(parser)
     parser.add_argument('email_type', metavar='EMAIL_TYPE', choices=email_choices,
         help=("what e-mail to send."))
     parser.add_argument('--attach', dest='attach_paths', metavar='PATH', nargs="*",
         help=("paths of any attachments."))
-    parser.set_defaults(run_command=email)
+    parser.set_defaults(run_command=command_email)
 
     parser = make_subparser(sub, "tweet", desc="send a tweet.")
     parser.set_defaults(run_command=command_tweet)

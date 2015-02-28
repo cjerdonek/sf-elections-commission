@@ -9,6 +9,9 @@ TBD = "TBD"
 URL_HOME = "index.aspx?page=319"
 URL_MEETINGS = "index.aspx?page=1382"
 
+EMAIL_CHOICES = ['public_notice', 'body_notice']
+TWEET_CHOICES = ['meeting_posted', 'minutes_approved', 'minutes_draft', 'youtube']
+
 FILES_FORMAT = """\
 Folder structure
 ----------------
@@ -150,9 +153,7 @@ GENERAL_TEMPLATES = {
     'html_past': HTML_PAST_MEETING,
 }
 
-TWEET_CHOICES = ['meeting_posted', 'minutes_approved', 'minutes_draft', 'youtube']
-
-TWEET_CANCEL = """\
+TWEET_CANCELLATION = """\
 Next {date:%A}'s {date:%B {day}} meeting of the {body_full} will not be held: {home_page}
 """
 
@@ -178,36 +179,28 @@ TWEET_YOUTUBE = (
 
 TWEET_TEMPLATES = {
     'agenda_posted': TWEET_AGENDA_POSTED,
-    'meeting_canceled': TWEET_CANCEL,
+    'meeting_canceled': TWEET_CANCELLATION,
     'minutes_approved': TWEET_MINUTES_APPROVED,
     'minutes_draft': TWEET_MINUTES_DRAFT,
     'youtube': TWEET_YOUTUBE,
 }
 
 
-EMAIL_BODY = """\
-Hi,
-
-This is an FYI that the agenda and packet for next {date:%A}'s
-{date:%B {date.day}, %Y} {body_name_medium} meeting are now posted online:
-
-http://sfgov.org/electionscommission
-
-Thanks a lot (and please remember not to reply to all),
---Chris
-
+_EMAIL_FOOTER = """\
+{signature}
 San Francisco Elections Commission
 Website: http://sfgov.org/electionscommission
 Twitter: @SFElectionsComm
 
+{initials}
 """
 
-EMAIL_BODY_SUBJECT = """\
-{body_name_short}: {date.month}/{date.day}/{date.year} agenda now online"""
+_EMAIL_PUBLIC_NOTICE_SUBJECT = """\
+meeting notice: {date:%b {date.day}, %Y} {body_name_library_subject}"""
 
 # TODO: include phone number.
 # TODO: wrap paragraphs individually.
-EMAIL_LIBRARY = """\
+_EMAIL_PUBLIC_NOTICE = """\
 Hello,
 
 Attached is the agenda for the {date:%B {date.day}, %Y}
@@ -227,23 +220,61 @@ Website: http://sfgov.org/electionscommission
 Twitter: @SFElectionsComm
 """
 
-EMAIL_LIBRARY_SUBJECT = """\
-meeting notice: {date:%b {date.day}, %Y} {body_name_library_subject}"""
+_EMAIL_PUBLIC_NOTICE_CANCELLATION = """\
+Hello,
 
-EMAIL_TEMPLATES = {
-    'tell_body': EMAIL_BODY,
-    'tell_library': EMAIL_LIBRARY,
-}
+Attached is a cancellation notice for the {date:%B {date.day}, %Y} meeting
+of the {body_name_complete}.
+
+Thank you,
+
+{email_footer}
+"""
+
+_EMAIL_BODY_NOTICE_SUBJECT = """\
+{body_name_short}: {date.month}/{date.day}/{date.year} agenda now online"""
+
+EMAIL_BODY = """\
+Hi,
+
+This is an FYI that the agenda and packet for next {date:%A}'s
+{date:%B {date.day}, %Y} {body_name_medium} meeting are now posted online:
+
+http://sfgov.org/electionscommission
+
+Thanks a lot (and please remember not to reply to all),
+--Chris
+
+San Francisco Elections Commission
+Website: http://sfgov.org/electionscommission
+Twitter: @SFElectionsComm
+
+"""
+
 
 EMAIL_SUBJECTS = {
-    'tell_body': EMAIL_BODY_SUBJECT,
-    'tell_library': EMAIL_LIBRARY_SUBJECT,
+    'body_notice': _EMAIL_BODY_NOTICE_SUBJECT,
+    'public_notice': _EMAIL_PUBLIC_NOTICE_SUBJECT,
 }
+
+
+EMAIL_TEMPLATES = {
+    'body_notice': EMAIL_BODY,
+    'body_notice_': EMAIL_BODY,
+    'public_notice': _EMAIL_PUBLIC_NOTICE,
+    'public_notice_cancellation': _EMAIL_PUBLIC_NOTICE_CANCELLATION,
+}
+
+
+def make_notice_template_key(config, text_label, meeting_label):
+    suffix = 'cancellation' if config.is_meeting_canceled(meeting_label) else 'agenda'
+    return '{0}_{1}'.format(text_label, suffix)
 
 
 def get_date_full(date):
     """Return the date in the following format: "January 7, 2015"."""
     return "{0:%B {day}, %Y}".format(date, day=date.day)
+
 
 def get_date_full_with_short_day(date):
     """Return the date in the following format: "Wed, January 7, 2015"."""
@@ -301,6 +332,7 @@ def get_cancel_tweet(label):
     return make_tweet(format, label)
 
 
+# TODO: move these classes to config.py.
 class BodyCommission(object):
 
     label = common.LABEL_COMMISSION
@@ -313,6 +345,11 @@ class BodyCommission(object):
     name_full = "San Francisco Elections Commission"
     name_complete = "San Francisco Elections Commission"
     name_library_subject = "SF Elections Commission"
+
+    sender = "cjerdonek"
+    public_bcc = None
+    initials = ""
+    signature = "Chris Jerdonek, President"
 
 
 class BodyBOPEC(object):
@@ -329,19 +366,25 @@ class BodyBOPEC(object):
                      "of the San Francisco Elections Commission")
     name_library_subject = "BOPEC (SF Elections Commission)"
 
+    sender = "commission"
+    public_bcc = ["jrowe"]
+    initials = "/cjj"
+    signature = ""
 
-def get_meeting_info(label):
-    body_label, date = common.parse_label(label)
 
+def get_meeting_info(config, label):
     body_classes = {
         'bopec': BodyBOPEC,
         'commission': BodyCommission,
     }
 
+    body_label, date = common.parse_label(label)
     body_cls = body_classes[body_label]
     body = body_cls()
 
-    return body, date
+    data = config.get_meeting(label)
+
+    return body, date, data
 
 
 class Formatter(object):
@@ -350,12 +393,14 @@ class Formatter(object):
         self.config = config
 
     def get_meeting_kwargs(self, label):
-        data = self.config.get_meeting(label)
-        body, date = get_meeting_info(label)
+        body, date, data = get_meeting_info(self.config, label)
         body_name_full = body.name_full
         body_name_medium = body.name_medium
         body_name_short = body.name_short
         body_label = body.label
+
+        email_footer = _EMAIL_FOOTER.format(signature=body.signature, initials=body.initials)
+
         file_name_prefix = ("{date:%Y_%m_%d}_{body}".
                             format(date=date, body=body.name_file_name))
 
@@ -410,6 +455,7 @@ class Formatter(object):
             'day': date.day,
             # TODO: dynamically change this: e.g. today or yesterday.
             'day_reference': "last Wednesday",
+            'email_footer': email_footer,
             'file_name_prefix': file_name_prefix,
             'home_page': get_absolute_url(URL_HOME),
             'minutes_html': minutes_html,
@@ -460,17 +506,21 @@ class Formatter(object):
         format_str = GENERAL_TEMPLATES[template_label]
         return self.format_meeting_text(format_str, meeting_label)
 
+    def get_email_texts(self, email_choice, meeting_label):
+        email_key = make_notice_template_key(self.config, email_choice, meeting_label)
+
+        subject_format = EMAIL_SUBJECTS[email_choice]
+        body_format = EMAIL_TEMPLATES[email_key]
+
+        subject = self.format_meeting_text(subject_format, meeting_label)
+        body = self.format_meeting_text(body_format, meeting_label)
+
+        return subject, body
+
     def make_tweet(self, tweet_label, meeting_label):
-        # TODO: make this logic less brittle (e.g. by making it more DRY).
         if tweet_label == 'meeting_posted':
-            data = self.config.get_meeting(meeting_label)
-            meeting_status = data.get('status')
-            if meeting_status is None:
-                tweet_label = 'agenda_posted'
-            elif meeting_status == 'canceled':
-                tweet_label = 'meeting_canceled'
-            else:
-                raise Exception('invalid status: {0}'.format(meeting_status))
+            tweet_label = make_notice_template_key(self.config, tweet_label, meeting_label)
+
         format_str = TWEET_TEMPLATES[tweet_label]
         kwargs = self.get_meeting_kwargs(meeting_label)
         return self.get_formatted(format_str, **kwargs)
