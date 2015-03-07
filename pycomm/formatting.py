@@ -360,7 +360,7 @@ class BodyCommission(object):
 
     sender = "cjerdonek"
     public_bcc = None
-    body_to = ["cjerdonek", "cjung", "rmatthews", "jrowe", "rsafont", "wyu",
+    body_to = ["cjerdonek", "cjung", "dparis", "jrowe", "rsafont", "wyu",
                "jarntz", "ashen", "jwhite"]
     initials = ""
     signature = "Chris Jerdonek, President"
