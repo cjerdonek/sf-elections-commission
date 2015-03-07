@@ -111,7 +111,7 @@ def create_parser():
     parser = sub.add_parser("text", help="generate text blocks for meetings.")
     add_meeting_label_argument(parser)
     parser.add_argument('text_type', metavar='TEXT_TYPE', choices=text_choices,
-        help=("what text to generate."))
+        help=("what text to generate: {0}.".format(", ".join(text_choices))))
     parser.set_defaults(run_command=command_text)
 
     parser = make_subparser(sub, "index_html", desc="make the meeting index HTML for the home page.")
