@@ -67,7 +67,7 @@ class Config(object):
         raise Exception("no next meeting")
 
     def get_meeting_labels(self, first=0, count=1):
-        """Return the meeting labe."""
+        """Return a list of consecutive meeting labels."""
         label = self.get_next_meeting_label()
         labels = self.get_all_meeting_labels()
         index = labels.index(label)
