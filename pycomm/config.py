@@ -54,11 +54,11 @@ class Config(object):
         status = data.get('status')
         return status == 'canceled'
 
-    def get_meeting_labels(self):
+    def get_all_meeting_labels(self):
         return sorted(self.meetings.keys())
 
     def get_next_meeting_label(self):
-        labels = self.get_meeting_labels()
+        labels = self.get_all_meeting_labels()
         today = datetime.date.today()
         for label in labels:
             body_label, date_ = common.parse_label(label)
@@ -66,11 +66,12 @@ class Config(object):
                 return label
         raise Exception("no next meeting")
 
-    def get_next_meeting_labels(self, count):
+    def get_meeting_labels(self, first=0, count=1):
+        """Return the meeting labe."""
         label = self.get_next_meeting_label()
-        labels = self.get_meeting_labels()
+        labels = self.get_all_meeting_labels()
         index = labels.index(label)
-        labels = labels[index:index + count]
+        labels = labels[index + first:index + count]
         if len(labels) < count:
             raise Exception("config file only contains next {0} meetings: {1}"
                             .format(len(labels), ", ".join(labels)))

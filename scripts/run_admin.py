@@ -81,9 +81,15 @@ def add_count_argument(parser, default=None):
     parser.add_argument('--count', default=default, type=int,
         help=("include the next COUNT meetings.  Defaults to {0}".format(default)))
 
-def add_meeting_label_argument(parser):
+def add_meeting_label_argument(parser, config):
+    first = -2
+    count = 5
+    labels = config.get_meeting_labels(first=first, count=count)
+    current_index = -1 * first
+    labels[current_index] = "{0} (next meeting)".format(labels[current_index])
+    label_text = ", ".join(labels)
     parser.add_argument('meeting_label', metavar='MEETING',
-        help=('meeting label, for example "20150107_bopec" or "20150121_commission".'))
+        help=('meeting label, for example: {0}.'.format(label_text)))
 
 
 def make_subparser(sub, command_name, desc=None, **kwargs):
@@ -93,7 +99,7 @@ def make_subparser(sub, command_name, desc=None, **kwargs):
     return parser
 
 
-def create_parser():
+def create_parser(config):
     """Return an ArgumentParser object."""
     email_choices = sorted(formatting.EMAIL_CHOICES)
     text_choices = sorted(formatting.GENERAL_TEMPLATES.keys())
@@ -109,7 +115,7 @@ def create_parser():
     parser.set_defaults(run_command=command_upcoming)
 
     parser = sub.add_parser("text", help="generate text blocks for meetings.")
-    add_meeting_label_argument(parser)
+    add_meeting_label_argument(parser, config)
     parser.add_argument('text_type', metavar='TEXT_TYPE', choices=text_choices,
         help=("what text to generate: {0}.".format(", ".join(text_choices))))
     parser.set_defaults(run_command=command_text)
@@ -119,9 +125,9 @@ def create_parser():
     parser.set_defaults(run_command=command_index_html)
 
     parser = make_subparser(sub, "email", desc="send an e-mail related to a meeting.")
-    add_meeting_label_argument(parser)
+    add_meeting_label_argument(parser, config)
     parser.add_argument('email_type', metavar='EMAIL_TYPE', choices=email_choices,
-        help=("what e-mail to send."))
+        help=("what e-mail to send: {0}.".format(", ".join(text_choices))))
     parser.add_argument('--attach', dest='attach_paths', metavar='PATH', nargs="*",
         help=("paths of any attachments."))
     parser.set_defaults(run_command=command_email)
@@ -130,7 +136,7 @@ def create_parser():
     parser.set_defaults(run_command=command_tweet)
 
     parser = sub.add_parser("tweet_meeting", help="send a tweet related to a meeting.")
-    add_meeting_label_argument(parser)
+    add_meeting_label_argument(parser, config)
     parser.add_argument('text_type', metavar='TEXT_TYPE', choices=tweet_choices,
         help=("what text to tweet."))
     parser.set_defaults(run_command=command_tweet_meeting)
@@ -145,9 +151,9 @@ def main(argv=None):
     if argv is None:
         argv = sys.argv[1:]
     logging.basicConfig(level='INFO')
-    parser = create_parser()
-    ns = parser.parse_args(argv)
     formatter = get_formatter()
+    parser = create_parser(config=formatter.config)
+    ns = parser.parse_args(argv)
     ns.run_command(ns, formatter=formatter)
 
 
