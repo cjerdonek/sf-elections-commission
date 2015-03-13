@@ -127,7 +127,7 @@ def create_parser(config):
     parser = make_subparser(sub, "email", desc="send an e-mail related to a meeting.")
     add_meeting_label_argument(parser, config)
     parser.add_argument('email_type', metavar='EMAIL_TYPE', choices=email_choices,
-        help=("what e-mail to send: {0}.".format(", ".join(text_choices))))
+        help=("what e-mail to send: {0}.".format(", ".join(email_choices))))
     parser.add_argument('--attach', dest='attach_paths', metavar='PATH', nargs="*",
         help=("paths of any attachments."))
     parser.set_defaults(run_command=command_email)

@@ -189,6 +189,7 @@ TWEET_TEMPLATES = {
 _EMAIL_FOOTER = """\
 {signature}
 San Francisco Elections Commission
+
 Website: http://sfgov.org/electionscommission
 Twitter: @SFElectionsComm
 
@@ -200,11 +201,11 @@ meeting notice: {date:%b {date.day}, %Y} {body_name_library_subject}"""
 
 # TODO: include phone number.
 # TODO: wrap paragraphs individually.
-_EMAIL_PUBLIC_NOTICE = """\
+_EMAIL_PUBLIC_NOTICE_AGENDA = """\
 Hello,
 
-Attached is the agenda for the {date:%B {date.day}, %Y}
-meeting of the {body_name_complete}.
+Attached is the agenda for the {date:%B {date.day}, %Y} meeting
+of the {body_name_complete}.
 
 The agenda and agenda packet is or will also be posted on the
 Elections Commission home page:
@@ -213,11 +214,8 @@ http://sfgov.org/electionscommission
 
 Thank you,
 
-Chris Jerdonek, President
-San Francisco Elections Commission
 
-Website: http://sfgov.org/electionscommission
-Twitter: @SFElectionsComm
+{email_footer}
 """
 
 _EMAIL_PUBLIC_NOTICE_CANCELLATION = """\
@@ -233,10 +231,10 @@ Thank you,
 
 _EMAIL_BODY_SUBJECT_PREFIX = "{date.month}/{date.day}/{date.year} {body_name_short} meeting: "
 
-_EMAIL_BODY_SUBJECT = _EMAIL_BODY_SUBJECT_PREFIX + "agenda now online"
+_EMAIL_BODY_AGENDA_SUBJECT = _EMAIL_BODY_SUBJECT_PREFIX + "agenda now online"
 _EMAIL_BODY_CANCELLATION_SUBJECT = _EMAIL_BODY_SUBJECT_PREFIX + "canceled"
 
-_EMAIL_BODY_ = """\
+_EMAIL_BODY_AGENDA = """\
 Hi,
 
 This is an FYI that the agenda and packet for next {date:%A}'s
@@ -264,16 +262,17 @@ Thanks (and please remember not to reply to all),
 
 
 EMAIL_SUBJECTS = {
-    'body_notice': _EMAIL_BODY_SUBJECT,
+    'body_notice_agenda': _EMAIL_BODY_AGENDA_SUBJECT,
     'body_notice_cancellation': _EMAIL_BODY_CANCELLATION_SUBJECT,
+    'public_notice_agenda': _EMAIL_PUBLIC_NOTICE_SUBJECT,
     'public_notice_cancellation': _EMAIL_PUBLIC_NOTICE_SUBJECT,
 }
 
 
 EMAIL_TEMPLATES = {
-    'body_notice': _EMAIL_BODY_,
+    'body_notice_agenda': _EMAIL_BODY_AGENDA,
     'body_notice_cancellation': _EMAIL_BODY_CANCELLATION,
-    'public_notice': _EMAIL_PUBLIC_NOTICE,
+    'public_notice_agenda': _EMAIL_PUBLIC_NOTICE_AGENDA,
     'public_notice_cancellation': _EMAIL_PUBLIC_NOTICE_CANCELLATION,
 }
 
