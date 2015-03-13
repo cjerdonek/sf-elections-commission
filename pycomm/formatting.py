@@ -158,7 +158,7 @@ Next {date:%A}'s {date:%B {day}} meeting of the {body_full} will not be held: {h
 """
 
 TWEET_AGENDA_POSTED = (
-    "The agenda and packet for this {date:%A}'s {date:%B {day}} "
+    "The agenda and packet for {day_reference}'s {date:%B {day}} "
     "{body_name_medium} meeting are now posted online: {home_page}"
 )
 
@@ -173,12 +173,12 @@ TWEET_MINUTES_APPROVED = (
 )
 
 TWEET_YOUTUBE = (
-    "The audio for {day_reference}'s {date:%B} {date.day} {body_name_medium} "
+    "The audio for {day_reference}'s {date:%B {day}} {body_name_medium} "
     "meeting is now posted on YouTube ({youtube_length_text}): {youtube_url}"
 )
 
 TWEET_TEMPLATES = {
-    'agenda_posted': TWEET_AGENDA_POSTED,
+    'meeting_posted_agenda': TWEET_AGENDA_POSTED,
     'meeting_canceled': TWEET_CANCELLATION,
     'minutes_approved': TWEET_MINUTES_APPROVED,
     'minutes_draft': TWEET_MINUTES_DRAFT,
@@ -244,6 +244,7 @@ http://sfgov.org/electionscommission
 
 Thanks (and please remember not to reply to all),
 
+
 {email_footer}
 """
 
@@ -256,6 +257,7 @@ meeting is canceled and will not be held:
 http://sfgov.org/electionscommission
 
 Thanks (and please remember not to reply to all),
+
 
 {email_footer}
 """
@@ -359,8 +361,9 @@ class BodyCommission(object):
 
     sender = "cjerdonek"
     public_bcc = None
-    body_to = ["cjerdonek", "cjung", "dparis", "jrowe", "rsafont", "wyu",
+    body_to = ["cjung", "dparis", "jrowe", "rsafont", "wyu",
                "jarntz", "ashen", "jwhite"]
+    body_cc = []
     initials = ""
     signature = "Chris Jerdonek, President"
 
@@ -469,7 +472,7 @@ class Formatter(object):
             'date_full_no_day': get_date_full(date),
             'day': date.day,
             # TODO: dynamically change this: e.g. today or yesterday.
-            'day_reference': "last Wednesday",
+            'day_reference': "next Wednesday",
             'email_footer': email_footer,
             'file_name_prefix': file_name_prefix,
             'home_page': get_absolute_url(URL_HOME),
