@@ -49,7 +49,7 @@ Vision CMS structure
 
         {date:%B {day}, %Y} {body_name_short} Agenda Packet/
 
-            For #3: Draft Minutes for April 2, 2014 BOPEC Meeting
+            1. (for #3) Draft Minutes for April 2, 2015 BOPEC Meeting
 
 
 """

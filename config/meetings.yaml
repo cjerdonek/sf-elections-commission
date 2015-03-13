@@ -35,7 +35,8 @@ meetings:
   20150304_bopec:
     status: canceled
   20150318_commission:
-    status: TBD
+    agenda_id: 2506
+    agenda_packet_id: 2504
   20150401_bopec:
     status: TBD
   20150415_commission:

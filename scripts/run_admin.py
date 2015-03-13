@@ -138,7 +138,7 @@ def create_parser(config):
     parser = sub.add_parser("tweet_meeting", help="send a tweet related to a meeting.")
     add_meeting_label_argument(parser, config)
     parser.add_argument('text_type', metavar='TEXT_TYPE', choices=tweet_choices,
-        help=("what text to tweet."))
+        help=("what text to tweet: {0}.".format(", ".join(tweet_choices))))
     parser.set_defaults(run_command=command_tweet_meeting)
 
     parser = sub.add_parser("imagesizes", help="show 16:9 image sizes to help with screen shots")
