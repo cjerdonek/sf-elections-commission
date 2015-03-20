@@ -142,9 +142,7 @@ HTML_PAST_MEETING = """\
     <td headers="table_heading_0">{date_full_short_day}</td>
     <td headers="table_heading_1">{body_name_short_html}</td>
     <td headers="table_heading_2">
-    <a href="{url_agenda_html}" target="_blank">
-    Agenda (PDF)</a> |
-    <a href="{url_agenda_packet_html}">Packet</a>
+    {agenda_info_html}
     </td>
     <td headers="table_heading_4">
     {minutes_html}
@@ -298,9 +296,12 @@ def make_day_reference(date):
     today = date.today()
     delta = (date - today).days
     if delta == -1:
-        return "yesterday"
+        text = "yesterday"
+    elif delta > 14 or delta < -14:
+        text = None
     else:
         raise Exception("unhandled day reference: {0} days".format(delta))
+    return text
 
 
 def get_date_full(date):
@@ -353,6 +354,14 @@ def get_document_link_html(doc_id, text):
 def get_agenda_packet_url_html(folder_id):
     packet_url = html_escape(get_agenda_packet_url(folder_id))
     return ('<a href="{0}">Packet</a>'.format(packet_url))
+
+
+def get_agenda_info_html(doc_id, text):
+    # TODO: html-escape the text.
+    return """\
+<a href="{url_agenda_html}" target="_blank">
+Agenda (PDF)</a> |
+<a href="{url_agenda_packet_html}">Packet</a>""".format(doc_id, text)
 
 
 def make_tweet(format_string, label):
@@ -459,17 +468,21 @@ class Formatter(object):
         elif meeting_status == "TBD":
             agenda_link_html = TBD
             agenda_packet_link_html = NBSP
+            minutes_html = TBD
+            youtube_link_html = TBD
         elif meeting_status == "canceled":
             meeting_time = "Canceled: no meeting"
             meeting_place = NBSP
+            agenda_info_html = "No meeting"
             agenda_link_html = NBSP
             agenda_packet_link_html = NBSP
+            minutes_html = NBSP
+            youtube_link_html = NBSP
         else:
             raise Exception("unknown status: {0}".format(meeting_status))
 
         # Minutes
         minutes_id = data.get('minutes_id')
-        minutes_html = TBD
         if minutes_id:
             draft_prefix = 'Draft ' if data.get('minutes_draft') else ''
             text = "{0}Minutes (PDF)".format(draft_prefix)
@@ -477,6 +490,7 @@ class Formatter(object):
                 get_document_link_html(doc_id=minutes_id, text=text))
 
         kwargs = {
+            'agenda_info_html': agenda_info_html,
             'agenda_link_html': agenda_link_html,
             'agenda_packet_link_html': agenda_packet_link_html,
             'body_name_complete': body.name_complete,
@@ -507,9 +521,7 @@ class Formatter(object):
         # YouTube
         audio_base = "{0:%Y%m%d}_{1}".format(date, body_label)
         youtube_id = data.get('youtube_id')
-        if not youtube_id:
-            youtube_link_html = TBD
-        else:
+        if youtube_id:
             youtube_length = data.get('youtube_length')
             youtube_length_text = format_youtube_length(youtube_length)
             youtube_link_html = HTML_YOUTUBE_FORMAT.format(youtube_id=youtube_id,
