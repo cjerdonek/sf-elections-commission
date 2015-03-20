@@ -66,13 +66,13 @@ class Config(object):
                 return label
         raise Exception("no next meeting")
 
-    def get_meeting_labels(self, first=0, count=1):
+    def get_meeting_labels(self, first=0, count=1, suppress_error=False):
         """Return a list of consecutive meeting labels."""
         label = self.get_next_meeting_label()
         labels = self.get_all_meeting_labels()
         index = labels.index(label)
         labels = labels[index + first:index + count]
-        if len(labels) < count:
+        if len(labels) < count and not suppress_error:
             raise Exception("config file only contains next {0} meetings: {1}"
                             .format(len(labels), ", ".join(labels)))
         return labels

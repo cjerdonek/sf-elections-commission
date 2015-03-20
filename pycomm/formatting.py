@@ -88,6 +88,15 @@ Agenda (PDF): {url_agenda_absolute}
 
 Agenda Packet: {url_agenda_packet_absolute}
 
+1. Call to Order & Roll Call
+2. General Public Comment x:xx
+3. Approval of Minutes for previous meeting
+4. Commissioners' Reports
+5. Director's Report
+...
+Adjournment
+
+
 Tags
 ----
 

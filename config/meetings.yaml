@@ -28,8 +28,7 @@ meetings:
   20150218_commission:
     agenda_id: 2435
     agenda_packet_id: 2419
-    minutes_id: 2501
-    minutes_draft: True
+    minutes_id: 2515
     youtube_id: "vtVDWLHYgJQ"
     youtube_length: "1:42:02"
   20150304_bopec:
@@ -37,7 +36,25 @@ meetings:
   20150318_commission:
     agenda_id: 2506
     agenda_packet_id: 2504
+    minutes_id: ""
+    minutes_draft: True
+    youtube_id: "VJl1VsAzY5M"
+    youtube_length: "42:10"
   20150401_bopec:
     status: TBD
+    minutes_id: ""
+    minutes_draft: True
+    youtube_id: ""
+    youtube_length: ""
   20150415_commission:
     status: TBD
+    minutes_id: ""
+    minutes_draft: True
+    youtube_id: ""
+    youtube_length: ""
+  20150506_bopec:
+    status: TBD
+    minutes_id: ""
+    minutes_draft: True
+    youtube_id: ""
+    youtube_length: ""

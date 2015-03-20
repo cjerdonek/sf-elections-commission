@@ -84,7 +84,7 @@ def add_count_argument(parser, default=None):
 def add_meeting_label_argument(parser, config):
     first = -2
     count = 5
-    labels = config.get_meeting_labels(first=first, count=count)
+    labels = config.get_meeting_labels(first=first, count=count, suppress_error=True)
     current_index = -1 * first
     labels[current_index] = "{0} (next meeting)".format(labels[current_index])
     label_text = ", ".join(labels)
