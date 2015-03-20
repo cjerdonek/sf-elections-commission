@@ -317,7 +317,7 @@ def format_youtube_length(length):
     elif len(parts) == 2:
         text = "{0} mins".format(parts[0])
     else:
-        raise Exception("bad length: {0}".format(length))
+        raise Exception("bad length: {0!r}".format(length))
     return text
 
 
@@ -498,7 +498,7 @@ class Formatter(object):
         # YouTube
         audio_base = "{0:%Y%m%d}_{1}".format(date, body_label)
         youtube_id = data.get('youtube_id')
-        if youtube_id is None:
+        if not youtube_id:
             youtube_link_html = TBD
         else:
             youtube_length = data.get('youtube_length')

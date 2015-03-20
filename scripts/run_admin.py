@@ -42,7 +42,7 @@ def command_text(ns, formatter):
 def command_index_html(ns, formatter):
     config = formatter.config
     text_type = "html_index"
-    labels = config.get_next_meeting_labels(count=ns.count)
+    labels = config.get_meeting_labels(count=ns.count)
     text = ""
     for label in labels:
         text += formatter.get_meeting_text(text_type, label)
