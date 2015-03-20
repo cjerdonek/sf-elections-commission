@@ -293,6 +293,16 @@ def make_notice_template_key(config, text_label, meeting_label):
     return '{0}_{1}'.format(text_label, suffix)
 
 
+def make_day_reference(date):
+    """For example, return "today", "yesterday", "this past Wednesday", etc."""
+    today = date.today()
+    delta = (date - today).days
+    if delta == -1:
+        return "yesterday"
+    else:
+        raise Exception("unhandled day reference: {0} days".format(delta))
+
+
 def get_date_full(date):
     """Return the date in the following format: "January 7, 2015"."""
     return "{0:%B {day}, %Y}".format(date, day=date.day)
@@ -480,8 +490,7 @@ class Formatter(object):
             'date_full_short_day': get_date_full_with_short_day(date),
             'date_full_no_day': get_date_full(date),
             'day': date.day,
-            # TODO: dynamically change this: e.g. today or yesterday.
-            'day_reference': "next Wednesday",
+            'day_reference': make_day_reference(date),
             'email_footer': email_footer,
             'file_name_prefix': file_name_prefix,
             'home_page': get_absolute_url(URL_HOME),

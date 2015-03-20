@@ -82,7 +82,9 @@ def add_count_argument(parser, default=None):
         help=("include the next COUNT meetings.  Defaults to {0}".format(default)))
 
 def add_meeting_label_argument(parser, config):
-    first = -2
+    # This should be far enough back to cover the minutes for the previous
+    # meeting of the same type (e.g. for tweeting approved minutes).
+    first = -3
     count = 5
     labels = config.get_meeting_labels(first=first, count=count, suppress_error=True)
     current_index = -1 * first
