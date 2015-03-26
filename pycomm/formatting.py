@@ -291,12 +291,15 @@ def make_notice_template_key(config, text_label, meeting_label):
     return '{0}_{1}'.format(text_label, suffix)
 
 
+# TODO: generalize this to work with a day of the week other than Wednesday.
 def make_day_reference(date):
     """For example, return "today", "yesterday", "this past Wednesday", etc."""
     today = date.today()
     delta = (date - today).days
     if delta == -1:
         text = "yesterday"
+    elif 5 <= delta <= 7:  # Wednesday through Friday of previous week.
+        text = "next Wednesday"
     elif delta > 14 or delta < -14:
         text = None
     else:
@@ -460,6 +463,7 @@ class Formatter(object):
         meeting_time = "6:00 PM"
         meeting_place = body.meeting_place
 
+        agenda_info_html = None
         if meeting_status is None:
             agenda_link_html = common.indent(
                 get_document_link_html(doc_id=agenda_id, text="Agenda (PDF)"))

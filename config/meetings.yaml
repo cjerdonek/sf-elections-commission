@@ -41,11 +41,7 @@ meetings:
     youtube_id: "VJl1VsAzY5M"
     youtube_length: "42:10"
   20150401_bopec:
-    status: TBD
-    minutes_id: ""
-    minutes_draft: True
-    youtube_id: ""
-    youtube_length: ""
+    status: canceled
   20150415_commission:
     status: TBD
     minutes_id: ""
