@@ -186,7 +186,7 @@ TWEET_YOUTUBE = (
 
 TWEET_TEMPLATES = {
     'meeting_posted_agenda': TWEET_AGENDA_POSTED,
-    'meeting_canceled': TWEET_CANCELLATION,
+    'meeting_posted_cancellation': TWEET_CANCELLATION,
     'minutes_approved': TWEET_MINUTES_APPROVED,
     'minutes_draft': TWEET_MINUTES_DRAFT,
     'youtube': TWEET_YOUTUBE,

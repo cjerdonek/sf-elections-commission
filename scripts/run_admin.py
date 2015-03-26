@@ -1,11 +1,12 @@
 
 from __future__ import absolute_import
 
-from argparse import ArgumentParser
+import argparse
 from datetime import date
 import logging
 import os
 import sys
+import textwrap
 
 import set_path
 from pycomm import common
@@ -15,6 +16,8 @@ from pycomm import tweet as tweeting
 from pycomm.config import get_config
 from pycomm import formatting
 
+
+_FORMATTER_CLASS = argparse.RawDescriptionHelpFormatter
 
 def display(text):
     print(60 * "-")
@@ -107,7 +110,20 @@ def create_parser(config):
     text_choices = sorted(formatting.GENERAL_TEMPLATES.keys())
     tweet_choices = sorted(formatting.TWEET_CHOICES)
 
-    root_parser = ArgumentParser(description="command for helping with admin tasks")
+    root_parser = argparse.ArgumentParser(formatter_class=_FORMATTER_CLASS,
+                                 description=textwrap.dedent("""\
+    command for helping with admin tasks.
+
+    Pre-meeting tasks:
+
+     1) prepare the agenda as a PDF,
+     2) update the Commission home page,
+     3) tweet the meeting announcement,
+     4) e-mail the public distribution list,
+     5) e-mail the meeting body, and
+     6) send the notice to the Deputy City Attorneys for posting.
+
+    """))
 
     sub = root_parser.add_subparsers(help='sub-command help')
 
