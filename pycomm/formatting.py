@@ -22,6 +22,7 @@ Folder structure
 {date:%Y-%m-%d} {body_name_short}/
 
     {file_name_prefix}_Agenda.pdf
+    {file_name_prefix}_Notes.txt
 
     Agenda Packet/
 
