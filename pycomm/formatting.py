@@ -9,7 +9,10 @@ TBD = "TBD"
 URL_HOME = "index.aspx?page=319"
 URL_MEETINGS = "index.aspx?page=1382"
 
-EMAIL_CHOICES = ['public_notice', 'body_notice']
+_EMAIL_TYPE_CHOICE_PARTICIPANTS = 'notify_participants'
+_EMAIL_TYPE_CHOICE_PUBLIC = 'notify_public'
+
+EMAIL_TYPE_CHOICES = [_EMAIL_TYPE_CHOICE_PARTICIPANTS, _EMAIL_TYPE_CHOICE_PUBLIC]
 TWEET_CHOICES = ['meeting_posted', 'minutes_approved', 'minutes_draft', 'youtube']
 
 FILES_FORMAT = """\
@@ -165,7 +168,7 @@ Next {date:%A}'s {date:%B {day}} meeting of the {body_full} will not be held: {h
 """
 
 TWEET_AGENDA_POSTED = (
-    "The agenda and packet for {day_reference}'s {date:%B {day}} "
+    "The agenda and packet for {day_reference} {date:%B {day}} "
     "{body_name_medium} meeting are now posted online: {home_page}"
 )
 
@@ -180,7 +183,7 @@ TWEET_MINUTES_APPROVED = (
 )
 
 TWEET_YOUTUBE = (
-    "The audio for {day_reference}'s {date:%B {day}} {body_name_medium} "
+    "The audio for {day_reference} {date:%B {day}} {body_name_medium} "
     "meeting is now posted on YouTube ({youtube_length_text}): {youtube_url}"
 )
 
@@ -199,16 +202,27 @@ San Francisco Elections Commission
 
 Website: http://sfgov.org/electionscommission
 Twitter: @SFElectionsComm
-
 {initials}
 """
 
-_EMAIL_PUBLIC_NOTICE_SUBJECT = """\
+_EMAIL_FOOTER_PUBLIC = """\
+Thank you,
+
+
+{normal_footer}
+Note: this e-mail was sent to the public distribution list for the
+San Francisco Elections Commission.  If you would like to update your
+e-mail address or be removed from this list, please e-mail the commission
+secretary at {{commission_email}}.  Thank you.
+""".format(normal_footer=_EMAIL_FOOTER)
+
+
+_EMAIL_PUBLIC_SUBJECT = """\
 meeting notice: {date:%b {date.day}, %Y} {body_name_library_subject}"""
 
 # TODO: include phone number.
 # TODO: wrap paragraphs individually.
-_EMAIL_PUBLIC_NOTICE_AGENDA = """\
+_EMAIL_PUBLIC_AGENDA = """\
 Hello,
 
 Attached is the agenda for the {date:%B {date.day}, %Y} meeting
@@ -219,29 +233,24 @@ Elections Commission home page:
 
 http://sfgov.org/electionscommission
 
-Thank you,
-
-
-{email_footer}
+{email_footer_public}
 """
 
-_EMAIL_PUBLIC_NOTICE_CANCELLATION = """\
+_EMAIL_PUBLIC_CANCELLATION = """\
 Hello,
 
 Attached is a cancellation notice for the {date:%B {date.day}, %Y} meeting
 of the {body_name_complete}.
 
-Thank you,
-
-{email_footer}
+{email_footer_public}
 """
 
-_EMAIL_BODY_SUBJECT_PREFIX = "{date.month}/{date.day}/{date.year} {body_name_short} meeting: "
+_EMAIL_PARTICIPANTS_SUBJECT_PREFIX = "{date.month}/{date.day}/{date.year} {body_name_short} meeting: "
 
-_EMAIL_BODY_AGENDA_SUBJECT = _EMAIL_BODY_SUBJECT_PREFIX + "agenda now online"
-_EMAIL_BODY_CANCELLATION_SUBJECT = _EMAIL_BODY_SUBJECT_PREFIX + "canceled"
+_EMAIL_PARTICIPANTS_AGENDA_SUBJECT = _EMAIL_PARTICIPANTS_SUBJECT_PREFIX + "agenda now online"
+_EMAIL_PARTICIPANTS_CANCELLATION_SUBJECT = _EMAIL_PARTICIPANTS_SUBJECT_PREFIX + "canceled"
 
-_EMAIL_BODY_AGENDA = """\
+_EMAIL_PARTICIPANTS_AGENDA = """\
 Hi,
 
 This is an FYI that the agenda and packet for next {date:%A}'s
@@ -255,7 +264,7 @@ Thanks (and please remember not to reply to all),
 {email_footer}
 """
 
-_EMAIL_BODY_CANCELLATION = """\
+_EMAIL_PARTICIPANTS_CANCELLATION = """\
 Hi,
 
 This is an FYI that next {date:%A}'s {date:%B {date.day}, %Y} {body_name_medium}
@@ -271,19 +280,25 @@ Thanks (and please remember not to reply to all),
 
 
 EMAIL_SUBJECTS = {
-    'body_notice_agenda': _EMAIL_BODY_AGENDA_SUBJECT,
-    'body_notice_cancellation': _EMAIL_BODY_CANCELLATION_SUBJECT,
-    'public_notice_agenda': _EMAIL_PUBLIC_NOTICE_SUBJECT,
-    'public_notice_cancellation': _EMAIL_PUBLIC_NOTICE_SUBJECT,
+    'notify_participants_agenda': _EMAIL_PARTICIPANTS_AGENDA_SUBJECT,
+    'notify_participants_cancellation': _EMAIL_PARTICIPANTS_CANCELLATION_SUBJECT,
+    'notify_public_agenda': _EMAIL_PUBLIC_SUBJECT,
+    'notify_public_cancellation': _EMAIL_PUBLIC_SUBJECT,
 }
 
 
 EMAIL_TEMPLATES = {
-    'body_notice_agenda': _EMAIL_BODY_AGENDA,
-    'body_notice_cancellation': _EMAIL_BODY_CANCELLATION,
-    'public_notice_agenda': _EMAIL_PUBLIC_NOTICE_AGENDA,
-    'public_notice_cancellation': _EMAIL_PUBLIC_NOTICE_CANCELLATION,
+    'notify_participants_agenda': _EMAIL_PARTICIPANTS_AGENDA,
+    'notify_participants_cancellation': _EMAIL_PARTICIPANTS_CANCELLATION,
+    'notify_public_agenda': _EMAIL_PUBLIC_AGENDA,
+    'notify_public_cancellation': _EMAIL_PUBLIC_CANCELLATION,
 }
+
+
+class EmailChoiceEnum(object):
+
+    notify_participants = _EMAIL_TYPE_CHOICE_PARTICIPANTS
+    notify_public = _EMAIL_TYPE_CHOICE_PUBLIC
 
 
 def make_notice_template_key(config, text_label, meeting_label):
@@ -293,17 +308,23 @@ def make_notice_template_key(config, text_label, meeting_label):
 
 # TODO: generalize this to work with a day of the week other than Wednesday.
 def make_day_reference(date):
-    """For example, return "today", "yesterday", "this past Wednesday", etc."""
+    """For example, return "today", "yesterday", "this past Wednesday", etc.
+
+    The return value is used in text like the following:
+
+        The agenda and packet for *****'s April 15 Comission meeting...."
+
+    """
     today = date.today()
-    delta = (date - today).days
-    if delta == -1:
-        text = "yesterday"
-    elif 5 <= delta <= 7:  # Wednesday through Friday of previous week.
-        text = "next Wednesday"
-    elif delta > 14 or delta < -14:
-        text = None
+    days_away = (date - today).days
+    if days_away == -1:
+        text = "yesterday's"
+    elif 5 <= days_away <= 7:  # Wednesday through Friday of previous week.
+        text = "next Wednesday's"
+    elif days_away > 7:
+        text = "the upcoming"
     else:
-        raise Exception("unhandled day reference: {0} days".format(delta))
+        raise Exception("unhandled day reference: {0} days".format(days_away))
     return text
 
 
@@ -442,13 +463,19 @@ class Formatter(object):
         self.config = config
 
     def get_meeting_kwargs(self, label):
-        body, date, data = get_meeting_info(self.config, label)
+        config = self.config
+        body, date, data = get_meeting_info(config, label)
         body_name_full = body.name_full
         body_name_medium = body.name_medium
         body_name_short = body.name_short
         body_label = body.label
 
-        email_footer = _EMAIL_FOOTER.format(signature=body.signature, initials=body.initials)
+        email_footer = _EMAIL_FOOTER.format(signature=body.signature,
+                                            initials=body.initials)
+        commission_email = config.get_email_address('commission')
+        email_footer_public = _EMAIL_FOOTER_PUBLIC.format(signature=body.signature,
+                                            initials=body.initials,
+                                            commission_email=commission_email)
 
         file_name_prefix = ("{date:%Y_%m_%d}_{body}".
                             format(date=date, body=body.name_file_name))
@@ -510,6 +537,7 @@ class Formatter(object):
             'day': date.day,
             'day_reference': make_day_reference(date),
             'email_footer': email_footer,
+            'email_footer_public': email_footer_public,
             'file_name_prefix': file_name_prefix,
             'home_page': get_absolute_url(URL_HOME),
             'minutes_html': minutes_html,

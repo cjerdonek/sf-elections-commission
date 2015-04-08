@@ -23,9 +23,9 @@ from oauth2client import tools
 
 from pycomm import common
 from pycomm import formatting
+from pycomm.formatting import EmailChoiceEnum
 
-
-def get_email_info(formatter, email_choice, meeting_label):
+def get_email_info(formatter, email_type, meeting_label):
     """Return an EmailInfo object."""
     config = formatter.config
     # Calling this method also checks that the meeting label is valid.
@@ -35,18 +35,19 @@ def get_email_info(formatter, email_choice, meeting_label):
     to_list = []
     cc_list = []
     bcc_list = []
-    if email_choice == 'public_notice':
+    if email_type == EmailChoiceEnum.notify_public:
         to_list += [sender]
         bcc_list = config.get_entities('distribution')
         if body.public_bcc is not None:
             bcc_list += body.public_bcc
-    elif email_choice == 'body_notice':
+    elif email_type == EmailChoiceEnum.notify_participants:
         to_list += body.body_to
         cc_list += body.body_cc
     else:
-        raise Exception("invalid email args: {0}".format((email_choice, meeting_label)))
+        raise Exception("invalid email type: {0!r} (choose from: {1})"
+                        .format(email_type, formatting.EMAIL_TYPE_CHOICES))
 
-    subject, body = formatter.get_email_texts(email_choice=email_choice, meeting_label=meeting_label)
+    subject, body = formatter.get_email_texts(email_choice=email_type, meeting_label=meeting_label)
 
     sender = config.get_email(sender)
     to_list = [config.get_email(val) for val in to_list]

@@ -106,7 +106,7 @@ def make_subparser(sub, command_name, desc=None, **kwargs):
 
 def create_parser(config):
     """Return an ArgumentParser object."""
-    email_choices = sorted(formatting.EMAIL_CHOICES)
+    email_choices = sorted(formatting.EMAIL_TYPE_CHOICES)
     text_choices = sorted(formatting.GENERAL_TEMPLATES.keys())
     tweet_choices = sorted(formatting.TWEET_CHOICES)
 

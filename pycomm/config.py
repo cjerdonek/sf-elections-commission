@@ -82,7 +82,12 @@ class Config(object):
         return self.people[key]
 
     def get_person(self, label):
-        return self.people['entities'][label]
+        entities = self.people['entities']
+        try:
+            person = entities[label]
+        except KeyError as err:
+            raise Exception("{0} (choose from: {1})".format(err, entities.keys()))
+        return person
 
     def get_google_client_secret_path(self):
         # Path to the client_secret.json file downloaded from the Developer Console
@@ -110,8 +115,17 @@ class Config(object):
         secret = config['twitter_access_token_secret']
         return key, secret
 
+    def get_email_address(self, key):
+        """
+        Arguments:
+          key: the key for the entity in the config file.
+        """
+        person = self.get_person(key)
+        return person['mail']
+
     def get_email(self, value):
         """Return a realname, email_address 2-tuple."""
+        # TODO: refactor this type-checking "if" logic away.
         person = self.get_person(value) if isinstance(value, basestring) else value
         try:
             return person['name'], person['mail']
