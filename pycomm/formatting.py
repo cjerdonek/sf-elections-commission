@@ -524,8 +524,6 @@ class Formatter(object):
             draft_prefix = 'Draft ' if data.get('minutes_draft') else ''
             text = "{0}Minutes (PDF)".format(draft_prefix)
             minutes_html = common.indent(get_document_link_html(doc_id=minutes_id, text=text))
-        else:
-            minutes_html = "TODO"
 
         kwargs = {
             'agenda_info_html': agenda_info_html,
