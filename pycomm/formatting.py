@@ -324,6 +324,8 @@ def make_day_reference(date):
         text = "next Wednesday's"
     elif days_away > 7:
         text = "the upcoming"
+    elif days_away < -7:
+        text = "the previous"
     else:
         raise Exception("unhandled day reference: {0} days".format(days_away))
     return text
@@ -361,7 +363,7 @@ def get_absolute_url(rel_url):
     return "http://www.sfgov2.org/{0}".format(rel_url)
 
 
-def get_agenda_link(agenda_id):
+def get_agenda_url(agenda_id):
     return "modules/showdocument.aspx?documentid={0}".format(agenda_id)
 
 
@@ -381,12 +383,14 @@ def get_agenda_packet_url_html(folder_id):
     return ('<a href="{0}">Packet</a>'.format(packet_url))
 
 
-def get_agenda_info_html(doc_id, text):
-    # TODO: html-escape the text.
+def get_agenda_info_html(agenda_url, agenda_packet_url):
+    agenda_url = html_escape(agenda_url)
+    agenda_packet_url = html_escape(agenda_packet_url)
     return """\
-<a href="{url_agenda_html}" target="_blank">
+<a href="{agenda_url}" target="_blank">
 Agenda (PDF)</a> |
-<a href="{url_agenda_packet_html}">Packet</a>""".format(doc_id, text)
+<a href="{agenda_packet_url}">Packet</a>""".format(agenda_url=agenda_url,
+                                                   agenda_packet_url=agenda_packet_url)
 
 
 def make_tweet(format_string, label):
@@ -484,8 +488,8 @@ class Formatter(object):
         agenda_id = data.get('agenda_id')
         # TODO: clean up the below.
         agenda_packet_id = data.get('agenda_packet_id')
-        url_agenda = get_agenda_link(agenda_id)
-        url_agenda_packet = get_agenda_packet_url(agenda_packet_id)
+        agenda_url = get_agenda_url(agenda_id)
+        agenda_packet_url = get_agenda_packet_url(agenda_packet_id)
 
         meeting_status = data.get('status')
         meeting_time = "6:00 PM"
@@ -497,6 +501,7 @@ class Formatter(object):
                 get_document_link_html(doc_id=agenda_id, text="Agenda (PDF)"))
             agenda_packet_link_html = common.indent(
                 get_agenda_packet_url_html(agenda_packet_id))
+            agenda_info_html = common.indent(get_agenda_info_html(agenda_url, agenda_packet_url))
         elif meeting_status == "TBD":
             agenda_link_html = TBD
             agenda_packet_link_html = NBSP
@@ -518,8 +523,9 @@ class Formatter(object):
         if minutes_id:
             draft_prefix = 'Draft ' if data.get('minutes_draft') else ''
             text = "{0}Minutes (PDF)".format(draft_prefix)
-            minutes_html = common.indent(
-                get_document_link_html(doc_id=minutes_id, text=text))
+            minutes_html = common.indent(get_document_link_html(doc_id=minutes_id, text=text))
+        else:
+            minutes_html = "TODO"
 
         kwargs = {
             'agenda_info_html': agenda_info_html,
@@ -544,10 +550,10 @@ class Formatter(object):
             'minutes_html': minutes_html,
             'meeting_place': meeting_place,
             'meeting_time': meeting_time,
-            'url_agenda_html': html_escape(url_agenda),
-            'url_agenda_absolute': get_absolute_url(url_agenda),
-            'url_agenda_packet_html': html_escape(url_agenda_packet),
-            'url_agenda_packet_absolute': get_absolute_url(url_agenda_packet),
+            'url_agenda_html': html_escape(agenda_url),
+            'url_agenda_absolute': get_absolute_url(agenda_url),
+            'url_agenda_packet_html': html_escape(agenda_packet_url),
+            'url_agenda_packet_absolute': get_absolute_url(agenda_packet_url),
             'url_past_meetings_absolute': get_absolute_url(URL_MEETINGS),
         }
 
