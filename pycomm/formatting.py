@@ -495,7 +495,11 @@ class Formatter(object):
         meeting_time = "6:00 PM"
         meeting_place = body.meeting_place
 
+        # TODO: simply and DRY up this if-logic.
         agenda_info_html = None
+        agenda_packet_link_html = NBSP
+        minutes_html = TBD
+        youtube_link_html = TBD
         if meeting_status is None:
             agenda_link_html = common.indent(
                 get_document_link_html(doc_id=agenda_id, text="Agenda (PDF)"))
@@ -504,9 +508,6 @@ class Formatter(object):
             agenda_info_html = common.indent(get_agenda_info_html(agenda_url, agenda_packet_url))
         elif meeting_status == "TBD":
             agenda_link_html = TBD
-            agenda_packet_link_html = NBSP
-            minutes_html = TBD
-            youtube_link_html = TBD
         elif meeting_status == "canceled":
             meeting_time = "Canceled: no meeting"
             meeting_place = NBSP
