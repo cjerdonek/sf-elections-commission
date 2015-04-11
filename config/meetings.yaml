@@ -43,12 +43,19 @@ meetings:
   20150401_bopec:
     status: canceled
   20150415_commission:
-    status: TBD
+    agenda_id: 2540
+    agenda_packet_id: 2538
     minutes_id: ""
     minutes_draft: True
     youtube_id: ""
     youtube_length: ""
   20150506_bopec:
+    status: TBD
+    minutes_id: ""
+    minutes_draft: True
+    youtube_id: ""
+    youtube_length: ""
+  20150520_commission:
     status: TBD
     minutes_id: ""
     minutes_draft: True
