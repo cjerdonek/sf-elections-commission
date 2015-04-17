@@ -48,6 +48,14 @@ meetings:
     minutes_draft: True
     youtube_id: "evt5KpRItbU"
     youtube_length: "1:31:58"
+  20150423_commission:
+    time: 3:30 PM
+    place: "City Hall, Room 34"
+    status: TBD
+    minutes_id: ""
+    minutes_draft: True
+    youtube_id: ""
+    youtube_length: ""
   20150506_bopec:
     status: TBD
     minutes_id: ""
@@ -55,6 +63,12 @@ meetings:
     youtube_id: ""
     youtube_length: ""
   20150520_commission:
+    status: TBD
+    minutes_id: ""
+    minutes_draft: True
+    youtube_id: ""
+    youtube_length: ""
+  20150603_bopec:
     status: TBD
     minutes_id: ""
     minutes_draft: True

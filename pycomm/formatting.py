@@ -485,22 +485,24 @@ class Formatter(object):
         file_name_prefix = ("{date:%Y_%m_%d}_{body}".
                             format(date=date, body=body.name_file_name))
 
-        agenda_id = data.get('agenda_id')
-        # TODO: clean up the below.
-        agenda_packet_id = data.get('agenda_packet_id')
-        agenda_url = get_agenda_url(agenda_id)
-        agenda_packet_url = get_agenda_packet_url(agenda_packet_id)
+        meeting_status = data.get('status', 'posted')
+        meeting_time = data.get('time', "6:00 PM")
+        meeting_place = data.get('place', body.meeting_place)
 
-        meeting_status = data.get('status')
-        meeting_time = "6:00 PM"
-        meeting_place = body.meeting_place
-
-        # TODO: simply and DRY up this if-logic.
+        # TODO: simplify and DRY up this if logic more.
         agenda_info_html = None
         agenda_packet_link_html = NBSP
+        agenda_url_absolute = None
+        agenda_packet_url_absolute = None
         minutes_html = TBD
         youtube_link_html = TBD
-        if meeting_status is None:
+        if meeting_status == 'posted':
+            agenda_id = data.get('agenda_id')
+            agenda_packet_id = data.get('agenda_packet_id')
+            agenda_url = get_agenda_url(agenda_id)
+            agenda_url_absolute = get_absolute_url(agenda_url)
+            agenda_packet_url = get_agenda_packet_url(agenda_packet_id)
+            agenda_packet_url_absolute = get_absolute_url(agenda_packet_url)
             agenda_link_html = common.indent(
                 get_document_link_html(doc_id=agenda_id, text="Agenda (PDF)"))
             agenda_packet_link_html = common.indent(
@@ -549,10 +551,8 @@ class Formatter(object):
             'minutes_html': minutes_html,
             'meeting_place': meeting_place,
             'meeting_time': meeting_time,
-            'url_agenda_html': html_escape(agenda_url),
-            'url_agenda_absolute': get_absolute_url(agenda_url),
-            'url_agenda_packet_html': html_escape(agenda_packet_url),
-            'url_agenda_packet_absolute': get_absolute_url(agenda_packet_url),
+            'url_agenda_absolute': agenda_url_absolute,
+            'url_agenda_packet_absolute': agenda_packet_url_absolute,
             'url_past_meetings_absolute': get_absolute_url(URL_MEETINGS),
         }
 
