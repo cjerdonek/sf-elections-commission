@@ -129,7 +129,7 @@ HTML_YOUTUBE_FORMAT = (
 HTML_INDEX = """\
 <tr>
     <td headers="table_heading_0">{date_full_short_day}</td>
-    <td headers="table_heading_1">{body_name_index_html}</td>
+    <td headers="table_heading_1">{meeting_type_html}</td>
     <td headers="table_heading_2">{meeting_time}</td>
     <td headers="table_heading_3">{meeting_place}</td>
     <td headers="table_heading_4">
@@ -144,7 +144,7 @@ HTML_INDEX = """\
 HTML_PAST_MEETING = """\
 <tr>
     <td headers="table_heading_0">{date_full_short_day}</td>
-    <td headers="table_heading_1">{body_name_short_html}</td>
+    <td headers="table_heading_1">{meeting_type_html}</td>
     <td headers="table_heading_2">
     {agenda_info_html}
     </td>
@@ -409,7 +409,7 @@ class BodyCommission(object):
     meeting_place = "City Hall, Room 408"
 
     name_file_name = "Elections_Comm"
-    name_index_html = "Commission"
+    name_web = "Commission"
     name_short = "Commission"
     name_medium = "Elections Commission"
     name_full = "San Francisco Elections Commission"
@@ -431,7 +431,7 @@ class BodyBOPEC(object):
     meeting_place = "City Hall, Room 421"
 
     name_file_name = "BOPEC"
-    name_index_html = "BOPEC*"
+    name_web = "BOPEC*"
     name_short = "BOPEC"
     name_medium = "BOPEC"
     name_full = "Budget & Oversight of Public Elections Committee (BOPEC)"
@@ -485,6 +485,9 @@ class Formatter(object):
         file_name_prefix = ("{date:%Y_%m_%d}_{body}".
                             format(date=date, body=body.name_file_name))
 
+        meeting_type = body.name_web
+        if data.get('type'):
+            meeting_type = "{0} ({1})".format(meeting_type, data.get('type'))
         meeting_status = data.get('status', 'posted')
         meeting_time = data.get('time', "6:00 PM")
         meeting_place = data.get('place', body.meeting_place)
@@ -533,11 +536,9 @@ class Formatter(object):
             'agenda_link_html': agenda_link_html,
             'agenda_packet_link_html': agenda_packet_link_html,
             'body_name_complete': body.name_complete,
-            'body_name_index_html': body.name_index_html,
             'body_name_library_subject': body.name_library_subject,
             'body_name_medium': body_name_medium,
             'body_name_short': body_name_short,
-            'body_name_short_html': html_escape(body_name_short),
             'body_full': body_name_full,
             'date': date,
             'date_full_short_day': get_date_full_with_short_day(date),
@@ -551,6 +552,7 @@ class Formatter(object):
             'minutes_html': minutes_html,
             'meeting_place': meeting_place,
             'meeting_time': meeting_time,
+            'meeting_type_html': html_escape(meeting_type),
             'url_agenda_absolute': agenda_url_absolute,
             'url_agenda_packet_absolute': agenda_packet_url_absolute,
             'url_past_meetings_absolute': get_absolute_url(URL_MEETINGS),

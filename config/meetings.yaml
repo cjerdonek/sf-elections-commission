@@ -51,6 +51,7 @@ meetings:
   20150423_commission:
     time: 3:30 PM
     place: "City Hall, Room 34"
+    type: Special
     status: TBD
     minutes_id: ""
     minutes_draft: True
