@@ -116,6 +116,9 @@ def _add_attachment(mime, path):
     if mime_cls is MIMEBase:
         msg = mime_cls(main_type, sub_type)
         msg.set_payload(contents)
+        # Encode the payload using Base64.  This line is from here:
+        # https://docs.python.org/3/library/email-examples.html
+        encoders.encode_base64(msg)
     else:
         msg = mime_cls(contents, _subtype=sub_type)
 
@@ -207,7 +210,6 @@ def send_message(service, message):
     try:
         message = messages.send(userId='me', body=message).execute()
     except Exception as err:
-        print(repr(err))
         raise
     print("e-mail sent: Gmail API: message_id={0}".format(message['id']))
     return message
