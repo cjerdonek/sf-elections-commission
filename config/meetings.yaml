@@ -52,7 +52,8 @@ meetings:
     time: 3:30 PM
     place: "City Hall, Room 34"
     type: Special
-    status: TBD
+    agenda_id: 2561
+    agenda_packet_id: null
     minutes_id: ""
     minutes_draft: True
     youtube_id: ""

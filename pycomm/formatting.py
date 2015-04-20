@@ -1,5 +1,6 @@
 
 from cgi import escape as html_escape
+from datetime import date, timedelta
 
 from pycomm import common
 
@@ -308,7 +309,7 @@ def make_notice_template_key(config, text_label, meeting_label):
 
 
 # TODO: generalize this to work with a day of the week other than Wednesday.
-def make_day_reference(date):
+def make_day_reference(meeting_date):
     """For example, return "today", "yesterday", "this past Wednesday", etc.
 
     The return value is used in text like the following:
@@ -316,12 +317,19 @@ def make_day_reference(date):
         The agenda and packet for *****'s April 15 Comission meeting...."
 
     """
+    # TODO: calculate Sunday before meeting.
+    meeting_day_name = meeting_date.strftime("%A")
+    days_after_sunday = meeting_date.weekday() + 1
+    sunday_before = meeting_date - timedelta(days=days_after_sunday)
     today = date.today()
-    days_away = (date - today).days
+    days_away = (meeting_date - today).days
     if days_away == -1:
         text = "yesterday's"
-    elif 5 <= days_away <= 7:  # Wednesday through Friday of previous week.
-        text = "next Wednesday's"
+    elif sunday_before <= today < meeting_date:
+        text = "this {0}'s".format(meeting_day_name)
+    elif 5 <= days_away <= 7:
+        # Wednesday through Friday of previous week.
+        text = "next {0}'s".format(meeting_day_name)
     elif days_away > 7:
         text = "the upcoming"
     elif days_away < -7:
@@ -508,8 +516,10 @@ class Formatter(object):
             agenda_packet_url_absolute = get_absolute_url(agenda_packet_url)
             agenda_link_html = common.indent(
                 get_document_link_html(doc_id=agenda_id, text="Agenda (PDF)"))
-            agenda_packet_link_html = common.indent(
-                get_agenda_packet_url_html(agenda_packet_id))
+            if agenda_packet_id is None:
+                agenda_packet_link_html = "None"
+            else:
+                agenda_packet_link_html = common.indent(get_agenda_packet_url_html(agenda_packet_id))
             agenda_info_html = common.indent(get_agenda_info_html(agenda_url, agenda_packet_url))
         elif meeting_status == "TBD":
             agenda_link_html = TBD
