@@ -17,11 +17,10 @@ This repository contains--
 Python Setup
 ------------
 
-We need to use Python 2.7 since `google-api-python-client` doesn't
-yet support Python 3: https://github.com/google/google-api-python-client/issues/3
+Set up a virtualenv using Python 3.4.  Then--
 
     $ pip install google-api-python-client httplib2 pyyaml tweepy
-    $ python scripts/admin.py -h
+    $ python scripts/run_admin.py -h
 
 
 Technical Note
