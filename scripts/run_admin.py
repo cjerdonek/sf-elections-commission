@@ -42,6 +42,17 @@ def command_text(ns, formatter):
     display(text)
 
 
+def command_email(ns, formatter):
+    emailing.send_email(formatter=formatter, meeting_label=ns.meeting_label,
+                        email_choice=ns.email_type, attach_paths=ns.attach_paths)
+
+
+def command_image_sizes(ns, formatter):
+    for x in xrange(56, 64):
+        w, h = (16 * x, 9 * x)
+        print("{0}:{1}".format(w, h))
+
+
 def command_index_html(ns, formatter):
     config = formatter.config
     text_type = "html_index"
@@ -50,6 +61,11 @@ def command_index_html(ns, formatter):
     for label in labels:
         text += formatter.get_meeting_text(text_type, label)
     display(text)
+
+
+def command_init_twitter(ns, formatter):
+    config = formatter.config
+    tweeting.get_access_token(config)
 
 
 def command_tweet(ns, formatter):
@@ -65,17 +81,6 @@ def command_tweet_meeting(ns, formatter):
     username = config.get_twitter_username('commission')
     text = formatter.make_tweet(text_type, meeting_label)
     tweeting.tweet(config=config, username=username, message=text)
-
-
-def command_email(ns, formatter):
-    emailing.send_email(formatter=formatter, meeting_label=ns.meeting_label,
-                        email_choice=ns.email_type, attach_paths=ns.attach_paths)
-
-
-def command_image_sizes(ns, formatter):
-    for x in xrange(56, 64):
-        w, h = (16 * x, 9 * x)
-        print("{0}:{1}".format(w, h))
 
 
 def add_count_argument(parser, default=None):
@@ -149,6 +154,9 @@ def create_parser(config):
     parser.add_argument('--attach', dest='attach_paths', metavar='PATH', nargs="*",
         help=("paths of any attachments."))
     parser.set_defaults(run_command=command_email)
+
+    parser = make_subparser(sub, "init_twitter", desc="initialize Twitter creds.")
+    parser.set_defaults(run_command=command_init_twitter)
 
     parser = make_subparser(sub, "tweet", desc="send a tweet.")
     parser.set_defaults(run_command=command_tweet)

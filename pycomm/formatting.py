@@ -82,7 +82,7 @@ YouTube Info
 Title
 -----
 
-{date_full_no_day} {body_name_medium} Meeting (audio only)
+{date_full_no_day} {meeting_type_medium} Meeting (audio only)
 
 Description
 -----------
@@ -171,21 +171,21 @@ Next {date:%A}'s {date:%B {day}} meeting of the {body_full} will not be held: {h
 
 TWEET_AGENDA_POSTED = (
     "The agenda and packet for {day_reference} {date:%B {day}} "
-    "{body_name_medium} meeting are now posted online: {home_page}"
+    "{meeting_type_medium} meeting are now posted online: {home_page}"
 )
 
 TWEET_MINUTES_DRAFT = (
-    "Draft minutes for the {date:%b. {day}, %Y} {body_name_medium} "
+    "Draft minutes for the {date:%b. {day}, %Y} {meeting_type_medium} "
     "meeting are now posted online: {url_past_meetings_absolute}"
 )
 
 TWEET_MINUTES_APPROVED = (
-    "The approved minutes for the {date:%b. {day}, %Y} {body_name_medium} "
+    "The approved minutes for the {date:%b. {day}, %Y} {meeting_type_medium} "
     "meeting are now posted online: {url_past_meetings_absolute}"
 )
 
 TWEET_YOUTUBE = (
-    "The audio for {day_reference} {date:%B {day}} {body_name_medium} "
+    "The audio for {day_reference} {date:%B {day}} {meeting_type_medium} "
     "meeting is now posted on YouTube ({youtube_length_text}): {youtube_url}"
 )
 
@@ -256,7 +256,7 @@ _EMAIL_PARTICIPANTS_AGENDA = """\
 Hi,
 
 This is an FYI that the agenda and packet for next {date:%A}'s
-{date:%B {date.day}, %Y} {body_name_medium} meeting are now posted online:
+{date:%B {date.day}, %Y} {meeting_type_medium} meeting are now posted online:
 
 http://sfgov.org/electionscommission
 
@@ -269,7 +269,7 @@ Thanks (and please remember not to reply to all),
 _EMAIL_PARTICIPANTS_CANCELLATION = """\
 Hi,
 
-This is an FYI that next {date:%A}'s {date:%B {date.day}, %Y} {body_name_medium}
+This is an FYI that next {date:%A}'s {date:%B {date.day}, %Y} {meeting_type_medium}
 meeting is canceled and will not be held:
 
 http://sfgov.org/electionscommission
@@ -479,7 +479,7 @@ class Formatter(object):
         config = self.config
         body, date, data = get_meeting_info(config, label)
         body_name_full = body.name_full
-        body_name_medium = body.name_medium
+        meeting_type_medium = body.name_medium
         body_name_short = body.name_short
         body_label = body.label
 
@@ -495,7 +495,9 @@ class Formatter(object):
 
         meeting_type = body.name_web
         if data.get('type'):
-            meeting_type = "{0} ({1})".format(meeting_type, data.get('type'))
+            type_ = data.get('type')
+            meeting_type = "{0} ({1})".format(meeting_type, type_)
+            meeting_type_medium = "{0} {1}".format(type_, meeting_type_medium)
         meeting_status = data.get('status', 'posted')
         meeting_time = data.get('time', "6:00 PM")
         meeting_place = data.get('place', body.meeting_place)
@@ -547,7 +549,7 @@ class Formatter(object):
             'agenda_packet_link_html': agenda_packet_link_html,
             'body_name_complete': body.name_complete,
             'body_name_library_subject': body.name_library_subject,
-            'body_name_medium': body_name_medium,
+            'meeting_type_medium': meeting_type_medium,
             'body_name_short': body_name_short,
             'body_full': body_name_full,
             'date': date,
