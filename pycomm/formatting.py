@@ -227,7 +227,7 @@ meeting notice: {date:%b {date.day}, %Y} {body_name_library_subject}"""
 _EMAIL_PUBLIC_AGENDA = """\
 Hello,
 
-Attached is the agenda for the {date:%B {date.day}, %Y} meeting
+Attached is the agenda for the {date:%B {date.day}, %Y} {meeting_type_adjective}meeting
 of the {body_name_complete}.
 
 The agenda and agenda packet is or will also be posted on the
@@ -493,11 +493,11 @@ class Formatter(object):
         file_name_prefix = ("{date:%Y_%m_%d}_{body}".
                             format(date=date, body=body.name_file_name))
 
+        meeting_type_adjective = data.get('type')
         meeting_type = body.name_web
-        if data.get('type'):
-            type_ = data.get('type')
-            meeting_type = "{0} ({1})".format(meeting_type, type_)
-            meeting_type_medium = "{0} {1}".format(type_, meeting_type_medium)
+        if meeting_type_adjective:
+            meeting_type = "{0} ({1})".format(meeting_type, meeting_type_adjective)
+            meeting_type_medium = "{0} {1}".format(meeting_type_adjective, meeting_type_medium)
         meeting_status = data.get('status', 'posted')
         meeting_time = data.get('time', "6:00 PM")
         meeting_place = data.get('place', body.meeting_place)
@@ -549,7 +549,6 @@ class Formatter(object):
             'agenda_packet_link_html': agenda_packet_link_html,
             'body_name_complete': body.name_complete,
             'body_name_library_subject': body.name_library_subject,
-            'meeting_type_medium': meeting_type_medium,
             'body_name_short': body_name_short,
             'body_full': body_name_full,
             'date': date,
@@ -564,6 +563,9 @@ class Formatter(object):
             'minutes_html': minutes_html,
             'meeting_place': meeting_place,
             'meeting_time': meeting_time,
+            'meeting_type_adjective': ("{0} ".format(meeting_type_adjective) if
+                                       meeting_type_adjective else ""),
+            'meeting_type_medium': meeting_type_medium,
             'meeting_type_html': html_escape(meeting_type),
             'url_agenda_absolute': agenda_url_absolute,
             'url_agenda_packet_absolute': agenda_packet_url_absolute,

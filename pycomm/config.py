@@ -126,7 +126,7 @@ class Config(object):
     def get_email(self, value):
         """Return a realname, email_address 2-tuple."""
         # TODO: refactor this type-checking "if" logic away.
-        person = self.get_person(value) if isinstance(value, basestring) else value
+        person = self.get_person(value) if isinstance(value, str) else value
         try:
             return person['name'], person['mail']
         except:

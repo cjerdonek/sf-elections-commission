@@ -37,7 +37,7 @@ def get_email_info(formatter, email_type, meeting_label):
     bcc_list = []
     if email_type == EmailChoiceEnum.notify_public:
         to_list += ['commission']
-        bcc_list = config.get_entities('distribution')
+        #bcc_list = config.get_entities('distribution')
         if body.public_bcc is not None:
             bcc_list += body.public_bcc
     elif email_type == EmailChoiceEnum.notify_participants:
@@ -63,10 +63,10 @@ def format_email(address):
     """Format an e-mail.
 
     Arguments:
-      address: an e-mail address as a string or as a 2-tuple of the form
-      (realname, email_address).
+      address: an e-mail address as a string or as a 2-tuple of the form:
+        (realname, email_address).
     """
-    if isinstance(address, basestring):
+    if isinstance(address, str):
         address = (False, address)
     return email_utils.formataddr(address)
 
@@ -153,7 +153,9 @@ def create_message(sender, to_list, subject, body, cc_list=None, bcc_list=None,
         for i, path in enumerate(attach_paths, start=1):
             printable += "{0}. {1}\n".format(i, os.path.abspath(path))
 
-    return {'raw': base64.urlsafe_b64encode(mime.as_string())}, printable
+    raw = base64.urlsafe_b64encode(mime.as_bytes())
+    raw = raw.decode()
+    return {'raw': raw}, printable
 
 
 def get_email_service(config):
@@ -202,7 +204,11 @@ def send_message(service, message):
     messages = service.users().messages()
     # userId should be the user's email address.  The special value "me" can
     # be used to indicate the authenticated user.
-    message = messages.send(userId='me', body=message).execute()
+    try:
+        message = messages.send(userId='me', body=message).execute()
+    except Exception as err:
+        print(repr(err))
+        raise
     print("e-mail sent: Gmail API: message_id={0}".format(message['id']))
     return message
 
