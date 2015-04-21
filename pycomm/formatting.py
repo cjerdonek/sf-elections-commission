@@ -7,7 +7,7 @@ from pycomm import common
 NBSP = "&nbsp;"
 TBD = "TBD"
 
-URL_HOME = "index.aspx?page=319"
+URL_HOME = "http://sfgov.org/electionscommission"
 URL_MEETINGS = "index.aspx?page=1382"
 
 _EMAIL_TYPE_CHOICE_PARTICIPANTS = 'notify_participants'
@@ -166,12 +166,12 @@ GENERAL_TEMPLATES = {
 }
 
 TWEET_CANCELLATION = """\
-Next {date:%A}'s {date:%B {day}} meeting of the {body_full} will not be held: {home_page}
+Next {date:%A}'s {date:%B {day}} meeting of the {body_full} will not be held: {url_home}
 """
 
 TWEET_AGENDA_POSTED = (
     "The agenda and packet for {day_reference} {date:%B {day}} "
-    "{meeting_type_medium} meeting are now posted online: {home_page}"
+    "{meeting_type_medium} meeting are now posted online: {url_home}"
 )
 
 TWEET_MINUTES_DRAFT = (
@@ -202,7 +202,7 @@ _EMAIL_FOOTER = """\
 {signature}
 San Francisco Elections Commission
 
-Website: http://sfgov.org/electionscommission
+Website: {url_home}
 Twitter: @SFElectionsComm
 {initials}
 """
@@ -233,7 +233,7 @@ of the {body_name_complete}.
 The agenda and agenda packet is or will also be posted on the
 Elections Commission home page:
 
-http://sfgov.org/electionscommission
+{url_home}
 
 {email_footer_public}
 """
@@ -401,15 +401,6 @@ Agenda (PDF)</a> |
                                                    agenda_packet_url=agenda_packet_url)
 
 
-def make_tweet(format_string, label):
-    body, date = parse_label(label)
-    return format_string.format(date=date, day=date.day, body=body,
-                                home_page=WEB_SITE_HOME)
-def get_cancel_tweet(label):
-    format = ()
-    return make_tweet(format, label)
-
-
 # TODO: move these classes to config.py.
 class BodyCommission(object):
 
@@ -559,7 +550,6 @@ class Formatter(object):
             'email_footer': email_footer,
             'email_footer_public': email_footer_public,
             'file_name_prefix': file_name_prefix,
-            'home_page': get_absolute_url(URL_HOME),
             'minutes_html': minutes_html,
             'meeting_place': meeting_place,
             'meeting_time': meeting_time,
@@ -569,6 +559,7 @@ class Formatter(object):
             'meeting_type_html': html_escape(meeting_type),
             'url_agenda_absolute': agenda_url_absolute,
             'url_agenda_packet_absolute': agenda_packet_url_absolute,
+            'url_home': URL_HOME,
             'url_past_meetings_absolute': get_absolute_url(URL_MEETINGS),
         }
 
