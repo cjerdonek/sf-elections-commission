@@ -323,7 +323,9 @@ def make_day_reference(meeting_date):
     sunday_before = meeting_date - timedelta(days=days_after_sunday)
     today = date.today()
     days_away = (meeting_date - today).days
-    if days_away == -1:
+    if days_away == 0:
+        text = "today's"
+    elif days_away == -1:
         text = "yesterday's"
     elif sunday_before <= today < meeting_date:
         text = "this {0}'s".format(meeting_day_name)
@@ -386,19 +388,21 @@ def get_document_link_html(doc_id, text):
 {1}</a>""".format(doc_id, text)
 
 
-def get_agenda_packet_url_html(folder_id):
-    packet_url = html_escape(get_agenda_packet_url(folder_id))
+def get_agenda_packet_url_html(agenda_packet_id):
+    packet_url = get_agenda_packet_url(agenda_packet_id)
+    packet_url = html_escape(packet_url)
     return ('<a href="{0}">Packet</a>'.format(packet_url))
 
 
-def get_agenda_info_html(agenda_url, agenda_packet_url):
-    agenda_url = html_escape(agenda_url)
-    agenda_packet_url = html_escape(agenda_packet_url)
+def get_agenda_info_html(agenda_url, agenda_packet_id):
+    if agenda_packet_id is None:
+        packet_info = "No Packet"
+    else:
+        packet_info = get_agenda_packet_url_html(agenda_packet_id)
     return """\
 <a href="{agenda_url}" target="_blank">
 Agenda (PDF)</a> |
-<a href="{agenda_packet_url}">Packet</a>""".format(agenda_url=agenda_url,
-                                                   agenda_packet_url=agenda_packet_url)
+{packet_info}""".format(agenda_url=agenda_url, packet_info=packet_info)
 
 
 # TODO: move these classes to config.py.
@@ -475,11 +479,13 @@ class Formatter(object):
         body_label = body.label
 
         email_footer = _EMAIL_FOOTER.format(signature=body.signature,
-                                            initials=body.initials)
+                                            initials=body.initials,
+                                            url_home=URL_HOME)
         commission_email = config.get_email_address('commission')
         email_footer_public = _EMAIL_FOOTER_PUBLIC.format(signature=body.signature,
                                             initials=body.initials,
-                                            commission_email=commission_email)
+                                            commission_email=commission_email,
+                                            url_home=URL_HOME)
 
         file_name_prefix = ("{date:%Y_%m_%d}_{body}".
                             format(date=date, body=body.name_file_name))
@@ -513,7 +519,7 @@ class Formatter(object):
                 agenda_packet_link_html = "None"
             else:
                 agenda_packet_link_html = common.indent(get_agenda_packet_url_html(agenda_packet_id))
-            agenda_info_html = common.indent(get_agenda_info_html(agenda_url, agenda_packet_url))
+            agenda_info_html = common.indent(get_agenda_info_html(agenda_url, agenda_packet_id))
         elif meeting_status == "TBD":
             agenda_link_html = TBD
         elif meeting_status == "canceled":
