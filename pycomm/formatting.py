@@ -317,10 +317,10 @@ def make_day_reference(meeting_date):
         The agenda and packet for *****'s April 15 Comission meeting...."
 
     """
-    # TODO: calculate Sunday before meeting.
     meeting_day_name = meeting_date.strftime("%A")
     days_after_sunday = meeting_date.weekday() + 1
     sunday_before = meeting_date - timedelta(days=days_after_sunday)
+    saturday_after = sunday_before + timedelta(days=6)
     today = date.today()
     days_away = (meeting_date - today).days
     if days_away == 0:
@@ -329,6 +329,8 @@ def make_day_reference(meeting_date):
         text = "yesterday's"
     elif sunday_before <= today < meeting_date:
         text = "this {0}'s".format(meeting_day_name)
+    elif saturday_after <= today <= saturday_after + timedelta(days=5):
+        text = "last week's".format(meeting_day_name)
     elif 5 <= days_away <= 7:
         # Wednesday through Friday of previous week.
         text = "next {0}'s".format(meeting_day_name)
@@ -370,6 +372,8 @@ def format_youtube_length(length):
 
 
 def get_absolute_url(rel_url):
+    if rel_url is None:
+        return None
     return "http://www.sfgov2.org/{0}".format(rel_url)
 
 
@@ -378,6 +382,8 @@ def get_agenda_url(agenda_id):
 
 
 def get_agenda_packet_url(agenda_packet_id):
+    if agenda_packet_id is None:
+        return None
     return "index.aspx?page=4408&parent={0}".format(agenda_packet_id)
 
 

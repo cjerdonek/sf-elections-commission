@@ -48,7 +48,7 @@ def command_email(ns, formatter):
 
 
 def command_image_sizes(ns, formatter):
-    for x in xrange(56, 64):
+    for x in range(56, 64):
         w, h = (16 * x, 9 * x)
         print("{0}:{1}".format(w, h))
 
