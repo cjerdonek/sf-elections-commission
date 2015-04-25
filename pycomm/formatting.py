@@ -360,12 +360,19 @@ def get_youtube_url(youtube_id):
 def format_youtube_length(length):
     parts = length.split(":")
     if len(parts) == 3:
-        hours = int(parts[0])
-        text = "{0}:{1} hours".format(hours, parts[1])
+        hours = int(parts.pop(0))
+    else:
+        hours = None
+
+    mins = int(parts[0]) + 1.0 * int(parts[1]) / 60
+    mins = round(mins)
+
+    if hours is not None:
+        text = "{0}:{1} hours".format(hours, mins)
         if hours > 1:
             text += "s"
     elif len(parts) == 2:
-        text = "{0} mins".format(parts[0])
+        text = "{0} mins".format(mins)
     else:
         raise Exception("bad length: {0!r}".format(length))
     return text
