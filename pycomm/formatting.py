@@ -520,7 +520,7 @@ class Formatter(object):
         minutes_html = TBD
         youtube_link_html = TBD
         if meeting_status == 'posted':
-            agenda_id = data.get('agenda_id')
+            agenda_id = int(data.get('agenda_id'))
             agenda_packet_id = data.get('agenda_packet_id')
             agenda_url = get_agenda_url(agenda_id)
             agenda_url_absolute = get_absolute_url(agenda_url)
@@ -549,6 +549,7 @@ class Formatter(object):
         # Minutes
         minutes_id = data.get('minutes_id')
         if minutes_id:
+            minutes_id = int(minutes_id)
             draft_prefix = 'Draft ' if data.get('minutes_draft') else ''
             text = "{0}Minutes (PDF)".format(draft_prefix)
             minutes_html = common.indent(get_document_link_html(doc_id=minutes_id, text=text))
