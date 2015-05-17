@@ -65,7 +65,8 @@ meetings:
     youtube_id: ""
     youtube_length: ""
   20150520_commission:
-    status: TBD
+    agenda_id: 2623
+    agenda_packet_id: 2622
     minutes_id: ""
     minutes_draft: True
     youtube_id: ""

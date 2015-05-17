@@ -426,6 +426,7 @@ class BodyCommission(object):
 
     name_file_name = "Elections_Comm"
     name_web = "Commission"
+    name_web_index = "Commission"
     name_short = "Commission"
     name_medium = "Elections Commission"
     name_full = "San Francisco Elections Commission"
@@ -447,7 +448,8 @@ class BodyBOPEC(object):
     meeting_place = "City Hall, Room 421"
 
     name_file_name = "BOPEC"
-    name_web = "BOPEC*"
+    name_web = "BOPEC"
+    name_web_index = "BOPEC*"
     name_short = "BOPEC"
     name_medium = "BOPEC"
     name_full = "Budget & Oversight of Public Elections Committee (BOPEC)"
