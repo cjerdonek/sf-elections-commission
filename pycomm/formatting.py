@@ -149,10 +149,10 @@ HTML_PAST_MEETING = """\
     <td headers="table_heading_2">
     {agenda_info_html}
     </td>
-    <td headers="table_heading_4">
+    <td headers="table_heading_3">
     {minutes_html}
     </td>
-    <td headers="table_heading_5">
+    <td headers="table_heading_4">
     {youtube_link_html}
     </td>
 </tr>
