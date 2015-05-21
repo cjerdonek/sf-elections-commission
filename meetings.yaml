@@ -60,17 +60,13 @@ meetings:
     youtube_length: "5:40"
   20150506_bopec:
     status: canceled
-    minutes_id: ""
-    minutes_draft: True
-    youtube_id: ""
-    youtube_length: ""
   20150520_commission:
     agenda_id: 2623
     agenda_packet_id: 2622
     minutes_id: ""
     minutes_draft: True
-    youtube_id: ""
-    youtube_length: ""
+    youtube_id: "dyl31t_4Bzg"
+    youtube_length: "1:48:46"
   20150603_bopec:
     status: TBD
     minutes_id: ""
