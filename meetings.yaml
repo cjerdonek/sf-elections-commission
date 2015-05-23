@@ -44,8 +44,7 @@ meetings:
   20150415_commission:
     agenda_id: 2540
     agenda_packet_id: 2538
-    minutes_id: "2619"
-    minutes_draft: True
+    minutes_id: 2643
     youtube_id: "evt5KpRItbU"
     youtube_length: "1:31:58"
   20150423_commission:
@@ -54,8 +53,7 @@ meetings:
     type: Special
     agenda_id: 2561
     agenda_packet_id: null
-    minutes_id: "2585"
-    minutes_draft: True
+    minutes_id: 2644
     youtube_id: "3VtNKrMxbp8"
     youtube_length: "5:40"
   20150506_bopec:
