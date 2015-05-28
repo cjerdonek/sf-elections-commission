@@ -143,7 +143,7 @@ HTML_INDEX = """\
 """
 
 HTML_PAST_MEETING = """\
-<tr>
+<tr{tr_class}>
     <td headers="table_heading_0">{date_full_short_day}</td>
     <td headers="table_heading_1">{meeting_type_html}</td>
     <td headers="table_heading_2">
@@ -441,6 +441,7 @@ class BodyCommission(object):
     body_cc = []
     initials = ""
     signature = "Chris Jerdonek, President"
+    tr_class = ''
 
 
 class BodyBOPEC(object):
@@ -464,6 +465,7 @@ class BodyBOPEC(object):
     body_cc = ["jrowe"]
     initials = "/cjj"
     signature = ""
+    tr_class = ' class="committee"'
 
 
 def get_meeting_info(config, label):
@@ -580,6 +582,7 @@ class Formatter(object):
                                        meeting_type_adjective else ""),
             'meeting_type_medium': meeting_type_medium,
             'meeting_type_html': html_escape(meeting_type),
+            'tr_class': body.tr_class,
             'url_agenda_absolute': agenda_url_absolute,
             'url_agenda_packet_absolute': agenda_packet_url_absolute,
             'url_home': URL_HOME,
