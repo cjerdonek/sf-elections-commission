@@ -68,7 +68,8 @@ meetings:
     youtube_id: "dyl31t_4Bzg"
     youtube_length: "1:48:46"
   20150603_bopec:
-    status: TBD
+    agenda_id: 2659
+    agenda_packet_id: 2650
     minutes_id: ""
     minutes_draft: True
     youtube_id: ""
