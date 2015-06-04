@@ -1,53 +1,26 @@
 meetings:
-  20141203_bopec:
-    agenda_id: 2308
-    agenda_packet_id: 2309
-    minutes_id: 2416
-    youtube_id: "Hp3NtLl05bk"
-    youtube_length: "19:43"
-  20141217_commission:
-    agenda_id: 2325
-    agenda_packet_id: 2324
-    minutes_id: 2398
-    minutes_draft: False
-    youtube_id: "zzBeTGAnJy8"
-    youtube_length: "53:23"
-  20150107_bopec:
+  20150617_commission:
+    status: TBD
+    minutes_id: ""
+    minutes_draft: True
+    youtube_id: ""
+    youtube_length: ""
+  20150603_bopec:
+    agenda_id: 2659
+    agenda_packet_id: 2650
+    minutes_id: ""
+    minutes_draft: True
+    youtube_id: "XXGHuj0RGC4"
+    youtube_length: "1:16:38"
+  20150520_commission:
+    agenda_id: 2623
+    agenda_packet_id: 2622
+    minutes_id: ""
+    minutes_draft: True
+    youtube_id: "dyl31t_4Bzg"
+    youtube_length: "1:48:46"
+  20150506_bopec:
     status: canceled
-  20150121_commission:
-    agenda_id: 2357
-    agenda_packet_id: 2359
-    minutes_id: 2455
-    youtube_id: "LfwRZn0j20Y"
-    youtube_length: "1:00:08"
-  20150204_bopec:
-    agenda_id: 2406
-    agenda_packet_id: 2405
-    minutes_id: 2647
-    youtube_id: "6YcL7Biv5c8"
-    youtube_length: "53:27"
-  20150218_commission:
-    agenda_id: 2435
-    agenda_packet_id: 2419
-    minutes_id: 2515
-    youtube_id: "vtVDWLHYgJQ"
-    youtube_length: "1:42:02"
-  20150304_bopec:
-    status: canceled
-  20150318_commission:
-    agenda_id: 2506
-    agenda_packet_id: 2504
-    minutes_id: 2554
-    youtube_id: "VJl1VsAzY5M"
-    youtube_length: "42:10"
-  20150401_bopec:
-    status: canceled
-  20150415_commission:
-    agenda_id: 2540
-    agenda_packet_id: 2538
-    minutes_id: 2643
-    youtube_id: "evt5KpRItbU"
-    youtube_length: "1:31:58"
   20150423_commission:
     time: 3:30 PM
     place: "City Hall, Room 34"
@@ -57,25 +30,56 @@ meetings:
     minutes_id: 2644
     youtube_id: "3VtNKrMxbp8"
     youtube_length: "5:40"
-  20150506_bopec:
+  20150415_commission:
+    agenda_id: 2540
+    agenda_packet_id: 2538
+    minutes_id: 2643
+    youtube_id: "evt5KpRItbU"
+    youtube_length: "1:31:58"
+  20150401_bopec:
     status: canceled
-  20150520_commission:
-    agenda_id: 2623
-    agenda_packet_id: 2622
-    minutes_id: ""
-    minutes_draft: True
-    youtube_id: "dyl31t_4Bzg"
-    youtube_length: "1:48:46"
-  20150603_bopec:
-    agenda_id: 2659
-    agenda_packet_id: 2650
-    minutes_id: ""
-    minutes_draft: True
-    youtube_id: "XXGHuj0RGC4"
-    youtube_length: "1:16:38"
-  20150617_commission:
-    status: TBD
-    minutes_id: ""
-    minutes_draft: True
-    youtube_id: ""
-    youtube_length: ""
+  20150318_commission:
+    agenda_id: 2506
+    agenda_packet_id: 2504
+    minutes_id: 2554
+    youtube_id: "VJl1VsAzY5M"
+    youtube_length: "42:10"
+  20150304_bopec:
+    status: canceled
+  20150218_commission:
+    agenda_id: 2435
+    agenda_packet_id: 2419
+    minutes_id: 2515
+    youtube_id: "vtVDWLHYgJQ"
+    youtube_length: "1:42:02"
+  20150204_bopec:
+    agenda_id: 2406
+    agenda_packet_id: 2405
+    minutes_id: 2647
+    youtube_id: "6YcL7Biv5c8"
+    youtube_length: "53:27"
+  20150121_commission:
+    agenda_id: 2357
+    agenda_packet_id: 2359
+    minutes_id: 2455
+    youtube_id: "LfwRZn0j20Y"
+    youtube_length: "1:00:08"
+  20150107_bopec:
+    status: canceled
+  20141217_commission:
+    agenda_id: 2325
+    agenda_packet_id: 2324
+    minutes_id: 2398
+    minutes_draft: False
+    youtube_id: "zzBeTGAnJy8"
+    youtube_length: "53:23"
+  20141203_bopec:
+    agenda_id: 2308
+    agenda_packet_id: 2309
+    minutes_id: 2416
+    youtube_id: "Hp3NtLl05bk"
+    youtube_length: "19:43"
+
+  20130619_commission:
+    agenda_id: 3984
+    minutes_id: 4058
