@@ -448,16 +448,25 @@ def get_html_link(link_id, text):
                          url=html_escape(url)))
 
 
-def get_agenda_links_html(agenda_id, agenda_packet_id):
-    if agenda_packet_id is None:
-        packet_link = "No Packet"
-    elif agenda_packet_id is False:
-        packet_link = None
+def get_agenda_links_html(agenda_id, agenda_packet_id, status):
+    if status == 'canceled':
+        if agenda_id:
+            html = get_html_link(link_id=agenda_id, text="Canceled")
+        else:
+            html = "No meeting"
+    elif status == 'posted':
+        if agenda_packet_id is None:
+            packet_link = "No Packet"
+        elif agenda_packet_id is False:
+            packet_link = None
+        else:
+            packet_link = get_html_link(link_id=agenda_packet_id, text="Agenda Packet")
+        html = get_html_link(link_id=agenda_id, text="Agenda")
+        if packet_link is not None:
+            html += " |\n{1}".format(agenda_link, packet_link)
+        return html
     else:
-        packet_link = get_html_link(link_id=agenda_packet_id, text="Agenda Packet")
-    html = get_html_link(link_id=agenda_id, text="Agenda")
-    if packet_link is not None:
-        html += " |\n{1}".format(agenda_link, packet_link)
+        raise Exception("unknown status: {0}".format(meeting_status))
     return html
 
 
@@ -560,6 +569,8 @@ class Formatter(object):
         meeting_place = data.get('place', body.meeting_place)
 
         # TODO: simplify and DRY up this if logic more.
+        agenda_id = data.get('agenda_id')
+        agenda_packet_id = data.get('agenda_packet_id')
         agenda_links_html = None
         agenda_packet_link_html = NBSP
         youtube_agenda_link = None
@@ -567,8 +578,6 @@ class Formatter(object):
         minutes_html = TBD
         youtube_link_html = TBD
         if meeting_status == 'posted':
-            agenda_id = data['agenda_id']
-            agenda_packet_id = data.get('agenda_packet_id')
             youtube_agenda_link = get_text_link(agenda_id, text="Agenda")
             youtube_agenda_packet_link = get_text_link(agenda_packet_id, text="Agenda Packet")
             agenda_link_html = common.indent(get_html_link(link_id=agenda_id, text="Agenda"))
@@ -576,14 +585,11 @@ class Formatter(object):
                 agenda_packet_link_html = "None"
             else:
                 agenda_packet_link_html = common.indent(get_html_link(link_id=agenda_id, text="Packet"))
-            agenda_links_html = common.indent(get_agenda_links_html(agenda_id=agenda_id,
-                                    agenda_packet_id=agenda_packet_id))
         elif meeting_status == "TBD":
             agenda_link_html = TBD
         elif meeting_status == "canceled":
             meeting_time = "Canceled: no meeting"
             meeting_place = NBSP
-            agenda_links_html = "No meeting"
             agenda_link_html = NBSP
             agenda_packet_link_html = NBSP
             minutes_html = NBSP
@@ -591,6 +597,10 @@ class Formatter(object):
         else:
             raise Exception("unknown status: {0}".format(meeting_status))
 
+        agenda_links_html = common.indent(get_agenda_links_html(
+                                agenda_id=agenda_id,
+                                agenda_packet_id=agenda_packet_id,
+                                status=meeting_status))
         # Minutes
         minutes_id = data.get('minutes_id')
         if minutes_id:
