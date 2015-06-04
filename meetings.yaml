@@ -82,4 +82,29 @@ meetings:
 
   20130619_commission:
     agenda_id: page_3984
+    agenda_packet_id: false
     minutes_id: page_4058
+  20130515_commission:
+    agenda_id: page_3963
+    agenda_packet_id: false
+    minutes_id: false
+  20130417_commission:
+    agenda_id: page_3941
+    agenda_packet_id: false
+    minutes_id: page_3959
+  20130320_commission:
+    agenda_id: page_3913
+    agenda_packet_id: false
+    minutes_id: page_3951
+  20130220_commission:
+    agenda_id: page_3876
+    agenda_packet_id: false
+    minutes_id: page_3952
+  20130206_bopec:
+    agenda_id: page_3852
+    agenda_packet_id: false
+    minutes_id: false
+  20130116_commission:
+    agenda_id: page_3835
+    agenda_packet_id: false
+    minutes_id: page_3953
