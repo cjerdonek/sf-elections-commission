@@ -83,10 +83,10 @@ meetings:
   20130918_commission:
     status: canceled
     agenda_id: page_4068
+
   20130717_commission:
     status: canceled
     agenda_id: page_4017
-
   20130619_commission:
     agenda_id: page_3984
     agenda_packet_id: false
