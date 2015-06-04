@@ -576,7 +576,11 @@ class Formatter(object):
         youtube_agenda_link = None
         youtube_agenda_packet_link = None
         minutes_html = TBD
+        youtube_id = data.get('youtube_id')
         youtube_link_html = TBD
+        if youtube_id is False:
+            # Then the video is known not to exist.
+            youtube_link_html = NBSP
         if meeting_status == 'posted':
             youtube_agenda_link = get_text_link(agenda_id, text="Agenda")
             youtube_agenda_packet_link = get_text_link(agenda_packet_id, text="Agenda Packet")
@@ -640,7 +644,6 @@ class Formatter(object):
 
         # YouTube
         audio_base = "{0:%Y%m%d}_{1}".format(date, body_label)
-        youtube_id = data.get('youtube_id')
         if youtube_id:
             youtube_length = data.get('youtube_length')
             youtube_length_text = format_youtube_length(youtube_length)
