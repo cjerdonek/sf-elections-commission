@@ -404,24 +404,69 @@ def get_agenda_packet_url(agenda_packet_id):
     return get_page_url(4408, parent_id=agenda_packet_id)
 
 
-def parse_link_id(link_id):
-    prefix, link_id = link_id.split("_")
-    if prefix == "page":
-        link_type = "page"
-    else:
-        raise Exception("unknown prefix: {0}".format(prefix))
-    link_id = int(link_id)
-    return link_id, link_type
-
-
-def get_text_link(link_id, text):
+def get_text_link(url, text):
     """Return link in text form (e.g. for YouTube).
 
     For example, returns "Agenda (PDF): http://...".
     """
-    pass
+    return "{0}: {1}".format(text, url)
 
-def get_html_link(link_id, text):
+
+def get_html_link(url, text):
+    attrs = ''
+    return dedent("""\
+    <a href="{url}"{attrs}>
+    {text}</a>""".format(attrs=attrs, text=html_escape(text),
+                         url=html_escape(url)))
+
+
+def parse_link_id(link_id, default_type=None):
+    if default_type is None:
+        default_type = 'pdf'
+    try:
+        prefix, link_id = link_id.split("_")
+    except AttributeError:
+        link_type = default_type
+    else:
+        if prefix == "page":
+            link_type = "page"
+        else:
+            raise Exception("unknown prefix: {0}".format(prefix))
+    link_id = int(link_id)
+    return link_id, link_type
+
+
+def get_link_info(link_id, text, absolute=False, default_type=None):
+    link_number, link_type = parse_link_id(link_id, default_type)
+    if link_type == 'pdf':
+        url = get_document_url(doc_id=link_number)
+        text = "{text} ({link_type})".format(text=text, link_type='PDF')
+    elif link_type == 'page':
+        url = get_page_url(page_id=link_number)
+    else:
+        raise Exception("unknown type: {0}".format(link_type))
+    if absolute:
+        url = get_absolute_url(url)
+    return text, url
+
+
+def get_agenda_packet_link_info(link_id, absolute=False):
+    text, url = get_link_info(link_id, "Agenda Packet", absolute=absolute,
+                              default_type='page')
+    return text, url
+
+
+def get_text_link_from_id(link_id, text, absolute=False, default_type=None):
+    """Return link in text form (e.g. for YouTube).
+
+    For example, returns "Agenda (PDF): http://...".
+    """
+    text, url = get_link_info(link_id, text, absolute=absolute,
+                              default_type=default_type)
+    return get_text_link(url, text)
+
+
+def get_html_link_from_id(link_id, text, default_type=None):
     """
     Arguments:
       link_id: page_3984 for a page ID, for example.
@@ -431,27 +476,15 @@ def get_html_link(link_id, text):
         <a href="modules/showdocument.aspx?documentid=2406" target="_blank">
         Agenda (PDF)</a>
     """
-    attrs = ''
-    link_number, link_type = parse_link_id(link_id)
-    if link_type == 'PDF':
-        url = get_document_url(doc_id=link_number)
-        text = "{text} ({link_type})".format(text=text, link_type=link_type)
-    elif link_type == 'page':
-        url = get_page_url(page_id=link_number)
-    else:
-        raise Exception("unknown type: {0}".format(link_type))
-
-    # TODO: html-escape the text.
-    return dedent("""\
-    <a href="{url}"{attrs}>
-    {text}</a>""".format(attrs=attrs, text=html_escape(text),
-                         url=html_escape(url)))
+    text, url = get_link_info(link_id, text, default_type=default_type)
+    html = get_html_link(url, text)
+    return html
 
 
 def get_agenda_links_html(agenda_id, agenda_packet_id, status):
     if status == 'canceled':
         if agenda_id:
-            html = get_html_link(link_id=agenda_id, text="Canceled")
+            html = get_html_link_from_id(link_id=agenda_id, text="Canceled")
         else:
             html = "No meeting"
     elif status == 'posted':
@@ -460,10 +493,11 @@ def get_agenda_links_html(agenda_id, agenda_packet_id, status):
         elif agenda_packet_id is False:
             packet_link = None
         else:
-            packet_link = get_html_link(link_id=agenda_packet_id, text="Agenda Packet")
-        html = get_html_link(link_id=agenda_id, text="Agenda")
+            text, url = get_agenda_packet_link_info(link_id=agenda_packet_id)
+            packet_link = get_html_link(text=text, url=url)
+        html = get_html_link_from_id(link_id=agenda_id, text="Agenda")
         if packet_link is not None:
-            html += " |\n{1}".format(agenda_link, packet_link)
+            html += " |\n{0}".format(packet_link)
         return html
     else:
         raise Exception("unknown status: {0}".format(meeting_status))
@@ -582,13 +616,17 @@ class Formatter(object):
             # Then the video is known not to exist.
             youtube_link_html = NBSP
         if meeting_status == 'posted':
-            youtube_agenda_link = get_text_link(agenda_id, text="Agenda")
-            youtube_agenda_packet_link = get_text_link(agenda_packet_id, text="Agenda Packet")
-            agenda_link_html = common.indent(get_html_link(link_id=agenda_id, text="Agenda"))
+            youtube_agenda_link = get_text_link_from_id(agenda_id, text="Agenda", absolute=True)
+            # YouTube agenda packet info.
+            youtube_packet_text, youtube_packet_url = get_agenda_packet_link_info(link_id=agenda_packet_id,
+                                                                absolute=True)
+            youtube_agenda_packet_link = get_text_link(text=youtube_packet_text,
+                                                url=youtube_packet_url)
+            agenda_link_html = common.indent(get_html_link_from_id(link_id=agenda_id, text="Agenda"))
             if agenda_packet_id is None:
                 agenda_packet_link_html = "None"
             else:
-                agenda_packet_link_html = common.indent(get_html_link(link_id=agenda_id, text="Packet"))
+                agenda_packet_link_html = common.indent(get_html_link_from_id(link_id=agenda_id, text="Packet"))
         elif meeting_status == "TBD":
             agenda_link_html = TBD
         elif meeting_status == "canceled":
@@ -610,7 +648,7 @@ class Formatter(object):
         if minutes_id:
             draft_prefix = 'Draft ' if data.get('minutes_draft') else ''
             text = "{0}Minutes".format(draft_prefix)
-            minutes_html = common.indent(get_html_link(link_id=minutes_id, text=text))
+            minutes_html = common.indent(get_html_link_from_id(link_id=minutes_id, text=text))
 
         kwargs = {
             'agenda_links_html': agenda_links_html,
