@@ -1,8 +1,10 @@
 
-from cgi import escape as html_escape
+from html import escape as html_escape
 from datetime import date, timedelta
+from textwrap import dedent
 
 from pycomm import common
+
 
 NBSP = "&nbsp;"
 TBD = "TBD"
@@ -385,18 +387,41 @@ def get_absolute_url(rel_url):
     return "http://www.sfgov2.org/{0}".format(rel_url)
 
 
-def get_agenda_url(agenda_id):
-    return "modules/showdocument.aspx?documentid={0}".format(agenda_id)
+def get_document_url(doc_id):
+    return "modules/showdocument.aspx?documentid={0}".format(doc_id)
+
+
+def get_page_url(page_id, parent_id=None):
+    extra = "" if parent_id is None else "&parent={0}".format(parent_id)
+    url = "index.aspx?page={0}{extra}".format(page_id, extra=extra)
+    return url
 
 
 def get_agenda_packet_url(agenda_packet_id):
     if agenda_packet_id is None:
         return None
-    return "index.aspx?page=4408&parent={0}".format(agenda_packet_id)
+    return get_page_url(4408, parent_id=agenda_packet_id)
+
+
+def get_html_link(link_id, text):
+    """
+    Arguments:
+      link_id: page_3984 for a page ID, for example.
+
+    Returns for a PDF link, for example:
+
+        <a href="modules/showdocument.aspx?documentid=2406" target="_blank">
+        Agenda (PDF)</a>
+    """
+    attrs = ' target="_blank"'
+    # TODO: html-escape the text.
+    return dedent("""\
+    <a href="{url}"{attrs}>
+    {text}</a>""".format(attrs=attrs, text=html_escape(text),
+                         url=html_escape(url)))
 
 
 def get_document_link_html(doc_id, text):
-    # TODO: html-escape the text.
     return """\
 <a href="modules/showdocument.aspx?documentid={0:d}" target="_blank">
 {1}</a>""".format(doc_id, text)
@@ -527,7 +552,7 @@ class Formatter(object):
         if meeting_status == 'posted':
             agenda_id = int(data.get('agenda_id'))
             agenda_packet_id = data.get('agenda_packet_id')
-            agenda_url = get_agenda_url(agenda_id)
+            agenda_url = get_document_url(doc_id=agenda_id)
             agenda_url_absolute = get_absolute_url(agenda_url)
             agenda_packet_url = get_agenda_packet_url(agenda_packet_id)
             agenda_packet_url_absolute = get_absolute_url(agenda_packet_url)
