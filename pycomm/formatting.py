@@ -425,6 +425,8 @@ def parse_link_id(link_id, default_type=None):
         default_type = 'pdf'
     try:
         prefix, link_id = link_id.split("_")
+    except ValueError:
+        raise Exception("link_id: {0!r}".format(link_id))
     except AttributeError:
         link_type = default_type
     else:
@@ -482,7 +484,9 @@ def get_html_link_from_id(link_id, text, default_type=None):
 
 
 def get_agenda_links_html(agenda_id, agenda_packet_id, status):
-    if status == 'canceled':
+    if status == 'TBD':
+        html = ''
+    elif status == 'canceled':
         if agenda_id:
             html = get_html_link_from_id(link_id=agenda_id, text="Canceled")
         else:
@@ -500,7 +504,7 @@ def get_agenda_links_html(agenda_id, agenda_packet_id, status):
             html += " |\n{0}".format(packet_link)
         return html
     else:
-        raise Exception("unknown status: {0}".format(meeting_status))
+        raise Exception("unknown status: {0}".format(status))
     return html
 
 

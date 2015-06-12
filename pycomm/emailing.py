@@ -164,6 +164,7 @@ def create_message(sender, to_list, subject, body, cc_list=None, bcc_list=None,
 def get_email_service(config):
     """Return an authorized Gmail API service instance."""
     google_client_secret_path = config.get_google_client_secret_path()
+    print("google_client_secret_path: {0}".format(google_client_secret_path))
     # The "scope" scope allows--
     #   "Create, read, update, and delete drafts. Send messages and drafts."
     # Check https://developers.google.com/gmail/api/auth/scopes for all

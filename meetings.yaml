@@ -1,6 +1,7 @@
 meetings:
   20150617_commission:
-    status: TBD
+    agenda_id: 2668
+    agenda_packet_id: 0
     minutes_id: ""
     minutes_draft: True
     youtube_id: ""

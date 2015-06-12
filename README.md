@@ -27,7 +27,7 @@ Gmail API Setup
 ---------------
 
 The Python script can send e-mail using Google's [Gmail API][gmail_api].
-The Gmail API is a REST APIs that uses OAuth 2.0 to handle authentication
+The Gmail API is a REST API that uses OAuth 2.0 to handle authentication
 and authorization.
 
 The script gets needed OAuth information from a JSON file stored in the

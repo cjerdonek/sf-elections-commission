@@ -99,7 +99,7 @@ class Config(object):
 
     def get_google_client_secret_path(self):
         # Path to the client_secret.json file downloaded from the Developer Console
-        return get_config_file_path('google_client.secret.json')
+        return get_config_file_path('google_client_1.secret.json')
 
     def get_gmail_storage_path(self):
         return get_config_file_path('gmail.storage')
