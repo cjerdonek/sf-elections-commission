@@ -452,9 +452,13 @@ def get_link_info(link_id, text, absolute=False, default_type=None):
     return text, url
 
 
-def get_agenda_packet_link_info(link_id, absolute=False):
-    text, url = get_link_info(link_id, "Agenda Packet", absolute=absolute,
-                              default_type='page')
+def get_agenda_packet_link_info(agenda_packet_id, text=None, absolute=False):
+    if text is None:
+        text = "Agenda Packet"
+    url = get_agenda_packet_url(agenda_packet_id)
+    if absolute:
+        url = get_absolute_url(url)
+
     return text, url
 
 
@@ -497,7 +501,7 @@ def get_agenda_links_html(agenda_id, agenda_packet_id, status):
         elif agenda_packet_id is False:
             packet_link = None
         else:
-            text, url = get_agenda_packet_link_info(link_id=agenda_packet_id)
+            text, url = get_agenda_packet_link_info(agenda_packet_id=agenda_packet_id, text='Packet')
             packet_link = get_html_link(text=text, url=url)
         html = get_html_link_from_id(link_id=agenda_id, text="Agenda")
         if packet_link is not None:
@@ -622,8 +626,8 @@ class Formatter(object):
         if meeting_status == 'posted':
             youtube_agenda_link = get_text_link_from_id(agenda_id, text="Agenda", absolute=True)
             # YouTube agenda packet info.
-            youtube_packet_text, youtube_packet_url = get_agenda_packet_link_info(link_id=agenda_packet_id,
-                                                                absolute=True)
+            youtube_packet_text, youtube_packet_url = get_agenda_packet_link_info(
+                            agenda_packet_id=agenda_packet_id, absolute=True)
             youtube_agenda_packet_link = get_text_link(text=youtube_packet_text,
                                                 url=youtube_packet_url)
             agenda_link_html = common.indent(get_html_link_from_id(link_id=agenda_id, text="Agenda"))
