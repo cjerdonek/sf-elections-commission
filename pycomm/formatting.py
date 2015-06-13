@@ -119,11 +119,6 @@ Video Location
 
 """
 
-HTML_YOUTUBE_FORMAT = (
-    '<a href="https://www.youtube.com/watch?v={youtube_id}" '
-    'target="_blank">{youtube_duration} (YT)</a>'
-)
-
 # TODO: put in "&nbsp;" if meeting is canceled, etc.
 # <td headers="table_heading_2">{desc}</td>
 # <td headers="table_heading_3">&nbsp;</td>
@@ -355,7 +350,11 @@ def get_date_full_with_short_day(date):
     return "{0:%a, %B {day}, %Y}".format(date, day=date.day)
 
 
-def get_youtube_url(youtube_id):
+def get_url_youtube(youtube_id):
+    return "https://www.youtube.com/watch?v={0}".format(youtube_id)
+
+
+def get_url_youtube_short(youtube_id):
     return "http://youtu.be/{0}".format(youtube_id)
 
 
@@ -412,16 +411,6 @@ def get_text_link(url, text):
     return "{0}: {1}".format(text, url)
 
 
-def get_html_link(url, text, link_type=None):
-    attrs = ''
-    if link_type == 'pdf':
-        attrs = ' target="_blank"'
-    return dedent("""\
-    <a href="{url}"{attrs}>
-    {text}</a>""".format(attrs=attrs, text=html_escape(text),
-                         url=html_escape(url)))
-
-
 def parse_link_id(link_id, default_type=None):
     if default_type is None:
         default_type = 'pdf'
@@ -474,6 +463,18 @@ def get_text_link_from_id(link_id, text, absolute=False, default_type=None):
     return get_text_link(url, text)
 
 
+def get_html_link(url, text, link_type=None):
+    attrs = ''
+    if link_type == 'pdf':
+        attrs = ' target="_blank"'
+    html = dedent("""\
+    <a href="{url}"{attrs}>
+    {text}</a>""".format(attrs=attrs, text=html_escape(text),
+                         url=html_escape(url)))
+
+    return html
+
+
 def get_html_link_from_id(link_id, text, default_type=None):
     """
     Arguments:
@@ -486,6 +487,13 @@ def get_html_link_from_id(link_id, text, default_type=None):
     """
     url, text, link_type = get_link_info(link_id, text, default_type=default_type)
     html = get_html_link(url, text, link_type=link_type)
+    return html
+
+
+def get_link_html_youtube(youtube_id, duration):
+    url = get_url_youtube(youtube_id)
+    text = "{0} (YT)".format(duration)
+    html = get_html_link(url, text, link_type=None)
     return html
 
 
@@ -649,19 +657,18 @@ class Formatter(object):
         else:
             raise Exception("unknown status: {0}".format(meeting_status))
 
-        agenda_links_html = common.indent(get_agenda_links_html(
-                                agenda_id=agenda_id,
+        agenda_links_html = get_agenda_links_html(agenda_id=agenda_id,
                                 agenda_packet_id=agenda_packet_id,
-                                status=meeting_status))
+                                status=meeting_status)
         # Minutes
         minutes_id = data.get('minutes_id')
         if minutes_id:
             draft_prefix = 'Draft ' if data.get('minutes_draft') else ''
             text = "{0}Minutes".format(draft_prefix)
-            minutes_html = common.indent(get_html_link_from_id(link_id=minutes_id, text=text))
+            minutes_html = get_html_link_from_id(link_id=minutes_id, text=text)
 
         kwargs = {
-            'agenda_links_html': agenda_links_html,
+            'agenda_links_html': common.indent(agenda_links_html),
             'agenda_link_html': agenda_link_html,
             'agenda_packet_link_html': agenda_packet_link_html,
             'body_name_complete': body.name_complete,
@@ -676,7 +683,7 @@ class Formatter(object):
             'email_footer': email_footer,
             'email_footer_public': email_footer_public,
             'file_name_prefix': file_name_prefix,
-            'minutes_html': minutes_html,
+            'minutes_html': common.indent(minutes_html),
             'meeting_place': meeting_place,
             'meeting_time': meeting_time,
             'meeting_type_adjective': ("{0} ".format(meeting_type_adjective) if
@@ -695,16 +702,15 @@ class Formatter(object):
         if youtube_id:
             youtube_length = data.get('youtube_length')
             youtube_length_text = format_youtube_length(youtube_length)
-            youtube_link_html = HTML_YOUTUBE_FORMAT.format(youtube_id=youtube_id,
-                                                      youtube_duration=youtube_length)
-            youtube_url = get_youtube_url(youtube_id)
+            youtube_link_html = get_link_html_youtube(youtube_id=youtube_id, duration=youtube_length)
+            youtube_url = get_url_youtube_short(youtube_id)
             kwargs.update({
                 'youtube_length_text': youtube_length_text,
                 'youtube_url': youtube_url,
             })
         kwargs.update({
             'audio_base': audio_base,
-            'youtube_link_html': youtube_link_html,
+            'youtube_link_html': common.indent(youtube_link_html),
         })
 
         return kwargs
