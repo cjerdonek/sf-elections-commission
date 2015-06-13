@@ -412,8 +412,10 @@ def get_text_link(url, text):
     return "{0}: {1}".format(text, url)
 
 
-def get_html_link(url, text):
+def get_html_link(url, text, link_type=None):
     attrs = ''
+    if link_type == 'pdf':
+        attrs = ' target="_blank"'
     return dedent("""\
     <a href="{url}"{attrs}>
     {text}</a>""".format(attrs=attrs, text=html_escape(text),
@@ -449,7 +451,7 @@ def get_link_info(link_id, text, absolute=False, default_type=None):
         raise Exception("unknown type: {0}".format(link_type))
     if absolute:
         url = get_absolute_url(url)
-    return text, url
+    return url, text, link_type
 
 
 def get_agenda_packet_link_info(agenda_packet_id, text=None, absolute=False):
@@ -467,8 +469,8 @@ def get_text_link_from_id(link_id, text, absolute=False, default_type=None):
 
     For example, returns "Agenda (PDF): http://...".
     """
-    text, url = get_link_info(link_id, text, absolute=absolute,
-                              default_type=default_type)
+    url, text, link_type = get_link_info(link_id, text, absolute=absolute,
+                                         default_type=default_type)
     return get_text_link(url, text)
 
 
@@ -482,8 +484,8 @@ def get_html_link_from_id(link_id, text, default_type=None):
         <a href="modules/showdocument.aspx?documentid=2406" target="_blank">
         Agenda (PDF)</a>
     """
-    text, url = get_link_info(link_id, text, default_type=default_type)
-    html = get_html_link(url, text)
+    url, text, link_type = get_link_info(link_id, text, default_type=default_type)
+    html = get_html_link(url, text, link_type=link_type)
     return html
 
 
