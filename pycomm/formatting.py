@@ -317,6 +317,8 @@ def make_day_reference(meeting_date):
     meeting_day_name = meeting_date.strftime("%A")
     days_after_saturday = meeting_date.weekday() + 2
     saturday_before = meeting_date - timedelta(days=days_after_saturday)
+    sunday_before = saturday_before + timedelta(days=1)
+    wednesday_before = saturday_before - timedelta(days=3)
     saturday_after = saturday_before + timedelta(days=7)
     today = date.today()
     days_away = (meeting_date - today).days
@@ -324,13 +326,13 @@ def make_day_reference(meeting_date):
         text = "today's"
     elif days_away == -1:
         text = "yesterday's"
-    elif saturday_before <= today < meeting_date:
+    elif sunday_before <= today < meeting_date:
         text = "this {0}'s".format(meeting_day_name)
+    elif wednesday_before <= today <= saturday_before:
+        # Wednesday through Saturday of previous week.
+        text = "next {0}'s".format(meeting_day_name)
     elif saturday_after <= today <= saturday_after + timedelta(days=5):
         text = "last week's".format(meeting_day_name)
-    elif 5 <= days_away <= 7:
-        # Wednesday through Friday of previous week.
-        text = "next {0}'s".format(meeting_day_name)
     elif days_away > 7:
         text = "the upcoming"
     elif days_away < -7:
