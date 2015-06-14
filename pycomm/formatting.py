@@ -172,7 +172,7 @@ TWEET_AGENDA_POSTED = (
 )
 
 TWEET_MINUTES_DRAFT = (
-    "Draft minutes for the {date:%b. {day}, %Y} {meeting_type_medium} "
+    "Draft minutes for the {date:%b {day}, %Y} {meeting_type_medium} "
     "meeting are now posted online: {url_past_meetings_absolute}"
 )
 
@@ -315,16 +315,16 @@ def make_day_reference(meeting_date):
 
     """
     meeting_day_name = meeting_date.strftime("%A")
-    days_after_sunday = meeting_date.weekday() + 1
-    sunday_before = meeting_date - timedelta(days=days_after_sunday)
-    saturday_after = sunday_before + timedelta(days=6)
+    days_after_saturday = meeting_date.weekday() + 2
+    saturday_before = meeting_date - timedelta(days=days_after_saturday)
+    saturday_after = saturday_before + timedelta(days=7)
     today = date.today()
     days_away = (meeting_date - today).days
     if days_away == 0:
         text = "today's"
     elif days_away == -1:
         text = "yesterday's"
-    elif sunday_before <= today < meeting_date:
+    elif saturday_before <= today < meeting_date:
         text = "this {0}'s".format(meeting_day_name)
     elif saturday_after <= today <= saturday_after + timedelta(days=5):
         text = "last week's".format(meeting_day_name)
@@ -443,10 +443,9 @@ def get_link_info(link_id, text, absolute=False, default_type=None):
     return url, text, link_type
 
 
-def get_agenda_packet_link_info(agenda_packet_id, text=None, absolute=False):
-    if text is None:
-        text = "Agenda Packet"
-    url = get_agenda_packet_url(agenda_packet_id)
+def get_agenda_packet_link_info(packet_id, absolute=False):
+    text = "Packet"
+    url = get_agenda_packet_url(packet_id)
     if absolute:
         url = get_absolute_url(url)
 
@@ -511,7 +510,7 @@ def get_agenda_links_html(agenda_id, agenda_packet_id, status):
         elif agenda_packet_id is False:
             packet_link = None
         else:
-            text, url = get_agenda_packet_link_info(agenda_packet_id=agenda_packet_id, text='Packet')
+            text, url = get_agenda_packet_link_info(packet_id=agenda_packet_id)
             packet_link = get_html_link(text=text, url=url)
         html = get_html_link_from_id(link_id=agenda_id, text="Agenda")
         if packet_link is not None:
@@ -637,14 +636,15 @@ class Formatter(object):
             youtube_agenda_link = get_text_link_from_id(agenda_id, text="Agenda", absolute=True)
             # YouTube agenda packet info.
             youtube_packet_text, youtube_packet_url = get_agenda_packet_link_info(
-                            agenda_packet_id=agenda_packet_id, absolute=True)
+                            packet_id=agenda_packet_id, absolute=True)
             youtube_agenda_packet_link = get_text_link(text=youtube_packet_text,
                                                 url=youtube_packet_url)
             agenda_link_html = common.indent(get_html_link_from_id(link_id=agenda_id, text="Agenda"))
             if agenda_packet_id is None:
                 agenda_packet_link_html = "None"
             else:
-                agenda_packet_link_html = common.indent(get_html_link_from_id(link_id=agenda_id, text="Packet"))
+                text, url = get_agenda_packet_link_info(packet_id=agenda_packet_id)
+                agenda_packet_link_html = get_html_link(text=text, url=url)
         elif meeting_status == "TBD":
             agenda_link_html = TBD
         elif meeting_status == "canceled":
@@ -670,7 +670,7 @@ class Formatter(object):
         kwargs = {
             'agenda_links_html': common.indent(agenda_links_html),
             'agenda_link_html': agenda_link_html,
-            'agenda_packet_link_html': agenda_packet_link_html,
+            'agenda_packet_link_html': common.indent(agenda_packet_link_html),
             'body_name_complete': body.name_complete,
             'body_name_library_subject': body.name_library_subject,
             'body_name_short': body_name_short,
