@@ -6,6 +6,9 @@ from six.moves import input
 from datetime import date
 
 
+CMS_ID_TYPE_PAGE = 'page'
+CMS_ID_TYPE_PDF = 'pdf'
+
 LABEL_BOPEC = 'bopec'
 LABEL_COMMISSION = 'commission'
 

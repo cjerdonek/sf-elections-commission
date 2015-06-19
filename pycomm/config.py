@@ -57,6 +57,32 @@ class Config(object):
             print(msg)
             raise
 
+    def get_cms_info(self, data, key, default_type=None):
+        """Parse a cms_label, and return a cms_info object: (cms_id, cms_type)."""
+        if default_type is None:
+            default_type = common.CMS_ID_TYPE_PDF
+        label = data.get(key)
+        if not label:
+            return None
+        try:
+            try:
+                prefix, cms_id = label.split("_")
+            except ValueError:
+                cms_id = label
+                raise Exception("label: {0!r}".format(label))
+            except AttributeError:
+                cms_id = label
+                cms_type = default_type
+            else:
+                if prefix == "page":
+                    cms_type = common.CMS_ID_TYPE_PAGE
+                else:
+                    raise Exception("unknown prefix: {0}".format(prefix))
+            cms_id = int(cms_id)
+            return cms_id, cms_type
+        except Exception:
+            raise Exception("for key {0!r}: {1}".format(key, data))
+
     def is_meeting_canceled(self, label):
         data = self.get_meeting(label)
         status = data.get('status')

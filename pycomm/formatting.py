@@ -309,13 +309,12 @@ def make_notice_template_key(config, text_label, meeting_label):
     return '{0}_{1}'.format(text_label, suffix)
 
 
-# TODO: generalize this to work with a day of the week other than Wednesday.
 def make_day_reference(meeting_date):
     """For example, return "today", "yesterday", "this past Wednesday", etc.
 
     The return value is used in text like the following:
 
-        The agenda and packet for *****'s April 15 Comission meeting...."
+        The agenda and packet for ***** April 15 Comission meeting...."
 
     """
     meeting_day_name = meeting_date.strftime("%A")
@@ -328,7 +327,9 @@ def make_day_reference(meeting_date):
     days_away = (meeting_date - today).days
     # The time clauses below are organized by the date of the meeting
     # in reverse chronological order.
-    if wednesday_before <= today <= saturday_before:
+    if today < saturday_before:
+        text = "the upcoming"
+    elif wednesday_before <= today <= saturday_before:
         # Wednesday through Saturday of previous week.
         text = "next {0}'s".format(meeting_day_name)
     elif sunday_before <= today < meeting_date:
@@ -342,7 +343,7 @@ def make_day_reference(meeting_date):
     elif saturday_after <= today <= saturday_after + timedelta(days=5):
         text = "last week's".format(meeting_day_name)
     else:
-        raise Exception("unhandled day reference: {0} days".format(days_away))
+        raise Exception("unhandled day reference: meeting {0} days in future".format(days_away))
     return text
 
 
@@ -417,26 +418,10 @@ def get_text_link(url, text):
     return "{0}: {1}".format(text, url)
 
 
-def parse_link_id(link_id, default_type=None):
-    if default_type is None:
-        default_type = 'pdf'
-    try:
-        prefix, link_id = link_id.split("_")
-    except ValueError:
-        raise Exception("link_id: {0!r}".format(link_id))
-    except AttributeError:
-        link_type = default_type
-    else:
-        if prefix == "page":
-            link_type = "page"
-        else:
-            raise Exception("unknown prefix: {0}".format(prefix))
-    link_id = int(link_id)
-    return link_id, link_type
-
-
-def get_link_info(link_id, text, absolute=False, default_type=None):
-    link_number, link_type = parse_link_id(link_id, default_type)
+def get_link_info(cms_info, text, absolute=False, default_type=None):
+    if cms_info is None:
+        return None
+    link_number, link_type = cms_info
     if link_type == 'pdf':
         url = get_document_url(doc_id=link_number)
         text = "{text} ({link_type})".format(text=text, link_type='PDF')
@@ -458,11 +443,13 @@ def get_agenda_packet_link_info(packet_id, absolute=False):
     return text, url
 
 
-def get_text_link_from_id(link_id, text, absolute=False, default_type=None):
+def make_text_link(cms_info, text, absolute=False, default_type=None):
     """Return link in text form (e.g. for YouTube).
 
     For example, returns "Agenda (PDF): http://...".
     """
+    if cms_info is None:
+        return None
     url, text, link_type = get_link_info(link_id, text, absolute=absolute,
                                          default_type=default_type)
     return get_text_link(url, text)
@@ -597,6 +584,7 @@ class Formatter(object):
         self.config = config
 
     def get_meeting_kwargs(self, label):
+        print("processing label: {0}".format(label))
         config = self.config
         body, date, data = get_meeting_info(config, label)
         body_name_full = body.name_full
@@ -626,7 +614,7 @@ class Formatter(object):
         meeting_place = data.get('place', body.meeting_place)
 
         # TODO: simplify and DRY up this if logic more.
-        agenda_id = data.get('agenda_id')
+        agenda_cms_info = config.get_cms_info(data, 'agenda_id')
         agenda_packet_id = data.get('agenda_packet_id')
         agenda_links_html = None
         agenda_packet_link_html = NBSP
@@ -639,13 +627,13 @@ class Formatter(object):
             # Then the video is known not to exist.
             youtube_link_html = NBSP
         if meeting_status == 'posted':
-            youtube_agenda_link = get_text_link_from_id(agenda_id, text="Agenda", absolute=True)
+            youtube_agenda_link = make_text_link(agenda_cms_info, text="Agenda", absolute=True)
             # YouTube agenda packet info.
             youtube_packet_text, youtube_packet_url = get_agenda_packet_link_info(
                             packet_id=agenda_packet_id, absolute=True)
             youtube_agenda_packet_link = get_text_link(text=youtube_packet_text,
                                                 url=youtube_packet_url)
-            agenda_link_html = common.indent(get_html_link_from_id(link_id=agenda_id, text="Agenda"))
+            agenda_link_html = common.indent(get_html_link_from_id(link_id=agenda_cms_info, text="Agenda"))
             if agenda_packet_id is None:
                 agenda_packet_link_html = "None"
             else:
@@ -663,7 +651,7 @@ class Formatter(object):
         else:
             raise Exception("unknown status: {0}".format(meeting_status))
 
-        agenda_links_html = get_agenda_links_html(agenda_id=agenda_id,
+        agenda_links_html = get_agenda_links_html(agenda_id=agenda_cms_info,
                                 agenda_packet_id=agenda_packet_id,
                                 status=meeting_status)
         # Minutes
