@@ -1,4 +1,25 @@
 meetings:
+  20150805_bopec:
+    agenda_id: ""
+    agenda_packet_id: ""
+    minutes_id: ""
+    minutes_draft: True
+    youtube_id: ""
+    youtube_length: ""
+  20150715_commission:
+    agenda_id: ""
+    agenda_packet_id: ""
+    minutes_id: ""
+    minutes_draft: True
+    youtube_id: ""
+    youtube_length: ""
+  20150701_bopec:
+    agenda_id: ""
+    agenda_packet_id: ""
+    minutes_id: ""
+    minutes_draft: True
+    youtube_id: ""
+    youtube_length: ""
   20150617_commission:
     agenda_id: 2668
     agenda_packet_id: 2674
@@ -16,8 +37,7 @@ meetings:
   20150520_commission:
     agenda_id: 2623
     agenda_packet_id: 2622
-    minutes_id: 2672
-    minutes_draft: True
+    minutes_id: 2687
     youtube_id: "dyl31t_4Bzg"
     youtube_length: "1:48:46"
   20150506_bopec:

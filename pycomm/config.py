@@ -72,7 +72,8 @@ class Config(object):
             body_label, date_ = common.parse_label(label)
             if date_ > today:
                 return label
-        raise Exception("no next meeting")
+        next_label,  = common.next_meeting_labels(count=1)
+        raise Exception("config doesn't contain next meeting: {0}".format(next_label))
 
     def get_meeting_labels(self, first=0, count=1, suppress_error=False):
         """Return a list of consecutive meeting labels."""
