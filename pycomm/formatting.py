@@ -18,6 +18,8 @@ _EMAIL_TYPE_CHOICE_PUBLIC = 'notify_public'
 EMAIL_TYPE_CHOICES = [_EMAIL_TYPE_CHOICE_PARTICIPANTS, _EMAIL_TYPE_CHOICE_PUBLIC]
 TWEET_CHOICES = ['meeting_posted', 'minutes_approved', 'minutes_draft', 'youtube']
 
+DATE_FORMAT_SHORT = "{date:%b {day}, %Y}"
+
 FILES_FORMAT = """\
 Folder structure
 ----------------
@@ -172,13 +174,15 @@ TWEET_AGENDA_POSTED = (
 )
 
 TWEET_MINUTES_DRAFT = (
-    "Draft minutes for the {date:%b {day}, %Y} {meeting_type_medium} "
-    "meeting are now posted online: {url_past_meetings_absolute}"
+    "Draft minutes for the {date_format} {{meeting_type_medium}} "
+    "meeting are now posted online: {{url_past_meetings_absolute}}"
+    .format(date_format=DATE_FORMAT_SHORT)
 )
 
 TWEET_MINUTES_APPROVED = (
-    "The approved minutes for the {date:%b. {day}, %Y} {meeting_type_medium} "
-    "meeting are now posted online: {url_past_meetings_absolute}"
+    "The approved minutes for the {date_format} {{meeting_type_medium}} "
+    "meeting are now posted online: {{url_past_meetings_absolute}}"
+    .format(date_format=DATE_FORMAT_SHORT)
 )
 
 TWEET_YOUTUBE = (
