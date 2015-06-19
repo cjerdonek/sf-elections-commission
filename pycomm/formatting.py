@@ -343,7 +343,7 @@ def make_day_reference(meeting_date):
     elif saturday_after <= today <= saturday_after + timedelta(days=5):
         text = "last week's".format(meeting_day_name)
     else:
-        raise Exception("unhandled day reference: meeting {0} days in future".format(days_away))
+        text = "the upcoming"
     return text
 
 
@@ -410,7 +410,7 @@ def get_agenda_packet_url(agenda_packet_id):
     return get_page_url(4408, parent_id=agenda_packet_id)
 
 
-def get_text_link(url, text):
+def format_text_link(url, text):
     """Return link in text form (e.g. for YouTube).
 
     For example, returns "Agenda (PDF): http://...".
@@ -450,9 +450,9 @@ def make_text_link(cms_info, text, absolute=False, default_type=None):
     """
     if cms_info is None:
         return None
-    url, text, link_type = get_link_info(link_id, text, absolute=absolute,
+    url, text, link_type = get_link_info(cms_info, text, absolute=absolute,
                                          default_type=default_type)
-    return get_text_link(url, text)
+    return format_text_link(url, text)
 
 
 def get_html_link(url, text, link_type=None):
@@ -631,7 +631,7 @@ class Formatter(object):
             # YouTube agenda packet info.
             youtube_packet_text, youtube_packet_url = get_agenda_packet_link_info(
                             packet_id=agenda_packet_id, absolute=True)
-            youtube_agenda_packet_link = get_text_link(text=youtube_packet_text,
+            youtube_agenda_packet_link = format_text_link(text=youtube_packet_text,
                                                 url=youtube_packet_url)
             agenda_link_html = common.indent(get_html_link_from_id(link_id=agenda_cms_info, text="Agenda"))
             if agenda_packet_id is None:
