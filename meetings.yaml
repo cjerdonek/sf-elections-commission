@@ -1,5 +1,14 @@
 meetings:
+  20150819_commission:
+    status: TBD
+    agenda_id: ""
+    agenda_packet_id: ""
+    minutes_id: ""
+    minutes_draft: True
+    youtube_id: ""
+    youtube_length: ""
   20150805_bopec:
+    status: TBD
     agenda_id: ""
     agenda_packet_id: ""
     minutes_id: ""
@@ -7,6 +16,7 @@ meetings:
     youtube_id: ""
     youtube_length: ""
   20150715_commission:
+    status: TBD
     agenda_id: ""
     agenda_packet_id: ""
     minutes_id: ""
@@ -14,6 +24,7 @@ meetings:
     youtube_id: ""
     youtube_length: ""
   20150701_bopec:
+    status: TBD
     agenda_id: ""
     agenda_packet_id: ""
     minutes_id: ""
