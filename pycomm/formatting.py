@@ -378,8 +378,6 @@ def format_youtube_length(length):
     if hours is not None:
         hour_suffix = "s" if hours > 1 else ""
         text = "{0} hr{1} {2} mins".format(hours, hour_suffix, mins)
-        if hours > 1:
-            text += "s"
     elif len(parts) == 2:
         text = "{0} mins".format(mins)
     else:
