@@ -205,12 +205,12 @@ San Francisco Elections Commission
 
 Website: {url_home}
 Twitter: @SFElectionsComm
+
 {initials}
 """
 
 _EMAIL_FOOTER_PUBLIC = """\
 Thank you,
-
 
 {normal_footer}
 Note: this e-mail was sent to the public distribution list for the
