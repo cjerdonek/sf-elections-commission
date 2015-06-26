@@ -24,13 +24,7 @@ meetings:
     youtube_id: ""
     youtube_length: ""
   20150701_bopec:
-    status: TBD
-    agenda_id: ""
-    agenda_packet_id: ""
-    minutes_id: ""
-    minutes_draft: True
-    youtube_id: ""
-    youtube_length: ""
+    status: canceled
   20150617_commission:
     agenda_id: 2668
     agenda_packet_id: 2674

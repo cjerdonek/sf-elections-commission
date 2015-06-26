@@ -624,6 +624,7 @@ class Formatter(object):
         if youtube_id is False:
             # Then the video is known not to exist.
             youtube_link_html = NBSP
+        # TODO: make these statuses module constants.
         if meeting_status == 'posted':
             youtube_agenda_link = make_text_link(agenda_cms_info, text="Agenda", absolute=True)
             # YouTube agenda packet info.
