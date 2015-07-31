@@ -35,6 +35,7 @@ Folder structure
 
     Agenda Packet/
 
+        {file_name_prefix}_CMS_Index.txt
         2014-09-03_BOPEC_Minutes_Draft.pdf
 
     Agenda Prep/

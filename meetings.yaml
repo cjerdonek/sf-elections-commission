@@ -8,9 +8,8 @@ meetings:
     youtube_id: ""
     youtube_length: ""
   20150805_bopec:
-    status: TBD
-    agenda_id: ""
-    agenda_packet_id: ""
+    agenda_id: 2875
+    agenda_packet_id: 2874
     minutes_id: ""
     minutes_draft: True
     youtube_id: ""
