@@ -1,10 +1,14 @@
 
 from html import escape as html_escape
 from datetime import date, timedelta
+import logging
+from pprint import pprint
 from textwrap import dedent
 
 from pycomm import common
 
+
+_log = logging.getLogger(__name__)
 
 NBSP = "&nbsp;"
 TBD = "TBD"
@@ -416,10 +420,13 @@ def format_text_link(url, text):
     return "{0}: {1}".format(text, url)
 
 
-def get_link_info(cms_info, text, absolute=False, default_type=None):
+def get_link_info(cms_info, text, absolute=False):
     if cms_info is None:
         return None
-    link_number, link_type = cms_info
+    try:
+        link_number, link_type = cms_info
+    except TypeError:
+        raise Exception("cms_info: {0}, text={1!r}".format(cms_info, text))
     if link_type == 'pdf':
         url = get_document_url(doc_id=link_number)
         text = "{text} ({link_type})".format(text=text, link_type='PDF')
@@ -441,15 +448,14 @@ def get_agenda_packet_link_info(packet_id, absolute=False):
     return text, url
 
 
-def make_text_link(cms_info, text, absolute=False, default_type=None):
+def make_text_link(cms_info, text, absolute=False):
     """Return link in text form (e.g. for YouTube).
 
     For example, returns "Agenda (PDF): http://...".
     """
     if cms_info is None:
         return None
-    url, text, link_type = get_link_info(cms_info, text, absolute=absolute,
-                                         default_type=default_type)
+    url, text, link_type = get_link_info(cms_info, text, absolute=absolute)
     return format_text_link(url, text)
 
 
@@ -465,17 +471,14 @@ def get_html_link(url, text, link_type=None):
     return html
 
 
-def get_html_link_from_id(link_id, text, default_type=None):
+def make_html_link(cms_info, text):
     """
-    Arguments:
-      link_id: page_3984 for a page ID, for example.
-
     Returns for a PDF link, for example:
 
         <a href="modules/showdocument.aspx?documentid=2406" target="_blank">
         Agenda (PDF)</a>
     """
-    url, text, link_type = get_link_info(link_id, text, default_type=default_type)
+    url, text, link_type = get_link_info(cms_info, text)
     html = get_html_link(url, text, link_type=link_type)
     return html
 
@@ -487,12 +490,12 @@ def get_link_html_youtube(youtube_id, duration):
     return html
 
 
-def get_agenda_links_html(agenda_id, agenda_packet_id, status):
+def get_agenda_links_html(agenda_cms_info, agenda_packet_id, status):
     if status == 'TBD':
         html = ''
     elif status == 'canceled':
-        if agenda_id:
-            html = get_html_link_from_id(link_id=agenda_id, text="Canceled")
+        if agenda_cms_info:
+            html = make_html_link(agenda_cms_info, text="Canceled")
         else:
             html = "No meeting"
     elif status == 'posted':
@@ -503,7 +506,7 @@ def get_agenda_links_html(agenda_id, agenda_packet_id, status):
         else:
             text, url = get_agenda_packet_link_info(packet_id=agenda_packet_id)
             packet_link = get_html_link(text=text, url=url)
-        html = get_html_link_from_id(link_id=agenda_id, text="Agenda")
+        html = make_html_link(agenda_cms_info, text="Agenda")
         if packet_link is not None:
             html += " |\n{0}".format(packet_link)
         return html
@@ -632,7 +635,7 @@ class Formatter(object):
                             packet_id=agenda_packet_id, absolute=True)
             youtube_agenda_packet_link = format_text_link(text=youtube_packet_text,
                                                 url=youtube_packet_url)
-            agenda_link_html = common.indent(get_html_link_from_id(link_id=agenda_cms_info, text="Agenda"))
+            agenda_link_html = common.indent(make_html_link(agenda_cms_info, text="Agenda"))
             if agenda_packet_id is None:
                 agenda_packet_link_html = "None"
             else:
@@ -650,15 +653,15 @@ class Formatter(object):
         else:
             raise Exception("unknown status: {0}".format(meeting_status))
 
-        agenda_links_html = get_agenda_links_html(agenda_id=agenda_cms_info,
+        agenda_links_html = get_agenda_links_html(agenda_cms_info,
                                 agenda_packet_id=agenda_packet_id,
                                 status=meeting_status)
         # Minutes
-        minutes_id = data.get('minutes_id')
-        if minutes_id:
+        minutes_cms_info = config.get_cms_info(data, 'minutes_id')
+        if minutes_cms_info:
             draft_prefix = 'Draft ' if data.get('minutes_draft') else ''
             text = "{0}Minutes".format(draft_prefix)
-            minutes_html = get_html_link_from_id(link_id=minutes_id, text=text)
+            minutes_html = make_html_link(minutes_cms_info, text=text)
 
         kwargs = {
             'agenda_links_html': common.indent(agenda_links_html),
