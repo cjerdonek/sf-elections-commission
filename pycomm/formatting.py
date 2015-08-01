@@ -332,11 +332,11 @@ def make_day_reference(meeting_date):
     days_away = (meeting_date - today).days
     # The time clauses below are organized by the date of the meeting
     # in reverse chronological order.
-    if today < saturday_before:
-        text = "the upcoming"
-    elif wednesday_before <= today <= saturday_before:
+    if wednesday_before <= today <= saturday_before:
         # Wednesday through Saturday of previous week.
         text = "next {0}'s".format(meeting_day_name)
+    elif today < saturday_before:
+        text = "the upcoming"
     elif sunday_before <= today < meeting_date:
         text = "this {0}'s".format(meeting_day_name)
     elif today == meeting_date:
