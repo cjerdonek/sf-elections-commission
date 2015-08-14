@@ -16,9 +16,8 @@ meetings:
     youtube_id: ""
     youtube_length: ""
   20150819_commission:
-    status: TBD
-    agenda_id: ""
-    agenda_packet_id: ""
+    agenda_id: 2951
+    agenda_packet_id: 2952
     minutes_id: ""
     minutes_draft: True
     youtube_id: ""
