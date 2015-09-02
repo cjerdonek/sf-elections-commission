@@ -8,13 +8,7 @@ meetings:
     youtube_id: ""
     youtube_length: ""
   20150902_bopec:
-    status: TBD
-    agenda_id: ""
-    agenda_packet_id: ""
-    minutes_id: ""
-    minutes_draft: True
-    youtube_id: ""
-    youtube_length: ""
+    status: canceled
   20150819_commission:
     agenda_id: 2951
     agenda_packet_id: 2952
