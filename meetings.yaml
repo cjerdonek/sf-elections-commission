@@ -1,8 +1,7 @@
 meetings:
   20150916_commission:
-    status: TBD
-    agenda_id: ""
-    agenda_packet_id: ""
+    agenda_id: 3074
+    agenda_packet_id: 3072
     minutes_id: ""
     minutes_draft: True
     youtube_id: ""
