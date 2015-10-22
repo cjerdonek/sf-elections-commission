@@ -11,7 +11,8 @@ from pycomm import common
 _log = logging.getLogger(__name__)
 
 NBSP = "&nbsp;"
-TBD = "TBD"
+TBD_HTML = "TBD"
+TBD_NEW_DOCS = """TBD / <a href="index.aspx?page=4408&amp;parent=2911">New Docs</a>"""
 
 URL_HOME = "http://sfgov.org/electionscommission"
 URL_MEETINGS = "index.aspx?page=1382"
@@ -622,9 +623,9 @@ class Formatter(object):
         agenda_packet_link_html = NBSP
         youtube_agenda_link = None
         youtube_agenda_packet_link = None
-        minutes_html = TBD
+        minutes_html = TBD_NEW_DOCS
         youtube_id = data.get('youtube_id')
-        youtube_link_html = TBD
+        youtube_link_html = TBD_HTML
         if youtube_id is False:
             # Then the video is known not to exist.
             youtube_link_html = NBSP
@@ -643,7 +644,7 @@ class Formatter(object):
                 text, url = get_agenda_packet_link_info(packet_id=agenda_packet_id)
                 agenda_packet_link_html = get_html_link(text=text, url=url)
         elif meeting_status == "TBD":
-            agenda_link_html = TBD
+            agenda_link_html = TBD_NEW_DOCS
         elif meeting_status == "canceled":
             meeting_time = "Canceled: no meeting"
             meeting_place = NBSP
