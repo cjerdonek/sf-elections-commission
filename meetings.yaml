@@ -4,13 +4,14 @@ meetings:
   20151021_commission:
     agenda_id: 3133
     agenda_packet_id: 3134
+    youtube_id: "U7ILnAf_iQk"
+    youtube_length: "3:46:18"
   20151007_bopec:
     status: canceled
   20150916_commission:
     agenda_id: 3074
     agenda_packet_id: 3072
-    minutes_id: 3142
-    minutes_draft: True
+    minutes_id: 3165
     youtube_id: "gYKOypbiHhE"
     youtube_length: "55:26"
   20150902_bopec:
