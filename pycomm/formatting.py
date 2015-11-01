@@ -171,7 +171,7 @@ GENERAL_TEMPLATES = {
 }
 
 TWEET_CANCELLATION = """\
-Next {date:%A}'s {date:%B {day}} meeting of the {body_full} will not be held: {url_home}
+{day_reference} {date:%b {day}} meeting of the {body_full} will not be held: {url_home}
 """
 
 TWEET_AGENDA_POSTED = (
@@ -746,4 +746,7 @@ class Formatter(object):
 
         format_str = TWEET_TEMPLATES[tweet_label]
         kwargs = self.get_meeting_kwargs(meeting_label)
-        return self.get_formatted(format_str, **kwargs)
+        text = self.get_formatted(format_str, **kwargs)
+        text = text[0].upper() + text[1:]
+
+        return text
