@@ -1,8 +1,17 @@
 meetings:
+  20151216_commission:
+    status: TBD
   20151202_bopec:
-    status: TBD
+    # TODO
+    agenda_id: 0
+    agenda_packet_id: 0
+    youtube_id: "zTZj9SSqHvo"
+    youtube_length: "38:56"
   20151118_commission:
-    status: TBD
+    agenda_id: 3192
+    agenda_packet_id: 3192
+    youtube_id: "PnrHKXmbS74"
+    youtube_length: "1:35:41"
   20151104_bopec:
     status: canceled
   20151021_commission:
