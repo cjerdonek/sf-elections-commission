@@ -17,10 +17,12 @@ This repository contains--
 Python Setup
 ------------
 
-Set up a virtualenv using Python 3.4.  Then--
+Set up a virtualenv using Python 3.4+.  Then--
 
-    $ pip install google-api-python-client httplib2 pyyaml tweepy
+    $ pip install -r requirements.txt
     $ python scripts/run_admin.py -h
+
+(The dependencies are: google-api-python-client, httplib2, pyyaml, and tweepy.)
 
 
 Gmail API Setup
