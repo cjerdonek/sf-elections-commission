@@ -57,22 +57,26 @@ class Config(object):
             print(msg)
             raise
 
-    def get_cms_info(self, data, key, default_type=None):
-        """Parse a cms_label, and return a cms_info object: (cms_id, cms_type)."""
-        if default_type is None:
-            default_type = common.CMS_ID_TYPE_PDF
-        label = data.get(key)
-        if not label:
+    def get_cms_info(self, data, key):
+        """
+        Read a document ID from the meeting config, and return a document
+        address of the form (cms_id, cms_type).
+        """
+        value = data.get(key)
+        if not value:
             return None
+        if value.startswith("http:") or value.startswith("https:"):
+            # Then the document ID is an URL.
+            return (value, common.CMS_ID_TYPE_URL)
         try:
             try:
-                prefix, cms_id = label.split("_")
+                prefix, cms_id = value.split("_")
             except ValueError:
-                cms_id = label
-                raise Exception("label: {0!r}".format(label))
+                cms_id = value
+                raise Exception("value: {0!r}".format(value))
             except AttributeError:
-                cms_id = label
-                cms_type = default_type
+                cms_id = value
+                cms_type = common.CMS_ID_TYPE_PDF
             else:
                 if prefix == "page":
                     cms_type = common.CMS_ID_TYPE_PAGE

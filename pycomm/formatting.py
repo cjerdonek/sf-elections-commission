@@ -422,23 +422,22 @@ def format_text_link(url, text):
     return "{0}: {1}".format(text, url)
 
 
-def get_link_info(cms_info, text, absolute=False):
-    if cms_info is None:
+def get_link_info(doc_address, text, absolute=False):
+    if doc_address is None:
         return None
-    try:
-        link_number, link_type = cms_info
-    except TypeError:
-        raise Exception("cms_info: {0}, text={1!r}".format(cms_info, text))
-    if link_type == 'pdf':
-        url = get_document_url(doc_id=link_number)
-        text = "{text} ({link_type})".format(text=text, link_type='PDF')
-    elif link_type == 'page':
-        url = get_page_url(page_id=link_number)
+    doc_id, doc_id_type = doc_address
+    if doc_id_type == 'url':
+        url = doc_id
+    elif doc_id_type == 'pdf':
+        url = get_document_url(doc_id=doc_id)
+        text = "{text} ({doc_id_type})".format(text=text, doc_id_type='PDF')
+    elif doc_id_type == 'page':
+        url = get_page_url(page_id=doc_id)
     else:
-        raise Exception("unknown type: {0}".format(link_type))
+        raise Exception("unknown type: {0}".format(doc_id_type))
     if absolute:
         url = get_absolute_url(url)
-    return url, text, link_type
+    return url, text, doc_id_type
 
 
 def get_agenda_packet_link_info(packet_id, absolute=False):

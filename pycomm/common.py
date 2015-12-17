@@ -8,6 +8,7 @@ from datetime import date
 
 CMS_ID_TYPE_PAGE = 'page'
 CMS_ID_TYPE_PDF = 'pdf'
+CMS_ID_TYPE_URL = 'url'
 
 LABEL_BOPEC = 'bopec'
 LABEL_COMMISSION = 'commission'
@@ -69,6 +70,10 @@ def next_meeting_labels(count):
             body_label, date_ = parse_label(label)
             if date_ > today:
                 labels.append(label)
-        month += 1
+        if month == 12:
+            month = 1
+            year += 1
+        else:
+            month += 1
 
     return labels[:count]

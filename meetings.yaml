@@ -1,6 +1,11 @@
 meetings:
-  20151216_commission:
+  20160106_bopec:
     status: TBD
+  20151216_commission:
+    agenda_id: http://sfgov.org/electionscommission/file/61
+    agenda_packet_id: https://drive.google.com/folderview?id=0ByyWwO6zbBxzUk1EYk16TnUyNmM&usp=sharing
+    youtube_id: "4W-U7dzWK_w"
+    youtube_length: "1:09:41"
   20151202_bopec:
     # TODO
     agenda_id: 0
