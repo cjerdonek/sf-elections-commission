@@ -1,0 +1,10 @@
+# To udpate requirements.txt from this file, run:
+#
+#     $ pip-compile
+#
+
+google-api-python-client
+httplib2
+pip-tools
+pyyaml
+tweepy
