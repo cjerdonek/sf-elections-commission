@@ -22,8 +22,6 @@ Set up a virtualenv using Python 3.4+.  Then--
     $ pip install -r requirements.txt
     $ python scripts/run_admin.py -h
 
-(The dependencies are: google-api-python-client, httplib2, pyyaml, and tweepy.)
-
 
 Gmail API Setup
 ---------------
