@@ -8,13 +8,11 @@
     table.sftable tr {
         /* The lines between rows are gray: #ddd. */
         border-bottom: 1px solid #ddd;
-        border-top: 1px solid #ddd;
+        border-top: none;
         padding: 0px;
         margin-bottom: 0px;
     }
     table.sftable th, td {
-        /* The lines between rows are gray: #ddd. */
-        border-top: 1px solid #ddd;
         padding: 4px 8px;
     }
     tr.sfnote {
@@ -22,14 +20,23 @@
         background-color: #f5fbff;
         font-weight: bold;
     }
-    tr.sfnote td {
-        text-align: left;
-    }
     /* 991px is the media query that the parent does. */
     @media (max-width: 991px) {
         table.sftable thead, th {
             /* This makes table cells render stack vertically. */
             display: block;
+        }
+        table.sftable thead > tr {
+            /* We use the th border-bottom instead. */
+            border-bottom: none;
+        }
+        table.sftable th {
+            /* Make the lines darker because they are inside
+            the light blue header. */
+            border-bottom: 1px solid #aaa;
+        }
+        table.sftable td:nth-child(1) {
+            font-weight: bold;
         }
     }
 </style>
