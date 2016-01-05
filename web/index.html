@@ -1,17 +1,4 @@
-<style type="text/css">
-    table.sftable {
-        border-collapse: collapse;
-        border-spacing: 0;
-        border: 1px solid #bbb;
-        width: 100%;
-    }
-    table.sftable thead, tr, th {
-        width: 100%;
-    }
-    table.sftable td, th {
-        border-top: 1px solid #ddd;
-    }
-    tr.sfnote {
+<style type="text/css">tr.sfnote {
         /* The header row color #D3EDFD lightened a bit. */
         background-color: #f5fbff;
         font-weight: bold;
@@ -19,13 +6,10 @@
     tr.sfnote td {
         text-align: left;
     }
-    .sfwrapper > table
-    {
-        width: 100%;
-    }
     /* 991px is the media query that the parent does. */
     @media (max-width: 991px) {
-        table.sftable thead, tr, th {
+        table.sftable thead, th {
+            /* This makes table cells render stack vertically. */
             display: block;
         }
     }
@@ -34,35 +18,37 @@
 
 <h2>Announcements</h2>
 
-<table cellpadding="8" class="sftable" height="100" style="border-collapse: collapse;" summary="A simple table with one header row and three columns. The table contains information about current announcements." width="715">
-	<thead>
-		<tr>
-			<th id="table_heading_0">Posted Date</th>
-			<th id="table_heading_1">Description</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td headers="table_heading_0">
-				<p>September 23, 2015</p>
-			</td>
-			<td headers="table_heading_1">
-				<p>The website now has a <a href="new-documents">New Documents</a> folder. New documents may<br />
-					be added here prior to being moved elsewhere on the site.</p>
-			</td>
-		</tr>
-		<tr>
-			<td headers="table_heading_0">
-				<p>September 20, 2014</p>
-			</td>
-			<td headers="table_heading_1">
-				<p>The Commission now has an official <a href="https://twitter.com/SFElectionsComm">Twitter account</a> and <a href="https://www.youtube.com/channel/UCAXKDcd6YQ4FxHFUp8Hb5Jg">YouTube channel</a>.</p>
-			</td>
-		</tr>
-	</tbody>
-</table>
+<div class="sfwrapper">
+	<table cellpadding="8" class="sftable" style="border-collapse: collapse;" summary="A simple table with one header row and three columns. The table contains information about current announcements.">
+		<thead>
+			<tr>
+				<th id="table_heading_0">Posted Date</th>
+				<th id="table_heading_1">Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td headers="table_heading_0">
+					<p>September 23, 2015</p>
+				</td>
+				<td headers="table_heading_1">
+					<p>The website now has a <a href="new-documents">New Documents</a> folder. New documents may<br />
+						be added here prior to being moved elsewhere on the site.</p>
+				</td>
+			</tr>
+			<tr>
+				<td headers="table_heading_0">
+					<p>September 20, 2014</p>
+				</td>
+				<td headers="table_heading_1">
+					<p>The Commission now has an official <a href="https://twitter.com/SFElectionsComm">Twitter account</a> and <a href="https://www.youtube.com/channel/UCAXKDcd6YQ4FxHFUp8Hb5Jg">YouTube channel</a>.</p>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
 
-<p>For more frequent announcements like of website postings and changes, see the&nbsp;<a href="https://twitter.com/SFElectionsComm">Commission Twitter account</a>:</p>
+<p>For more frequent announcements like of website postings and changes, see the <a href="https://twitter.com/SFElectionsComm">Commission Twitter account</a>:</p>
 
 <p><a class="twitter-follow-button" data-show-count="false" href="https://twitter.com/SFElectionsComm">Follow @SFElectionsComm</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></p>
 
@@ -74,41 +60,39 @@
 
 <p>Check meeting agendas for detailed meeting information.</p>
 
-<p>&nbsp;</p>
-
 <div class="sfwrapper">
-<table cellpadding="8" class="sftable" style="border-collapse: collapse;" summary="A simple table with one header row and six columns. The table contains information about upcoming meetings.">
-	<thead>
-		<tr>
-			<th>Date</th>
-			<th>Meeting Type</th>
-			<th>Time</th>
-			<th>Location</th>
-			<th>Agenda</th>
-			<th>Packet</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr class="sfnote">
-			<td colspan="6" headers="table_heading_0">Note: also check <a href="index.aspx?page=4408&amp;parent=2911">New Documents</a> for other new meetings and postings.</td>
-		</tr>
-		<tr>
-			<td headers="table_heading_0">Wed, January 6, 2016</td>
-			<td headers="table_heading_1">BOPEC</td>
-			<td headers="table_heading_2" colspan="4">Canceled: no meeting</td>
-		</tr>
-		<tr>
-			<td>Wed, January 20, 2015</td>
-			<td>Commission</td>
-			<td>6:00 PM</td>
-			<td>City Hall, Room 408</td>
-			<td colspan="2">TBD</td>
-		</tr>
-		<tr class="sfnote">
-			<td colspan="6" headers="table_heading_0"><strong>Note: past meetings are listed on the <a href="/electionscommission/meetings">Meetings</a> page.</strong></td>
-		</tr>
-	</tbody>
-</table>
+	<table cellpadding="8" class="sftable" style="border-collapse: collapse;" summary="A simple table with one header row and six columns. The table contains information about upcoming meetings.">
+		<thead>
+			<tr>
+				<th>Date</th>
+				<th>Meeting Type</th>
+				<th>Time</th>
+				<th>Location</th>
+				<th>Agenda</th>
+				<th>Packet</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="sfnote">
+				<td colspan="6" headers="table_heading_0">Note: also check <a href="index.aspx?page=4408&amp;parent=2911">New Documents</a> for other new meetings and postings.</td>
+			</tr>
+			<tr>
+				<td headers="table_heading_0">Wed, January 6, 2016</td>
+				<td headers="table_heading_1">BOPEC</td>
+				<td colspan="4" headers="table_heading_2">Canceled: no meeting</td>
+			</tr>
+			<tr>
+				<td>Wed, January 20, 2015</td>
+				<td>Commission</td>
+				<td>6:00 PM</td>
+				<td>City Hall, Room 408</td>
+				<td colspan="2">TBD</td>
+			</tr>
+			<tr class="sfnote">
+				<td colspan="6" headers="table_heading_0"><strong>Note: past meetings are listed on the <a href="/electionscommission/meetings">Meetings</a> page.</strong></td>
+			</tr>
+		</tbody>
+	</table>
 </div>
 
 <p>*BOPEC stands for <a href="index.aspx?page=320#bopec">Budget and Oversightof Public Elections Committee</a>.</p>
