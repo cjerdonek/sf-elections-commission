@@ -1,4 +1,16 @@
 <style type="text/css">
+    table.sftable {
+        border-collapse: collapse;
+        border-spacing: 0;
+        border: 1px solid #bbb;
+        width: 100%;
+    }
+    table.sftable thead, tr, th {
+        width: 100%;
+    }
+    table.sftable td, th {
+        border-top: 1px solid #ddd;
+    }
     tr.sfnote {
         /* The header row color #D3EDFD lightened a bit. */
         background-color: #f5fbff;
@@ -6,6 +18,16 @@
     }
     tr.sfnote td {
         text-align: left;
+    }
+    .sfwrapper > table
+    {
+        width: 100%;
+    }
+    /* 991px is the media query that the parent does. */
+    @media (max-width: 991px) {
+        table.sftable thead, tr, th {
+            display: block;
+        }
     }
 </style>
 <p>The San Francisco Elections Commission oversees all public elections in San Francisco. It sets general policies for the <a href="http://www.sfelections.org/">Department of Elections</a> and is responsible for the proper administration of its general practices. See <a href="index.aspx?page=320">About Us</a> for more information.</p>
@@ -54,7 +76,8 @@
 
 <p>&nbsp;</p>
 
-<table cellpadding="8" class="sftable" height="150" style="border-collapse: collapse;" summary="A simple table with one header row and six columns. The table contains information about upcoming meetings." width="734">
+<div class="sfwrapper">
+<table cellpadding="8" class="sftable" style="border-collapse: collapse;" summary="A simple table with one header row and six columns. The table contains information about upcoming meetings.">
 	<thead>
 		<tr>
 			<th>Date</th>
@@ -72,24 +95,21 @@
 		<tr>
 			<td headers="table_heading_0">Wed, January 6, 2016</td>
 			<td headers="table_heading_1">BOPEC</td>
-			<td headers="table_heading_2">Canceled: no meeting</td>
-			<td headers="table_heading_3">&nbsp;</td>
-			<td headers="table_heading_4">&nbsp;</td>
-			<td headers="table_heading_5">&nbsp;</td>
+			<td headers="table_heading_2" colspan="4">Canceled: no meeting</td>
 		</tr>
 		<tr>
 			<td>Wed, January 20, 2015</td>
 			<td>Commission</td>
 			<td>6:00 PM</td>
 			<td>City Hall, Room 408</td>
-			<td>TBD</td>
-			<td>&nbsp;</td>
+			<td colspan="2">TBD</td>
 		</tr>
 		<tr class="sfnote">
 			<td colspan="6" headers="table_heading_0"><strong>Note: past meetings are listed on the <a href="/electionscommission/meetings">Meetings</a> page.</strong></td>
 		</tr>
 	</tbody>
 </table>
+</div>
 
 <p>*BOPEC stands for <a href="index.aspx?page=320#bopec">Budget and Oversightof Public Elections Committee</a>.</p>
 
