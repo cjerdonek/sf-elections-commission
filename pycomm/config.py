@@ -65,7 +65,7 @@ class Config(object):
         value = data.get(key)
         if not value:
             return None
-        if value.startswith("http:") or value.startswith("https:"):
+        if isinstance(value, str) and (value.startswith("http:") or value.startswith("https:")):
             # Then the document ID is an URL.
             return (value, common.CMS_ID_TYPE_URL)
         try:
