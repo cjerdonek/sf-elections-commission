@@ -1,20 +1,28 @@
 meetings:
+  20160120_commission:
+    agenda_id: 211
+    agenda_packet_id: https://drive.google.com/folderview?id=0ByyWwO6zbBxzUk1EYk16TnUyNmM&usp=sharing
+    minutes_draft: True
   20160106_bopec:
     status: canceled
   20151216_commission:
-    agenda_id: http://sfgov.org/electionscommission/file/61
+    agenda_id: 61
     agenda_packet_id: https://drive.google.com/folderview?id=0ByyWwO6zbBxzUk1EYk16TnUyNmM&usp=sharing
+    minutes_id: 221
+    minutes_draft: True
     youtube_id: "4W-U7dzWK_w"
     youtube_length: "1:09:41"
   20151202_bopec:
-    # TODO
-    agenda_id: 0
+    agenda_id: 71
     agenda_packet_id: 0
+    minutes_id: 81
+    minutes_draft: True
     youtube_id: "zTZj9SSqHvo"
     youtube_length: "38:56"
   20151118_commission:
-    agenda_id: 3192
+    agenda_id: 30
     agenda_packet_id: 3192
+    minutes_id: 101
     youtube_id: "PnrHKXmbS74"
     youtube_length: "1:35:41"
   20151104_bopec:
