@@ -1,8 +1,12 @@
 meetings:
+  20160203_bopec:
+    minutes_draft: True
   20160120_commission:
     agenda_id: 211
     agenda_packet_id: http://sfgov.org/electionscommission/commission-agenda-packet-january-20-2016
     minutes_draft: True
+    youtube_id: "527cpqiaQ7E"
+    youtube_length: "1:41:22"
   20160106_bopec:
     status: canceled
   20151216_commission:
