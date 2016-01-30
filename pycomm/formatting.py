@@ -15,7 +15,7 @@ TBD_HTML = "TBD"
 TBD_NEW_DOCS = """TBD / <a href="index.aspx?page=4408&amp;parent=2911">New Docs</a>"""
 
 URL_HOME = "http://sfgov.org/electionscommission"
-URL_MEETINGS = "index.aspx?page=1382"
+URL_MEETINGS = "meetings"
 
 _EMAIL_TYPE_CHOICE_PARTICIPANTS = 'notify_participants'
 _EMAIL_TYPE_CHOICE_PUBLIC = 'notify_public'
@@ -394,7 +394,7 @@ def format_youtube_length(length):
 def get_absolute_url(rel_url):
     if rel_url is None:
         return None
-    return "http://www.sfgov2.org/{0}".format(rel_url)
+    return "https://sfgov.org/electionscommission/{0}".format(rel_url)
 
 
 def get_document_url(doc_id):
@@ -557,7 +557,7 @@ class BodyBOPEC(object):
     name_library_subject = "BOPEC (SF Elections Commission)"
 
     sender = "commission"
-    public_bcc = ["jrowe"]
+    public_bcc = []
     body_to = ["cjerdonek", "jarntz"]
     body_cc = ["jrowe"]
     initials = "/cjj"
