@@ -1,8 +1,7 @@
 meetings:
   20160203_bopec:
-    # TODO
-    agenda_id: 211
-    agenda_packet_id: http://sfgov.org/electionscommission/commission-agenda-packet-january-20-2016
+    agenda_id: 261
+    # /electionscommission/bopec-agenda-packet-february-3-2016
     minutes_draft: True
   20160120_commission:
     agenda_id: 211
