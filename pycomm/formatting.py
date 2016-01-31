@@ -127,12 +127,23 @@ Video Location
 
 """
 
+HTML_INDEX = """\
+<tr>
+	<td headers="table_heading_0">Wed, February 3, 2016</td>
+	<td headers="table_heading_1">BOPEC</td>
+	<td headers="table_heading_2">6:00 PM</td>
+	<td headers="table_heading_3">City Hall, Room 421</td>
+	<td headers="table_heading_4">[[{"fid":"261","view_mode":"default","fields":{"format":"default"},"type":"media","attributes":{"class":"file media-element file-default"},"link_text":"Agenda"}]]</td>
+	<td headers="table_heading_5"><a href="/electionscommission/bopec-agenda-packet-february-3-2016">Packet</a></td>
+</tr>
+"""
+
 # TODO: put in "&nbsp;" if meeting is canceled, etc.
 # <td headers="table_heading_2">{desc}</td>
 # <td headers="table_heading_3">&nbsp;</td>
 # <td headers="table_heading_4">&nbsp;</td>
 # <td headers="table_heading_5">&nbsp;</td>
-HTML_INDEX = """\
+HTML_INDEX_OLD = """\
 <tr>
     <td headers="table_heading_0">{date_full_short_day}</td>
     <td headers="table_heading_1">{meeting_type_html}</td>
