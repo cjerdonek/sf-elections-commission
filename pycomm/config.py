@@ -96,14 +96,9 @@ class Config(object):
         return sorted(self.meetings.keys())
 
     def get_next_meeting_label(self):
-        labels = self.get_all_meeting_labels()
-        today = datetime.date.today()
-        for label in labels:
-            body_label, date_ = common.parse_label(label)
-            if date_ > today:
-                return label
-        next_label,  = common.next_meeting_labels(count=1)
-        raise Exception("config doesn't contain next meeting: {0}".format(next_label))
+        labels = common.next_meeting_labels(count=1)
+        label, = labels
+        return label
 
     def get_meeting_labels(self, first=0, count=1, suppress_error=False):
         """Return a list of consecutive meeting labels."""

@@ -1,8 +1,13 @@
 meetings:
+  20160217_commission:
+    # TODO
+    agenda_id: 261
   20160203_bopec:
     agenda_id: 261
     # /electionscommission/bopec-agenda-packet-february-3-2016
     minutes_draft: True
+    youtube_id: "GMuhKVhKaY0"
+    youtube_length: "34:40"
   20160120_commission:
     agenda_id: 211
     agenda_packet_id: http://sfgov.org/electionscommission/commission-agenda-packet-january-20-2016
@@ -21,8 +26,7 @@ meetings:
   20151202_bopec:
     agenda_id: 71
     agenda_packet_id: https://drive.google.com/folderview?id=0ByyWwO6zbBxzU3BFTmxGSjVudFE&usp=sharing
-    minutes_id: 81
-    minutes_draft: True
+    minutes_id: 271
     youtube_id: "zTZj9SSqHvo"
     youtube_length: "38:56"
   20151118_commission:
