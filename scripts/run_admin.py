@@ -167,7 +167,7 @@ def create_parser(config):
         help=("what text to tweet: {0}.".format(", ".join(tweet_choices))))
     parser.set_defaults(run_command=command_tweet_meeting)
 
-    parser = sub.add_parser("imagesizes", help="show 16:9 image sizes to help with screen shots")
+    parser = sub.add_parser("thumb", help="show 16:9 image sizes to help with screen shots")
     parser.set_defaults(run_command=command_image_sizes)
 
     return root_parser
