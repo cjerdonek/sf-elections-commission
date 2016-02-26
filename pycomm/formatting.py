@@ -567,11 +567,11 @@ class BodyBOPEC(object):
                      "of the San Francisco Elections Commission")
     name_library_subject = "BOPEC (SF Elections Commission)"
 
-    sender = "commission"
+    sender = "cjerdonek"
     public_bcc = []
-    body_to = ["cjerdonek", "jarntz"]
-    body_cc = ["jrowe"]
-    initials = "/cjj"
+    body_to = ["dparis", "rsafont", "jarntz"]
+    body_cc = ["nhewitt"]
+    initials = ""
     signature = ""
     tr_class = ' class="committee"'
 
