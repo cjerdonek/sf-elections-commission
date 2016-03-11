@@ -542,13 +542,14 @@ class BodyCommission(object):
     name_complete = "San Francisco Elections Commission"
     name_library_subject = "SF Elections Commission"
 
-    sender = "cjerdonek"
+    sender = "commission"
     public_bcc = None
     body_to = ["cjung", "dparis", "jrowe", "rsafont", "wyu",
                "jarntz", "ashen", "jwhite"]
     body_cc = []
-    initials = ""
-    signature = "Chris Jerdonek, President"
+    initials = "/cjj"
+    signature = ""
+    # signature = "Chris Jerdonek, President"
     tr_class = ''
 
 

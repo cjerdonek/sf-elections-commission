@@ -1,4 +1,10 @@
 meetings:
+  20160316_commission:
+    agenda_id:421
+    # /electionscommission/commission-agenda-packet-march-16-2016
+    # TODO
+    youtube_id: "eskcyXCmyXw"
+    youtube_length: "1:24:36"
   20160302_bopec:
     status: canceled
   20160217_commission:
