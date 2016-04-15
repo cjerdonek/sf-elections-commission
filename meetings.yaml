@@ -3,6 +3,8 @@ meetings:
     status: canceled
   20160316_commission:
     agenda_id: 421
+    minutes_draft: True
+    minutes_id: 521
     # /electionscommission/commission-agenda-packet-march-16-2016
     youtube_id: "PPVub9uJkvM"
     youtube_length: "1:40:50"
@@ -11,6 +13,8 @@ meetings:
   20160217_commission:
     # TODO
     agenda_id: 291
+    minutes_draft: True
+    minutes_id: 511
     # /electionscommission/commission-agenda-packet-february-17-2016
     youtube_id: "eskcyXCmyXw"
     youtube_length: "1:24:36"
