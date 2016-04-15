@@ -1,4 +1,7 @@
 meetings:
+  20160420_commission:
+    agenda_id: 501
+    minutes_draft: True
   20160406_bopec:
     status: canceled
   20160316_commission:
