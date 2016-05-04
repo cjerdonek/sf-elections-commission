@@ -11,6 +11,9 @@ meetings:
   20160420_commission:
     agenda_id: 501
     minutes_draft: True
+    # /electionscommission/commission-agenda-packet-march-16-2016
+    youtube_id: "sFUwqkEpe6c"
+    youtube_length: "42:54"
   20160406_bopec:
     status: canceled
   20160316_commission:
