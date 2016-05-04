@@ -360,7 +360,7 @@ def make_day_reference(meeting_date):
     elif saturday_after <= today <= saturday_after + timedelta(days=5):
         text = "last week's".format(meeting_day_name)
     else:
-        text = "the upcoming"
+        text = "the previous"
     return text
 
 
