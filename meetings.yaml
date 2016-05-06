@@ -6,6 +6,12 @@ meetings:
     status: TBD
     agenda_id: 501
     minutes_draft: True
+  20160510_commission:
+    # Room 421, 4-6pm
+    # TODO
+    status: TBD
+    agenda_id: 501
+    minutes_draft: True
   20160504_bopec:
     status: canceled
   20160420_commission:
