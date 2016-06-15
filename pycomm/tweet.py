@@ -10,6 +10,7 @@ from pycomm import common
 from pycomm.config import get_config
 
 
+# TODO: support https.
 URL_PATTERN = re.compile(r"http://\S*")
 
 
