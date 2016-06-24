@@ -1,13 +1,18 @@
 meetings:
   20160706_bopec:
     status: TBD
+  20160615_commission_special:
+    # No packet
+    youtube_id: "jsMKNZ5CQSg"
+    youtube_length: "24:59"
   20160615_commission:
-    # TODO
-    status: TBD
+    # /commission-agenda-packet-june-15-2016
+    youtube_id: "RnmQbxcsT-E"
+    youtube_length: "2:16:45"
   20160601_bopec:
     status: canceled
   20160518_commission:
-    # /electionscommission/commission-agenda-packet-may-18-2016
+    # /commission-agenda-packet-may-18-2016
     agenda_id: 501
     minutes_draft: True
     youtube_id: "_5zQOdka5pI"
