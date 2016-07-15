@@ -1,6 +1,7 @@
 meetings:
   20160720_commission:
-    status: TBD
+    # 2016/2016-07-20-commission
+    agenda_id: 701
   20160706_bopec:
     status: canceled
   20160615_commission:
