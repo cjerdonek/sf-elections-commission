@@ -571,7 +571,7 @@ class BodyBOPEC(object):
     sender = "cjerdonek"
     public_bcc = []
     body_to = ["dparis", "rsafont", "jarntz"]
-    body_cc = ["nhewitt"]
+    body_cc = []
     initials = ""
     signature = ""
     tr_class = ' class="committee"'
