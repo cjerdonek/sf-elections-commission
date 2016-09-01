@@ -1,5 +1,13 @@
 meetings:
+  20160921_commission:
+    # 2016/2016-09-21-commission
+    status: TBD
+  20160912_commission:
+    # 2016/2016-09-12-special-commission
+    # /special-commission-agenda-packet-september-12-2016
+    special: True
   20160907_bopec:
+    # 2016/2016-09-07-bopec
     status: TBD
   20160817_commission:
     status: canceled
