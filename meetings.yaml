@@ -6,6 +6,7 @@ meetings:
     # 2016/2016-09-12-special-commission
     # /special-commission-agenda-packet-september-12-2016
     special: True
+    agenda_id: 752
   20160907_bopec:
     # 2016/2016-09-07-bopec
     status: TBD
