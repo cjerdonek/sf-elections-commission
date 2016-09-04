@@ -9,8 +9,9 @@ meetings:
     agenda_id: 752
   20160907_bopec:
     # BOPEC Agenda Packet - September 7, 2016
+    # /bopec-agenda-packet-september-7-2016
     # 2016/2016-09-07-bopec
-    status: TBD
+    agenda_id: 794
   20160817_commission:
     status: canceled
   20160803_bopec:
