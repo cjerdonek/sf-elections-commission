@@ -12,6 +12,8 @@ meetings:
     # /bopec-agenda-packet-september-7-2016
     # 2016/2016-09-07-bopec
     agenda_id: 794
+    youtube_id: "p_-Xa9hfo88"
+    youtube_length: "48:27"
   20160817_commission:
     status: canceled
   20160803_bopec:
@@ -77,7 +79,7 @@ meetings:
   20160203_bopec:
     agenda_id: 261
     # /electionscommission/bopec-agenda-packet-february-3-2016
-    minutes_draft: True
+    minutes_id: 812
     youtube_id: "GMuhKVhKaY0"
     youtube_length: "34:40"
   20160120_commission:
