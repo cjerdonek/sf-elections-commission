@@ -53,7 +53,8 @@ meetings:
     status: canceled
   20160420_commission:
     agenda_id: 501
-    minutes_draft: True
+    minutes_draft_id: 581
+    minutes_id: 824
     # /electionscommission/commission-agenda-packet-march-16-2016
     youtube_id: "sFUwqkEpe6c"
     youtube_length: "42:54"
