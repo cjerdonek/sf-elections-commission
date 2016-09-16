@@ -2,11 +2,14 @@ meetings:
   20160921_commission:
     # 2016/2016-09-21-commission
     status: TBD
-  20160912_commission:
+  20160912_commission_special:
     # 2016/2016-09-12-special-commission
     # /special-commission-agenda-packet-september-12-2016
     special: True
     agenda_id: 752
+    minutes_draft_id: 833
+    youtube_id: "1DrOfXnOf64"
+    youtube_length: "7:09"
   20160907_bopec:
     # BOPEC Agenda Packet - September 7, 2016
     # /bopec-agenda-packet-september-7-2016

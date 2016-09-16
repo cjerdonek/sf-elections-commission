@@ -29,7 +29,11 @@ def parse_label(label):
     Arguments:
       label: for example: 20150107_bopec.
     """
-    date_string, body_label = label.split("_")
+    # Currently, this can look like "20160912_commission" or
+    # "20160912_commission_special".
+    # TODO: don't require the label to have a certain format.
+    parts = label.split("_")
+    date_string, body_label = parts[:2]
     date_parts = date_string[:4], date_string[4:6], date_string[6:8]
     year, month, day = (int(s) for s in date_parts)
     date_ = date(year, month, day)
