@@ -2,7 +2,9 @@ meetings:
   20161102_bopec:
     status: TBD
   20161019_commission:
-    status: TBD
+    # 2016/2016-10-19-commission
+    # /commission-agenda-packet-october-19-2016
+    agenda_id: 910
   20161005_bopec:
     status: canceled
   20160921_commission:
