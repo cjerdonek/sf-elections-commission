@@ -1,4 +1,6 @@
 meetings:
+  20161102_bopec:
+    status: TBD
   20161019_commission:
     status: TBD
   20161005_bopec:
@@ -7,6 +9,7 @@ meetings:
     # 2016/2016-09-21-commission
     # /commission-agenda-packet-september-21-2016
     agenda_id: 881
+    minutes_draft_id: 907
     youtube_id: "tmQDZFDF1zM"
     youtube_length: "53:17"
   20160912_commission_special:
