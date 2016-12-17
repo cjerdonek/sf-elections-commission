@@ -1,6 +1,7 @@
 meetings:
   20161221_commission:
-    status: TBD
+    # /commission-agenda-packet-december-21-2016
+    agenda_id: 991
   20161207_bopec:
     agenda_id: 946
     # /bopec-agenda-packet-december-7-2016
