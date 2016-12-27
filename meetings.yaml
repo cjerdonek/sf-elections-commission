@@ -1,10 +1,18 @@
 meetings:
+  20171118_commission:
+    status: TBD
+  20170104_bopec:
+    status: TBD
   20161221_commission:
-    # /commission-agenda-packet-december-21-2016
     agenda_id: 991
+    # /commission-agenda-packet-december-21-2016
+    youtube_id: "GeoLMDl3mLs"
+    youtube_length: "48:23"
   20161207_bopec:
     agenda_id: 946
     # /bopec-agenda-packet-december-7-2016
+    youtube_id: "q_mLxwcDVcc"
+    youtube_length: "22:52"
   20161116_commission:
     # 2016/2016-11-16-commission
     # /commission-agenda-packet-november-16-2016
