@@ -1,8 +1,11 @@
 meetings:
-  20171118_commission:
+  20170201_bopec:
     status: TBD
+  20170118_commission:
+    # /commission-agenda-packet-january-18-2017
+    agenda_id: 1001
   20170104_bopec:
-    status: TBD
+    status: canceled
   20161221_commission:
     agenda_id: 991
     # /commission-agenda-packet-december-21-2016
