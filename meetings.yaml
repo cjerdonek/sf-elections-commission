@@ -2,6 +2,7 @@ meetings:
   20170301_bopec:
     status: TBD
   20170215_commission:
+    # /commission-agenda-packet-february-15-2017
     agenda_id: 1055
   20170201_bopec:
     # /bopec-agenda-packet-february-1-2017
@@ -11,6 +12,7 @@ meetings:
   20170118_commission:
     # /commission-agenda-packet-january-18-2017
     agenda_id: 1001
+    minutes_draft_id: 1085
     youtube_id: "LvR2X684dPc"
     youtube_length: "1:44:28"
   20170104_bopec:
