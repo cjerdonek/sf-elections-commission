@@ -1,6 +1,8 @@
 meetings:
-  20170301_bopec:
+  20170315_commission:
     status: TBD
+  20170301_bopec:
+    status: canceled
   20170215_commission:
     # /commission-agenda-packet-february-15-2017
     agenda_id: 1055
