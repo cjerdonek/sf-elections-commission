@@ -1,7 +1,11 @@
 meetings:
+  20170405_bopec:
+    status: TBD
   20170315_commission:
     # /commission-agenda-packet-march-15-2017
     agenda_id: 1133
+    youtube_id: "k2-DX8UNqY0"
+    youtube_length: "1:35:15"
   20170301_bopec:
     status: canceled
   20170215_commission:
