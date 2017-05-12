@@ -543,7 +543,10 @@ class BodyCommission(object):
     name_library_subject = "SF Elections Commission"
 
     sender = "commission"
+
+    public_cc = ["secretary"]
     public_bcc = None
+
     body_to = ["cjung", "dparis", "jrowe", "rsafont", "wyu",
                "jarntz", "ashen", "jwhite"]
     body_cc = []

@@ -38,8 +38,10 @@ def get_email_info(formatter, email_type, meeting_label):
     if email_type == EmailChoiceEnum.notify_public:
         to_list += ['commission']
         bcc_list = config.get_entities('distribution')
-        if body.public_bcc is not None:
-            bcc_list += body.public_bcc
+        if body.public_cc:
+            cc_list.extend(body.public_cc)
+        if body.public_bcc:
+            bcc_list.extend(body.public_bcc)
     elif email_type == EmailChoiceEnum.notify_participants:
         to_list += body.body_to
         cc_list += body.body_cc
