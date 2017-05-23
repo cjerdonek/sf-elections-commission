@@ -1,6 +1,10 @@
 meetings:
+  20170607_bopec:
+    status: TBD
   20170517_commission:
     agenda_id: 1337
+    youtube_id: "YFrovGTFW9w"
+    youtube_length: "1:17:39"
   20170503_bopec:
     agenda_id: 1
     youtube_id: "3BlThLouY3A"
