@@ -1,6 +1,10 @@
 meetings:
+  20170705_bopec:
+    status: canceled
   20170621_commission:
-    status: TBD
+    agenda_id: 1
+    youtube_id: "Mjt7Y7Gr5K4"
+    youtube_length: "1:19:38"
   20170607_bopec:
     status: TBD
   20170517_commission:
