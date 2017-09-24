@@ -17,7 +17,7 @@ This repository contains--
 Python Setup
 ------------
 
-Set up a virtualenv using Python 3.4+.  Then--
+Set up a virtualenv using Python 3.6+.  Then--
 
     $ pip install -r requirements.txt
     $ python scripts/run_admin.py -h

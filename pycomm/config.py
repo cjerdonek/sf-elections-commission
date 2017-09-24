@@ -100,15 +100,16 @@ class Config(object):
         label, = labels
         return label
 
-    def get_meeting_labels(self, first=0, count=1, suppress_error=False):
-        """Return a list of consecutive meeting labels."""
-        label = self.get_next_meeting_label()
+    def get_meeting_labels(self, count):
+        """
+        Return a list of the last "count" meeting labels.
+        """
+        # label = self.get_next_meeting_label()
         labels = self.get_all_meeting_labels()
-        index = labels.index(label)
-        labels = labels[index + first:index + count]
-        if len(labels) < count and not suppress_error:
-            raise Exception("config file only contains next {0} meetings: {1}"
-                            .format(len(labels), ", ".join(labels)))
+        labels = labels[-1 * count:]
+
+        if len(labels) < count:
+            raise Exception(f'config file only contains {len(labels)} meetings (not {count})')
         return labels
 
     def get_entities(self, key):

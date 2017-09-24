@@ -92,14 +92,11 @@ def add_count_argument(parser, default=None):
 def add_meeting_label_argument(parser, config):
     # This should be far enough back to cover the minutes for the previous
     # meeting of the same type (e.g. for tweeting approved minutes).
-    first = -3
     count = 5
-    labels = config.get_meeting_labels(first=first, count=count, suppress_error=True)
-    current_index = -1 * first
-    labels[current_index] = "{0} (next meeting)".format(labels[current_index])
+    labels = config.get_meeting_labels(count=count)
     label_text = ", ".join(labels)
     parser.add_argument('meeting_label', metavar='MEETING',
-        help=('meeting label, for example: {0}.'.format(label_text)))
+        help=(f'the meeting label. For example, the last {count} configured are: {label_text}.'))
 
 
 def make_subparser(sub, command_name, desc=None, **kwargs):
