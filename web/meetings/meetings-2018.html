@@ -1,0 +1,42 @@
+<style type="text/css">/* Keep this comment for spacing reasons. */
+    table.sftable {
+        /* Make the table fill the width of the page. */
+        width: 100%;
+    }
+    table.sftable tr {
+        /* The lines between rows are gray: #ddd. */
+        border-bottom: 1px solid #ddd;
+        margin-bottom: 0px;
+        padding: 0px;
+    }
+    table.sftable th, td {
+        margin: 0px;
+        text-align: center;
+    }
+    table.sftable td:nth-child(1) {
+        text-align: left;
+    }
+    table.sftable tr.sftext td {
+        text-align: left;
+    }
+    table.sftable tr.sfnote {
+        /* The header row color #D3EDFD lightened a bit. */
+        background-color: #f5fbff;
+        font-weight: bold;
+    }
+    table.sftable tr.sfnote td {
+        text-align: left;
+    }
+    /* 991px is the media query that the parent does. */
+    @media (max-width: 991px) {
+        /* The parent left out "display: block" for thead and th. */
+        table.sftable thead, th {
+            display: block;
+        }
+        table.sftable td:nth-child(1) {
+            font-weight: bold;
+            text-align: center;
+        }
+    }
+</style>
+<p>TODO</p>
