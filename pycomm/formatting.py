@@ -99,9 +99,9 @@ Description
 
 {date_full_no_day} meeting of the {body_name_complete}.
 
-{youtube_agenda_link}
+Agenda:
 
-{youtube_agenda_packet_link}
+Agenda (PDF):
 
 1. Call to Order & Roll Call
 2. General Public Comment x:xx
@@ -315,7 +315,7 @@ EMAIL_TEMPLATES = {
 }
 
 
-class EmailChoiceEnum(object):
+class EmailChoiceEnum:
 
     notify_participants = _EMAIL_TYPE_CHOICE_PARTICIPANTS
     notify_public = _EMAIL_TYPE_CHOICE_PUBLIC
@@ -528,7 +528,7 @@ def get_agenda_links_html(agenda_cms_info, agenda_packet_id, status):
 
 
 # TODO: move these classes to config.py.
-class BodyCommission(object):
+class BodyCommission:
 
     label = common.LABEL_COMMISSION
     meeting_place = "City Hall, Room 408"
@@ -556,7 +556,7 @@ class BodyCommission(object):
     tr_class = ''
 
 
-class BodyBOPEC(object):
+class BodyBOPEC:
 
     label = common.LABEL_BOPEC
     meeting_place = "City Hall, Room 421"
@@ -580,10 +580,35 @@ class BodyBOPEC(object):
     tr_class = ' class="committee"'
 
 
+class BodyTAC:
+
+    label = common.LABEL_BOPEC
+    meeting_place = "City Hall, Room 421"
+
+    name_file_name = "OSVTAC"
+    name_web = "OSVTAC"
+    name_web_index = "OSVTAC*"
+    name_short = "OSVTAC"
+    name_medium = "OSVTAC"
+    name_full = "Open Source Voting System Technical Advisory Committee (OSVTAC)"
+    name_complete = ("Open Source Voting System Technical Advisory Committee (OSVTAC) "
+                     "of the San Francisco Elections Commission")
+    name_library_subject = "OSVTAC (SF Elections Commission)"
+
+    sender = "commission"
+    public_bcc = []
+    body_to = ["dparis", "rsafont", "jarntz"]
+    body_cc = []
+    initials = "/cjj"
+    signature = ""
+    tr_class = ' class="committee"'
+
+
 def get_meeting_info(config, label):
     body_classes = {
         'bopec': BodyBOPEC,
         'commission': BodyCommission,
+        'osvtac': BodyTAC,
     }
 
     body_label, date = common.parse_label(label)
@@ -595,7 +620,7 @@ def get_meeting_info(config, label):
     return body, date, data
 
 
-class Formatter(object):
+class Formatter:
 
     def __init__(self, config):
         self.config = config

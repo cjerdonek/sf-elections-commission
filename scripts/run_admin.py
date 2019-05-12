@@ -9,6 +9,7 @@ import sys
 import textwrap
 
 import set_path
+import pycomm.audiovideo as audiovideo
 from pycomm import common
 from pycomm import emailing
 # TODO: rename module to tweeting.
@@ -45,6 +46,12 @@ def command_text(ns, formatter):
 def command_email(ns, formatter):
     emailing.send_email(formatter=formatter, meeting_label=ns.meeting_label,
                         email_choice=ns.email_type, attach_paths=ns.attach_paths)
+
+
+def command_make_video(ns, formatter):
+    source_dir = ns.source_dir
+    base_name = ns.base_name
+    audiovideo.make_video(source_dir, base_name)
 
 
 def command_image_sizes(ns, formatter):
@@ -151,6 +158,13 @@ def create_parser(config):
     parser.add_argument('--attach', dest='attach_paths', metavar='PATH', nargs="*",
         help=("paths of any attachments."))
     parser.set_defaults(run_command=command_email)
+
+    parser = make_subparser(sub, "make_video", desc="make the video file.")
+    parser.add_argument('source_dir', metavar='DIR',
+        help='the directory containing the source files.')
+    parser.add_argument('base_name', metavar='BASE',
+        help='the base name for the files (e.g. "20190317_osvtac").')
+    parser.set_defaults(run_command=command_make_video)
 
     parser = make_subparser(sub, "init_twitter", desc="initialize Twitter creds.")
     parser.set_defaults(run_command=command_init_twitter)
